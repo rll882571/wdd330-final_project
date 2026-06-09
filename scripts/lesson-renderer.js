@@ -7,13 +7,14 @@ export function renderLesson1() {
     if (!mainElement) return;
 
     // Injeta a estrutura base do Grid das duas colunas
+    // Corrigido para .jpg conforme o seu novo print
     mainElement.innerHTML = `
         <h1 class="lesson-title">LESSON 1</h1>
         <div class="lesson-grid">
             <section class="verb-column">
                 <div class="verb-header">
                     <div class="img-placeholder main-img">
-                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=150&auto=format&fit=crop" alt="To drink" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                        <img src="images/women_drinking_water.jpg" alt="To drink" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
                     </div>
                     <h2>To drink<br>Drank</h2>
                 </div>
@@ -23,7 +24,7 @@ export function renderLesson1() {
             <section class="verb-column">
                 <div class="verb-header">
                     <div class="img-placeholder main-img">
-                        <img src="https://images.unsplash.com/photo-1522198644747-d5bc295988d5?w=150&auto=format&fit=crop" alt="To speak" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                        <img src="images/speaking.jpg" alt="To speak" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
                     </div>
                     <h2>To speak<br>Spoke</h2>
                 </div>
@@ -35,43 +36,62 @@ export function renderLesson1() {
     const drinkList = document.getElementById('drink-list');
     const speakList = document.getElementById('speak-list');
 
-    // Mapeamento de links diretos e específicos para cada bebida (evita fotos repetidas)
+    // Mapeamento usando o caminho completo e com as extensões corrigidas (.jpg)
     const drinkImages = {
-        "water": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=80&auto=format&fit=crop",
-        "milk": "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=80&auto=format&fit=crop",
-        "coffee": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=80&auto=format&fit=crop",
-        "juice": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=80&auto=format&fit=crop",
-        "soda": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=80&auto=format&fit=crop",
-        "tea": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=80&auto=format&fit=crop",
-        "cola": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=80&auto=format&fit=crop", // Coca/Cola
-        "wine": "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=80&auto=format&fit=crop",
-        "beer": "https://images.unsplash.com/photo-1608270586620-248524c67de9?w=80&auto=format&fit=crop"
+        "images/water.jpg": "images/water.jpg",
+        "images/milk.jpg": "images/milk.jpg",
+        "images/coffee.jpg": "images/coffee.jpg",
+        "images/juice.jpg": "images/juice.jpg",
+        "images/soda.jpg": "images/soda.jpg",
+        "images/tea.jpg": "images/tea.jpg",
+        "images/wine.jpg": "images/wine.jpg",
+        "images/beer.jpg": "images/beer.jpg"
     };
 
-    // Gera as linhas de TO DRINK com os links diretos corretos
+    // Mapeamento das bandeiras com as extensões mistas (.jpg e .png) do seu print
+    const flagImages = {
+        "us": "images/download (1).png",
+        "en": "images/download (1).png",
+        "fr": "images/french.jpg",
+        "de": "images/german.jpg",
+        "it": "images/italian.png",
+        "pt": "images/portuguese.jpg",
+        "es": "images/spanish.png"
+    };
+
+    // Gera as linhas de TO DRINK
     lesson1Data.drink.forEach(item => {
-        const imgUrl = drinkImages[item.keyword] || "https://placehold.co/40x30?text=🥛";
+        // Monta a chave esperada (ex: "images/water.jpg") usando o item.keyword do seu banco de dados
+        const lookupKey = `images/${item.keyword}.jpg`;
+        
+        // Se a palavra for "cola", redirecionamos para a imagem da soda
+        const finalKey = item.keyword === "cola" ? "images/soda.jpg" : lookupKey;
+
+        // Busca no seu objeto mapeado ou usa o download.png como plano de fundo reserva
+        const imgUrl = drinkImages[finalKey] || "images/download.png"; 
+
         const row = document.createElement('div');
         row.className = 'practice-row';
         row.innerHTML = `
             <button class="play-btn">▶</button>
             <p class="practice-text">${item.text}</p>
-            <div class="img-placeholder icon-img">
-                <img src="${imgUrl}" alt="${item.keyword}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px;">
+            <div class="img-placeholder icon-img" style="width: 50px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                <img src="${imgUrl}" alt="${item.keyword}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;">
             </div>
         `;
         drinkList.appendChild(row);
     });
 
-    // Gera as linhas de TO SPEAK (Mantendo as bandeiras que já deram certo!)
+    // Gera as linhas de TO SPEAK
     lesson1Data.speak.forEach(item => {
+        const imgUrl = flagImages[item.flag] || "images/download (1).png"; 
         const row = document.createElement('div');
         row.className = 'practice-row';
         row.innerHTML = `
             <button class="play-btn">▶</button>
             <p class="practice-text">${item.text}</p>
-            <div class="img-placeholder icon-img">
-                <img src="https://flagcdn.com/w40/${item.flag}.png" alt="${item.text}" style="width: 100%; height: 100%; object-fit: contain; border: 1px solid #ddd; border-radius: 2px;">
+            <div class="img-placeholder icon-img" style="width: 50px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                <img src="${imgUrl}" alt="${item.text}" style="width: 100%; height: 100%; object-fit: contain; border: 1px solid #ddd; border-radius: 2px;">
             </div>
         `;
         speakList.appendChild(row);
