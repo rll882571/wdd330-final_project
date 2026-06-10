@@ -9,7 +9,7 @@ export const lesson1Data = {
         { text: "She drinks juice", keyword: "juice" },
         { text: "I drank soda", keyword: "soda" },
         { text: "You drank tea", keyword: "tea" },
-        { text: "He drank coke", keyword: "cola" },
+        { text: "He drank coke", keyword: "coke" },
         { text: "She drank wine", keyword: "wine" },
         { text: "I drink beer", keyword: "beer" }
     ],

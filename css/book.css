@@ -199,3 +199,147 @@ body {
     height: 25px;
     display: block;
 }
+
+/* ==========================================================================
+   ESTILIZAÇÃO DO MAIN (HOME INDEX)
+   ========================================================================== */
+
+.home-main {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px; /* Alinhado com layouts de livro/educacionais limpos */
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* --- Banner Principal (Imagem Maior) --- */
+.hero-section {
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.hero-container {
+    width: 100%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.hero-image-large {
+    width: 100%;
+    height: auto;
+    max-height: 400px; /* Altura ideal para não roubar a tela toda */
+    object-fit: cover; /* Recorta proporcionalmente sem distorcer */
+    display: block;
+}
+
+/* --- Seção de Lições --- */
+.lessons-section {
+    width: 100%;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+/* --- Estrutura do Carrossel Slider --- */
+.carousel-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 1rem;
+}
+
+.carousel-track-container {
+    width: 100%;
+    overflow: hidden; /* Esconde a página que não está ativa */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Efeito suave de deslizamento */
+    width: 200%; /* Duas páginas = 200% */
+}
+
+.carousel-page {
+    width: 50%; /* Cada página ocupa exatamente o espaço visível */
+    flex-shrink: 0;
+}
+
+/* Grid de 8 Quadrinhos (4x2) */
+.lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
+    grid-template-rows: repeat(2, 1fr);    /* 2 linhas */
+    gap: 1.5rem;
+    padding: 0.5rem;
+}
+
+/* Estilo de cada Quadrinho (Card) */
+.lesson-card {
+    background-color: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    cursor: pointer;
+    text-align: center;
+}
+
+.lesson-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Padronização das Imagens dos Quadrinhos */
+.lesson-card img {
+    width: 100%;
+    height: 140px; /* Altura fixa ideal para os cards das lições */
+    object-fit: cover; /* Garante que preencha o espaço sem amassar */
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+}
+
+.lesson-card h3 {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* --- Botões de Seta (Carrossel) --- */
+.carousel-btn {
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-radius);
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    transition: all 0.2s;
+    user-select: none;
+    line-height: 1;
+}
+
+.carousel-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Responsividade Básica para telas menores */
+@media (max-width: 900px) {
+    .lessons-grid {
+        grid-template-columns: repeat(2, 1fr); /* Vira 2x4 em telas médias */
+    }
+    .carousel-track {
+        width: 400%; /* Ajusta espaço proporcional */
+    }
+}

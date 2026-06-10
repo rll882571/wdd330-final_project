@@ -77,7 +77,8 @@ export function renderLesson1() {
         "images/soda.jpg": "images/soda.jpg",
         "images/tea.jpg": "images/tea.jpg",
         "images/wine.jpg": "images/wine.jpg",
-        "images/beer.jpg": "images/beer.jpg"
+        "images/beer.jpg": "images/beer.jpg",
+        "images/coke.jpg": "images/coke.jpg"
     };
 
     // Mapeamento das bandeiras locais
@@ -94,7 +95,7 @@ export function renderLesson1() {
     // Gera as linhas de TO DRINK
     lesson1Data.drink.forEach(item => {
         const lookupKey = `images/${item.keyword}.jpg`;
-        const finalKey = item.keyword === "cola" ? "images/soda.jpg" : lookupKey;
+        const finalKey = item.keyword === "coke" ? "images/coke.jpg" : lookupKey;
         const imgUrl = drinkImages[finalKey] || "images/download.png"; 
 
         const row = document.createElement('div');
