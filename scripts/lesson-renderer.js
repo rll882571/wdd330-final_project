@@ -30,17 +30,21 @@ async function falarComElevenLabs(texto) {
         audioPlayer.play();
     } catch (error) {
         console.error(error);
-        alert("Erro ao carregar áudio. Verifique sua chave ElevenLabs.");
     }
 }
 
 export function renderLesson1() {
-    const mainElement = document.querySelector('.lesson-container');
-    
-    if (!mainElement) return;
+    const pagesContainer = document.getElementById('book-pages-container');
+    if (!pagesContainer) return;
 
-    // Injeta a estrutura base do Grid das duas colunas (.jpg corrigidos)
-    mainElement.innerHTML = `
+    pagesContainer.innerHTML = ""; // Limpa o container para renderizar tudo em ordem
+
+    // ==========================================================================
+    // FOLHA 1: VERBS (To drink / To speak) - A primeira parte que havia sumido!
+    // ==========================================================================
+    const pageVerbs = document.createElement('main');
+    pageVerbs.className = 'lesson-container';
+    pageVerbs.innerHTML = `
         <h1 class="lesson-title">LESSON 1</h1>
         <div class="lesson-grid">
             <section class="verb-column">
@@ -64,38 +68,28 @@ export function renderLesson1() {
             </section>
         </div>
     `;
+    pagesContainer.appendChild(pageVerbs);
 
-    const drinkList = document.getElementById('drink-list');
-    const speakList = document.getElementById('speak-list');
-
-    // Mapeamento usando o caminho completo e com as extensões corrigidas (.jpg)
+    // Mapeamentos de Imagens para a Folha 1
     const drinkImages = {
-        "images/water.jpg": "images/water.jpg",
-        "images/milk.jpg": "images/milk.jpg",
-        "images/coffee.jpg": "images/coffee.jpg",
-        "images/juice.jpg": "images/juice.jpg",
-        "images/soda.jpg": "images/soda.jpg",
-        "images/tea.jpg": "images/tea.jpg",
-        "images/wine.jpg": "images/wine.jpg",
-        "images/beer.jpg": "images/beer.jpg",
+        "images/water.jpg": "images/water.jpg", "images/milk.jpg": "images/milk.jpg",
+        "images/coffee.jpg": "images/coffee.jpg", "images/juice.jpg": "images/juice.jpg",
+        "images/soda.jpg": "images/soda.jpg", "images/tea.jpg": "images/tea.jpg",
+        "images/wine.jpg": "images/wine.jpg", "images/beer.jpg": "images/beer.jpg",
         "images/coke.jpg": "images/coke.jpg"
     };
 
-    // Mapeamento das bandeiras locais
     const flagImages = {
-        "us": "images/download (1).png",
-        "en": "images/download (1).png",
-        "fr": "images/french.jpg",
-        "de": "images/german.jpg",
-        "it": "images/italian.png",
-        "br": "images/portuguese.jpg", // Mapeado para o código "br" presente no seu arquivo de dados
+        "us": "images/download (1).png", "en": "images/download (1).png",
+        "fr": "images/french.jpg", "de": "images/german.jpg",
+        "it": "images/italian.png", "br": "images/portuguese.jpg",
         "es": "images/spanish.png"
     };
 
-    // Gera as linhas de TO DRINK
+    // Renderiza as linhas de TO DRINK
+    const drinkList = document.getElementById('drink-list');
     lesson1Data.drink.forEach(item => {
-        const lookupKey = `images/${item.keyword}.jpg`;
-        const finalKey = item.keyword === "coke" ? "images/coke.jpg" : lookupKey;
+        const finalKey = item.keyword === "coke" ? "images/coke.jpg" : `images/${item.keyword}.jpg`;
         const imgUrl = drinkImages[finalKey] || "images/download.png"; 
 
         const row = document.createElement('div');
@@ -107,16 +101,12 @@ export function renderLesson1() {
                 <img src="${imgUrl}" alt="${item.keyword}">
             </div>
         `;
-
-        // Evento de clique no botão de Play desta linha específica
-        row.querySelector('.play-btn').onclick = () => {
-            falarComElevenLabs(item.text);
-        };
-
+        row.querySelector('.play-btn').onclick = () => falarComElevenLabs(item.text);
         drinkList.appendChild(row);
     });
 
-    // Gera as linhas de TO SPEAK
+    // Renderiza as linhas de TO SPEAK
+    const speakList = document.getElementById('speak-list');
     lesson1Data.speak.forEach(item => {
         const imgUrl = flagImages[item.flag] || "images/download (1).png"; 
         const row = document.createElement('div');
@@ -128,12 +118,126 @@ export function renderLesson1() {
                 <img src="${imgUrl}" alt="${item.text}">
             </div>
         `;
-
-        // Evento de clique no botão de Play desta linha específica
-        row.querySelector('.play-btn').onclick = () => {
-            falarComElevenLabs(item.text);
-        };
-
+        row.querySelector('.play-btn').onclick = () => falarComElevenLabs(item.text);
         speakList.appendChild(row);
+    });
+
+
+    // ==========================================================================
+    // FOLHA 2: GRAMMAR (Estruturas de perguntas e negativas)
+    // ==========================================================================
+    const pageGrammar = document.createElement('section');
+    pageGrammar.className = 'lesson-container';
+    pageGrammar.innerHTML = `
+        <h1 class="lesson-title">GRAMMAR</h1>
+        
+        <div class="grammar-layout">
+            <div class="grammar-column">
+                <div class="grammar-block">
+                    <h3 class="block-title">DO _____</h3>
+                    <div id="do-list" class="grammar-list"></div>
+                </div>
+
+                <div class="grammar-block">
+                    <h3 class="block-title">DON'T _____</h3>
+                    <div id="dont-list" class="grammar-list"></div>
+                </div>
+
+                <div class="grammar-block">
+                    <h3 class="block-title">DID _____</h3>
+                    <div id="did-list" class="grammar-list"></div>
+                </div>
+            </div>
+
+            <div class="grammar-center-images">
+                <img src="images/question_mark.png" alt="Question Mark" class="center-img-top">
+                <img src="images/smoothie_banana.png" alt="Banana Smoothie" class="center-img-bottom">
+            </div>
+
+            <div class="grammar-column">
+                <div class="grammar-block">
+                    <h3 class="block-title"><u>DOES</u></h3>
+                    <div id="does-list" class="grammar-list"></div>
+                </div>
+
+                <div class="grammar-block">
+                    <h3 class="block-title">DOESN'T _____</h3>
+                    <div id="doesnt-list" class="grammar-list"></div>
+                </div>
+
+                <div class="grammar-block">
+                    <h3 class="block-title">DIDN'T _____</h3>
+                    <div id="didnt-list" class="grammar-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="connectives-layout">
+            <div class="grammar-block">
+                <h3 class="block-title">WITH _____</h3>
+                <div id="with-list" class="grammar-list"></div>
+            </div>
+            <div class="grammar-block">
+                <h3 class="block-title">AND _____</h3>
+                <div id="and-list" class="grammar-list"></div>
+            </div>
+        </div>
+    `;
+    pagesContainer.appendChild(pageGrammar);
+
+    // Função auxiliar para renderizar as linhas de gramática sem imagens laterais
+    const renderGrammarRow = (containerId, dataArray) => {
+        const container = document.getElementById(containerId);
+        dataArray.forEach(item => {
+            const row = document.createElement('div');
+            row.className = 'grammar-row';
+            row.innerHTML = `
+                <button class="play-btn">▶</button>
+                <p class="practice-text grammar-text">${item.text}</p>
+            `;
+            row.querySelector('.play-btn').onclick = () => falarComElevenLabs(item.text);
+            container.appendChild(row);
+        });
+    };
+
+    // Injetando os dados da gramática nos blocos correspondentes
+    renderGrammarRow('do-list', lesson1Data.grammar.doQuestions);
+    renderGrammarRow('does-list', lesson1Data.grammar.doesQuestions);
+    renderGrammarRow('dont-list', lesson1Data.grammar.dontNegative);
+    renderGrammarRow('doesnt-list', lesson1Data.grammar.doesntNegative);
+    renderGrammarRow('did-list', lesson1Data.grammar.didQuestions);
+    renderGrammarRow('didnt-list', lesson1Data.grammar.didntNegative);
+    renderGrammarRow('with-list', lesson1Data.grammar.connectivesWith);
+    renderGrammarRow('and-list', lesson1Data.grammar.connectivesAnd);
+
+
+    // ==========================================================================
+    // FOLHA 3: READING (Frases finais de leitura limpas)
+    // ==========================================================================
+    const pageReading = document.createElement('section');
+    pageReading.className = 'lesson-container';
+    pageReading.innerHTML = `
+        <h1 class="lesson-title">READING</h1>
+        <div class="reading-list" id="reading-list"></div>
+    `;
+    pagesContainer.appendChild(pageReading);
+
+    const readingList = document.getElementById('reading-list');
+    lesson1Data.reading.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'practice-row reading-row';
+        
+        const imageHtml = item.image 
+            ? `<div class="img-placeholder icon-img"><img src="${item.image}" alt="Illustration"></div>`
+            : `<div class="img-placeholder icon-img" style="visibility: hidden;"></div>`;
+
+        row.innerHTML = `
+            <button class="play-btn">▶</button>
+            <p class="practice-text reading-text">${item.text}</p>
+            ${imageHtml}
+        `;
+        
+        row.querySelector('.play-btn').onclick = () => falarComElevenLabs(item.text);
+        readingList.appendChild(row);
     });
 }
