@@ -103,8 +103,8 @@ export function renderLesson1() {
         row.innerHTML = `
             <button class="play-btn">▶</button>
             <p class="practice-text">${item.text}</p>
-            <div class="img-placeholder icon-img" style="width: 50px; height: 40px; display: flex; align-items: center; justify-content: center;">
-                <img src="${imgUrl}" alt="${item.keyword}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 4px;">
+            <div class="img-placeholder icon-img">
+                <img src="${imgUrl}" alt="${item.keyword}">
             </div>
         `;
 
@@ -124,8 +124,8 @@ export function renderLesson1() {
         row.innerHTML = `
             <button class="play-btn">▶</button>
             <p class="practice-text">${item.text}</p>
-            <div class="img-placeholder icon-img" style="width: 50px; height: 40px; display: flex; align-items: center; justify-content: center;">
-                <img src="${imgUrl}" alt="${item.text}" style="width: 100%; height: 100%; object-fit: contain; border: 1px solid #ddd; border-radius: 2px;">
+            <div class="img-placeholder icon-img">
+                <img src="${imgUrl}" alt="${item.text}">
             </div>
         `;
 

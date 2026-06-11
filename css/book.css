@@ -24,47 +24,45 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    width: 100%;
-    margin: 0 auto; 
+    width: 99%;
+    margin: 0 auto;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* --- Header Dinâmico --- */
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
 
 #main-header {
     background-color: var(--bg-card);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    width: 100%; 
+    width: 100%;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .header-container {
-    width: 100%;         
-    max-width: 100%;     
-    padding: 0.8rem 5%;  
+    width: 100%;
+    max-width: 100%;
+    padding: 0.3rem 3%;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
 }
 
-/* --- Ajuste da Imagem (Logo) --- */
-
 .logo-image {
-    height: 45px;        
-    width: auto;         
+    height: 80px;
+    width: auto;
     display: block;
     object-fit: contain;
 }
 
-/* --- Navegação --- */
-
 .header-nav ul {
     display: flex;
-    gap: 2.5rem;         
+    gap: 2.5rem;
     list-style: none;
 }
 
@@ -94,14 +92,17 @@ body {
     width: 100%;
 }
 
-/* --- Estilização do Conteúdo Principal (Folha de Papel) --- */
+/* ==========================================================================
+   LESSON PAGE
+   ========================================================================== */
+
 .lesson-container {
-    width: 65%; 
-    margin: 3rem auto; 
-    background-color: var(--bg-card); 
-    padding: 3rem 4rem;              
-    border-radius: 8px;              
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); 
+    width: 65%;
+    margin: 3rem auto;
+    background-color: var(--bg-card);
+    padding: 3rem 4rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     text-align: center;
 }
 
@@ -112,12 +113,11 @@ body {
     letter-spacing: 2px;
 }
 
-/* Grid das duas colunas */
 .lesson-grid {
     display: flex;
     justify-content: space-around;
-    gap: 4rem; /* Aumentei o espaçamento entre as colunas centrais */
-    flex-wrap: wrap; 
+    gap: 4rem;
+    flex-wrap: wrap;
 }
 
 .verb-column {
@@ -126,7 +126,6 @@ body {
     max-width: 500px;
 }
 
-/* Cabeçalho de cada verbo */
 .verb-header {
     margin-bottom: 2rem;
 }
@@ -136,29 +135,29 @@ body {
     color: var(--primary-color);
 }
 
-/* Estilo das linhas de frases */
+/* ==========================================================================
+   FRASES (DRINK / SPEAK)
+   ========================================================================== */
+
 .practice-list {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem; /* Espaço ligeiramente maior entre as linhas de exercício */
+    gap: 2.5rem;
 }
 
 .practice-row {
     display: grid;
-    /* Altera o grid para o texto e o ícone ficarem juntos, logo após o play */
-    grid-template-columns: 40px max-content max-content; 
+    grid-template-columns: 40px max-content 60px;
     align-items: center;
-    gap: 0.8rem; /* Espaço curto e idêntico entre os três elementos */
-    text-align: left;
+    gap: 0.6rem;
 }
-
 .practice-text {
     font-style: italic;
-    font-size: 1.1rem;
+    font-size: 2rem;
     font-weight: 600;
 }
 
-/* Botão de Play */
+/* BOTÃO PLAY */
 .play-btn {
     background: none;
     border: 2px solid var(--text-muted);
@@ -180,39 +179,45 @@ body {
     border-color: var(--primary-color);
 }
 
-/* --- Remoção dos fundos provisórios das imagens --- */
-.img-placeholder {
-    /* Removido o background cinza e as bordas tracejadas */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
+/* IMAGEM PRINCIPAL */
 .main-img {
-    width: 120px;  /* Leve aumento para destacar bem os cabeçalhos */
-    height: 120px;
+    width: 170px;
+    height: 170px;
     margin: 0 auto 10px;
 }
 
+/* =========================================================
+   IMAGENS AO LADO DAS FRASES (CORREÇÃO REAL)
+   ========================================================= */
+
 .icon-img {
-    width: 35px;  /* Proporção excelente para os pequenos ícones e bandeiras */
-    height: 25px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.icon-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     display: block;
 }
 
 /* ==========================================================================
-   ESTILIZAÇÃO DO MAIN (HOME INDEX)
+   HOME
    ========================================================================== */
 
 .home-main {
     flex: 1;
     width: 100%;
-    max-width: 1200px; /* Alinhado com layouts de livro/educacionais limpos */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
 }
 
-/* --- Banner Principal (Imagem Maior) --- */
 .hero-section {
     width: 100%;
     margin-bottom: 3rem;
@@ -227,13 +232,15 @@ body {
 
 .hero-image-large {
     width: 100%;
-    height: auto;
-    max-height: 400px; /* Altura ideal para não roubar a tela toda */
-    object-fit: cover; /* Recorta proporcionalmente sem distorcer */
+    max-height: 400px;
+    object-fit: cover;
     display: block;
 }
 
-/* --- Seção de Lições --- */
+/* ==========================================================================
+   CARROSSEL
+   ========================================================================== */
+
 .lessons-section {
     width: 100%;
     text-align: center;
@@ -245,7 +252,6 @@ body {
     margin-bottom: 2rem;
 }
 
-/* --- Estrutura do Carrossel Slider --- */
 .carousel-wrapper {
     display: flex;
     align-items: center;
@@ -255,91 +261,105 @@ body {
 
 .carousel-track-container {
     width: 100%;
-    overflow: hidden; /* Esconde a página que não está ativa */
+    overflow: hidden;
 }
 
 .carousel-track {
     display: flex;
-    transition: transform 0.5s ease-in-out; /* Efeito suave de deslizamento */
-    width: 200%; /* Duas páginas = 200% */
+    transition: transform 0.5s ease-in-out;
+    width: 200%;
 }
 
 .carousel-page {
-    width: 50%; /* Cada página ocupa exatamente o espaço visível */
+    width: 50%;
     flex-shrink: 0;
 }
 
-/* Grid de 8 Quadrinhos (4x2) */
 .lessons-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
-    grid-template-rows: repeat(2, 1fr);    /* 2 linhas */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: 1.5rem;
     padding: 0.5rem;
 }
 
-/* Estilo de cada Quadrinho (Card) */
 .lesson-card {
-    background-color: var(--bg-card);
+    background: var(--bg-card);
     border-radius: var(--border-radius);
     padding: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    transition: 0.3s;
     cursor: pointer;
     text-align: center;
 }
 
 .lesson-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
 }
 
-/* Padronização das Imagens dos Quadrinhos */
 .lesson-card img {
     width: 100%;
-    height: 140px; /* Altura fixa ideal para os cards das lições */
-    object-fit: cover; /* Garante que preencha o espaço sem amassar */
+    height: 140px;
+    object-fit: cover;
     border-radius: 4px;
     margin-bottom: 0.8rem;
 }
 
-.lesson-card h3 {
-    font-size: 1.1rem;
-    color: var(--text-color);
-    font-weight: 600;
-}
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
 
-/* --- Botões de Seta (Carrossel) --- */
-.carousel-btn {
+#main-footer {
     background-color: var(--bg-card);
-    border: 2px solid var(--border-radius);
-    color: var(--primary-color);
-    font-size: 2.5rem;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    cursor: pointer;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    margin-top: auto;
+    width: 100%;
+}
+
+.footer-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.2rem 1rem;   /* 🔥 menor altura */
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-    transition: all 0.2s;
-    user-select: none;
-    line-height: 1;
+    gap: 0.6rem;           /* 🔥 menos espaço */
+    text-align: center;
 }
 
-.carousel-btn:hover {
-    background-color: var(--primary-color);
-    color: white;
+/* texto superior */
+.footer-container p {
+    font-size: 0.85rem;    /* 🔥 menor */
+    color: var(--text-muted);
+    margin: 0;
 }
 
-/* Responsividade Básica para telas menores */
-@media (max-width: 900px) {
-    .lessons-grid {
-        grid-template-columns: repeat(2, 1fr); /* Vira 2x4 em telas médias */
-    }
-    .carousel-track {
-        width: 400%; /* Ajusta espaço proporcional */
-    }
+/* redes sociais */
+.social-links {
+    display: flex;
+    gap: 1rem;             /* 🔥 mais compacto */
+    align-items: center;
+}
+
+/* ícones menores */
+.social-icon {
+    width: 24px;           /* 🔥 menor */
+    height: 24px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.social-links a:hover .social-icon {
+    transform: scale(1.1);
+}
+
+/* copyright */
+.footer-container .copyright {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    width: 100%;
+    padding-top: 0.6rem;   /* 🔥 menor */
+    margin-top: 0.3rem;
 }

@@ -1,10 +1,9 @@
-// O seu arquivo JS principal (ex: header.js ou main.js)
 import { renderLesson1 } from './lesson-renderer.js';
 
 document.addEventListener("DOMContentLoaded", () => {
+    // HEADER
     const headerElement = document.getElementById("main-header");
 
-    // Seu código do header dinâmico continua aqui...
     if (headerElement) {
         headerElement.innerHTML = `
             <div class="header-container">
@@ -26,21 +25,48 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
-    // DISPARA A RENDERIZAÇÃO AUTOMÁTICA DA LIÇÃO 1
+    // FOOTER
+    const footerElement = document.getElementById("main-footer");
+
+    if (footerElement) {
+        footerElement.innerHTML = `
+            <div class="footer-container">
+                <p>Follow us on social media</p>
+
+                <div class="social-links">
+                    <a href="https://instagram.com/seu_instagram" target="_blank">
+                        <img src="images/instagram.png" alt="Instagram" class="social-icon">
+                    </a>
+
+                    <a href="https://facebook.com/sua_pagina" target="_blank">
+                        <img src="images/facebook.png" alt="Facebook" class="social-icon">
+                    </a>
+
+                </div>
+
+                <p class="copyright">
+                    © ${new Date().getFullYear()} English Course
+                </p>
+            </div>
+        `;
+    }
+
+    // Renderiza a Lesson 1
     renderLesson1();
 });
+
 let currentTrackPage = 0;
 
 function moveCarousel(direction) {
     const track = document.getElementById('carouselTrack');
-    
-    // Altera entre a página 0 e a página 1
+
     currentTrackPage += direction;
-    
-    // Evita passar do limite de páginas (temos apenas 2 páginas)
+
     if (currentTrackPage < 0) currentTrackPage = 0;
     if (currentTrackPage > 1) currentTrackPage = 1;
-    
-    // Desloca o slider em -50% (já que cada página ocupa metade do track de 200%)
+
     track.style.transform = `translateX(-${currentTrackPage * 50}%)`;
 }
+
+// Necessário para o onclick do HTML funcionar
+window.moveCarousel = moveCarousel;
