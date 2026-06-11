@@ -134,17 +134,17 @@ export function renderLesson1() {
         <div class="grammar-layout">
             <div class="grammar-column">
                 <div class="grammar-block">
-                    <h3 class="block-title">DO _____</h3>
+                    <h3 class="block-title">DO </h3>
                     <div id="do-list" class="grammar-list"></div>
                 </div>
 
                 <div class="grammar-block">
-                    <h3 class="block-title">DON'T _____</h3>
+                    <h3 class="block-title">DON'T </h3>
                     <div id="dont-list" class="grammar-list"></div>
                 </div>
 
                 <div class="grammar-block">
-                    <h3 class="block-title">DID _____</h3>
+                    <h3 class="block-title">DID</h3>
                     <div id="did-list" class="grammar-list"></div>
                 </div>
             </div>
@@ -161,12 +161,12 @@ export function renderLesson1() {
                 </div>
 
                 <div class="grammar-block">
-                    <h3 class="block-title">DOESN'T _____</h3>
+                    <h3 class="block-title">DOESN'T </h3>
                     <div id="doesnt-list" class="grammar-list"></div>
                 </div>
 
                 <div class="grammar-block">
-                    <h3 class="block-title">DIDN'T _____</h3>
+                    <h3 class="block-title">DIDN'T </h3>
                     <div id="didnt-list" class="grammar-list"></div>
                 </div>
             </div>
@@ -174,11 +174,11 @@ export function renderLesson1() {
 
         <div class="connectives-layout">
             <div class="grammar-block">
-                <h3 class="block-title">WITH _____</h3>
+                <h3 class="block-title">WITH </h3>
                 <div id="with-list" class="grammar-list"></div>
             </div>
             <div class="grammar-block">
-                <h3 class="block-title">AND _____</h3>
+                <h3 class="block-title">AND </h3>
                 <div id="and-list" class="grammar-list"></div>
             </div>
         </div>
