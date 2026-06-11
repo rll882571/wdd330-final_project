@@ -70,5 +70,38 @@ export const lesson1Data = {
         { text: "I drink coconut water.", image: "" },
         { text: "She doesn't speak Italian or French.", image: "" },
         { text: "I didn't drink beer or wine with Jennifer.", image: "images/wine.png" }
-    ]
+    ],
+    exercises: {
+        completeDoDoes: [
+            { text: "I drink juice with you?", correct: "do" },
+            { text: "you speak Spanish and Portuguese?", correct: "do" },
+            { text: "I speak English?", correct: "do" },
+            { text: "he speak Spanish and Portuguese?", correct: "does" },
+            { text: "you speak French?", correct: "do" },
+            { text: "Jennifer drink orange juice?", correct: "does" }, // Ajustado erro de digitação do PDF 'drink drink'
+            { text: "she drink milk and soda?", correct: "does" },
+            { text: "Paul drink coffee and milk?", correct: "does" }
+        ],
+        transformNegative: [
+            { label: "she drinks beer.", correct: "she doesn't drink beer" },
+            { label: "He drank sparkling water.", correct: "he didn't drink sparkling water" },
+            { label: "I spoke English with Jennifer.", correct: "i didn't speak English with jennifer" },
+            { label: "John speaks Portuguese and German.", correct: "john doesn't speak portuguese and german" },
+            { label: "John drinks juice with Jennifer and Mike.", correct: "john doesn't drink juice with jennifer and mike" }
+        ],
+        openAnswers: [
+            { 
+                question: "Did you drink milk?", 
+                correct: "no, i didn't drink milk, i drank juice" // Exemplo padrão baseado no PDF
+            },
+            { 
+                question: "Does she speak portuguese and Spanish?", 
+                correct: "no, she doesn't speak portuguese and spanish, she speaks english" 
+            },
+            { 
+                question: "Do I speak portuguese?", 
+                correct: "no, you don't speak portuguese, you speak english" 
+            }
+        ]
+    }
 };

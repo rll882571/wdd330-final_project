@@ -471,3 +471,144 @@ body {
     font-size: 1.9rem !important;
     text-align: left;
 }
+
+/* ==========================================================================
+   ESTILOS DA FOLHA DE EXERCÍCIOS
+   ========================================================================== */
+
+.exercise-section {
+    text-align: left;
+    margin-bottom: 3.5rem;
+}
+
+.exercise-subtitle {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    border-bottom: 1px dashed #cbd5e1;
+    padding-bottom: 0.5rem;
+}
+
+/* Grid de duas colunas para o DO/DOES */
+.exercise-grid-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 3rem;
+}
+
+.exercise-item-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.exercise-text-inline {
+    font-size: 1.4rem;
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* Inputs Estilizados estilo Caderno/PDF */
+.input-wrapper, .input-wrapper-full {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.input-do-does {
+    width: 100px;
+    font-size: 1.4rem;
+    padding: 2px 5px;
+    border: none;
+    border-bottom: 2px solid var(--text-muted);
+    background: transparent;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    color: var(--primary-color);
+    outline: none;
+}
+
+.input-wrapper-full {
+    width: 100%;
+}
+
+.input-negative, .input-open {
+    width: 100%;
+    font-size: 1.4rem;
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid var(--text-muted);
+    background: transparent;
+    font-style: italic;
+    color: var(--primary-color);
+    outline: none;
+    margin-top: 0.5rem;
+}
+
+/* Ícone de feedback ✔️ / ❌ */
+.feedback-icon {
+    font-size: 1.2rem;
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+/* Grade para transformar sentenças */
+.exercise-grid-negative {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 4rem;
+}
+
+.sentence-label, .question-label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* Bloco de Exemplo */
+.example-box {
+    background-color: #f1f5f9;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.example-q {
+    font-size: 1.4rem;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.example-a {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.exercise-open-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Botão de Check flutuante no fim da página */
+.check-answers-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.check-answers-btn:hover {
+    background-color: var(--primary-hover);
+}

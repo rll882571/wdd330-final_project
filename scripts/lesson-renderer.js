@@ -40,7 +40,7 @@ export function renderLesson1() {
     pagesContainer.innerHTML = ""; // Limpa o container para renderizar tudo em ordem
 
     // ==========================================================================
-    // FOLHA 1: VERBS (To drink / To speak) - A primeira parte que havia sumido!
+    // FOLHA 1: VERBS (To drink / To speak)
     // ==========================================================================
     const pageVerbs = document.createElement('main');
     pageVerbs.className = 'lesson-container';
@@ -240,4 +240,90 @@ export function renderLesson1() {
         row.querySelector('.play-btn').onclick = () => falarComElevenLabs(item.text);
         readingList.appendChild(row);
     });
-}
+
+    // ==========================================================================
+    // FOLHA 4: EXERCISE (Interativo com validação automática)
+    // ==========================================================================
+    const pageExercise = document.createElement('section');
+    pageExercise.className = 'lesson-container exercise-page';
+    pageExercise.innerHTML = `
+        <h1 class="lesson-title">EXERCISE</h1>
+        
+        <div class="exercise-section">
+            <h2 class="exercise-subtitle">Complete with DO or DOES</h2>
+            <div class="exercise-grid-inputs">
+                ${lesson1Data.exercises.completeDoDoes.map((item, index) => `
+                    <div class="exercise-item-row">
+                        <div class="input-wrapper">
+                            <input type="text" class="input-do-does" data-correct="${item.correct}" placeholder="........">
+                            <span class="feedback-icon"></span>
+                        </div>
+                        <p class="exercise-text-inline">${item.text}</p>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h2 class="exercise-subtitle">Change the sentences from affirmative to negative.</h2>
+            <div class="exercise-grid-negative">
+                ${lesson1Data.exercises.transformNegative.map((item, index) => `
+                    <div class="exercise-block-neg">
+                        <p class="sentence-label">${item.label}</p>
+                        <div class="input-wrapper-full">
+                            <input type="text" class="input-negative" data-correct="${item.correct}" placeholder="........................................................................">
+                            <span class="feedback-icon"></span>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+
+        <div class="exercise-section">
+            <h2 class="exercise-subtitle">Answer the questions using the following example:</h2>
+            <div class="example-box">
+                <p class="example-q">Do you drink soda?</p>
+                <p class="example-a">No, I dont drink soda, I drink juice.</p>
+            </div>
+
+            <div class="exercise-open-questions">
+                ${lesson1Data.exercises.openAnswers.map((item, index) => `
+                    <div class="exercise-block-open">
+                        <p class="question-label">${item.question}</p>
+                        <div class="input-wrapper-full">
+                            <input type="text" class="input-open" data-correct="${item.correct}" placeholder="No, ...">
+                            <span class="feedback-icon"></span>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+
+        <button id="btn-check-answers" class="check-answers-btn">Check Answers</button>
+    `;
+    pagesContainer.appendChild(pageExercise);
+
+    // --- LÓGICA DE VALIDAÇÃO DO BOTÃO CHECK ---
+    document.getElementById('btn-check-answers').onclick = () => {
+        const allInputs = pageExercise.querySelectorAll('input[data-correct]');
+        
+        allInputs.forEach(input => {
+            const userAnswer = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
+            const correctAnswer = input.getAttribute('data-correct').toLowerCase().trim();
+            const feedbackSpan = input.parentNode.querySelector('.feedback-icon');
+
+            if (userAnswer === "") {
+                feedbackSpan.innerHTML = "";
+                input.style.borderColor = "#718096"; // Borda neutra se vazio
+            } else if (userAnswer === correctAnswer || (input.classList.contains('input-open') && userAnswer.startsWith('no'))) {
+                feedbackSpan.innerHTML = "✔️";
+                feedbackSpan.style.color = "#2ec4b6";
+                input.style.borderColor = "#2ec4b6";
+            } else {
+                feedbackSpan.innerHTML = "❌";
+                feedbackSpan.style.color = "#e53e3e";
+                input.style.borderColor = "#e53e3e";
+            }
+        });
+    };
+} // <--- Chave final fechando o renderLesson1() corretamente no lugar certo!
