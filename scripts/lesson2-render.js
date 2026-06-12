@@ -86,7 +86,7 @@ export function renderLesson2() {
     // Mapeamento de imagens para a coluna TO EAT
     const eatImages = {
         "images/meat.jpg": "images/meat.jpg", 
-        "images/apples.jpg": "images/apples.jpg",
+        "images/apples.jpg": "images/apple.jpg",
         "images/ham.jpg": "images/ham.jpg", 
         "images/bread.jpg": "images/bread.jpg",
         "images/cheese.jpg": "images/cheese.jpg", 
