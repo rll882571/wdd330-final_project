@@ -73,7 +73,7 @@ export function renderLesson2() {
     // Mapeamento de imagens para a coluna TO LIKE
     const likeImages = {
         "images/money.jpg": "images/money.jpg", 
-        "images/ice_cream.jpg": "images/ice_cream.jpg",
+        "images/ice-cream.jpg": "images/ice-cream.jpg",
         "images/me.jpg": "images/me.jpg", 
         "images/you.jpg": "images/you.jpg",
         "images/liked_it.jpg": "images/liked_it.jpg", 
