@@ -255,7 +255,7 @@ export function renderLesson1() {
                 ${lesson1Data.exercises.completeDoDoes.map((item, index) => `
                     <div class="exercise-item-row">
                         <div class="input-wrapper">
-                            <input type="text" class="input-do-does" data-correct="${item.correct}" placeholder="........">
+                            <input type="text" class="input-do-does" data-correct="${item.correct}" placeholder="">
                             <span class="feedback-icon"></span>
                         </div>
                         <p class="exercise-text-inline">${item.text}</p>
@@ -271,7 +271,7 @@ export function renderLesson1() {
                     <div class="exercise-block-neg">
                         <p class="sentence-label">${item.label}</p>
                         <div class="input-wrapper-full">
-                            <input type="text" class="input-negative" data-correct="${item.correct}" placeholder="........................................................................">
+                            <input type="text" class="input-negative" data-correct="${item.correct}" placeholder="">
                             <span class="feedback-icon"></span>
                         </div>
                     </div>
@@ -283,7 +283,7 @@ export function renderLesson1() {
             <h2 class="exercise-subtitle">Answer the questions using the following example:</h2>
             <div class="example-box">
                 <p class="example-q">Do you drink soda?</p>
-                <p class="example-a">No, I dont drink soda, I drink juice.</p>
+                <p class="example-a">No, I dont drink soda.</p>
             </div>
 
             <div class="exercise-open-questions">
@@ -291,7 +291,7 @@ export function renderLesson1() {
                     <div class="exercise-block-open">
                         <p class="question-label">${item.question}</p>
                         <div class="input-wrapper-full">
-                            <input type="text" class="input-open" data-correct="${item.correct}" placeholder="No, ...">
+                            <input type="text" class="input-open" data-correct="${item.correct}" placeholder="No, ">
                             <span class="feedback-icon"></span>
                         </div>
                     </div>

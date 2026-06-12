@@ -84,23 +84,23 @@ export const lesson1Data = {
         ],
         transformNegative: [
             { label: "she drinks beer.", correct: "she doesn't drink beer" },
-            { label: "He drank sparkling water.", correct: "he didn't drink sparkling water" },
-            { label: "I spoke English with Jennifer.", correct: "i didn't speak English with jennifer" },
-            { label: "John speaks Portuguese and German.", correct: "john doesn't speak portuguese and german" },
-            { label: "John drinks juice with Jennifer and Mike.", correct: "john doesn't drink juice with jennifer and mike" }
+            { label: "He drank sparkling water.", correct: "he didn't drink sparkling water." },
+            { label: "I spoke English with Jennifer.", correct: "i didn't speak English with jennifer." },
+            { label: "John speaks Portuguese and German.", correct: "john doesn't speak portuguese and german." },
+            { label: "John drinks juice with Jennifer and Mike.", correct: "john doesn't drink juice with jennifer and mike." }
         ],
         openAnswers: [
             { 
                 question: "Did you drink milk?", 
-                correct: "no, i didn't drink milk, i drank juice" // Exemplo padrão baseado no PDF
+                correct: "no, i didn't drink milk." // Exemplo padrão baseado no PDF
             },
             { 
                 question: "Does she speak portuguese and Spanish?", 
-                correct: "no, she doesn't speak portuguese and spanish, she speaks english" 
+                correct: "no, she doesn't speak portuguese or spanish." 
             },
             { 
                 question: "Do I speak portuguese?", 
-                correct: "no, you don't speak portuguese, you speak english" 
+                correct: "no, i don't speak portuguese." 
             }
         ]
     }
