@@ -3,24 +3,29 @@
 // Lista de dados completa da Lesson 1 (Grammar, Verbs e Reading)
 export const lesson2Data = {
     // --- PARTE DA PRIMEIRA PÁGINA (VERBOS E PRÁTICA ANTERIOR) ---
-    drink: [
-        { text: "I drink water", keyword: "water" },
-        { text: "You drink milk", keyword: "milk" },
-        { text: "He drinks coffee", keyword: "coffee" },
-        { text: "She drinks juice", keyword: "juice" },
-        { text: "I drank soda", keyword: "soda" },
-        { text: "You drank tea", keyword: "tea" },
-        { text: "He drank coke", keyword: "coke" },
-        { text: "She drank wine", keyword: "wine" },
-        { text: "I drink beer", keyword: "beer" }
+    // --- PARTE DA PRIMEIRA PÁGINA (VERBOS E PRÁTICA DA LESSON 2) ---
+    like: [
+        { text: "I like money", keyword: "money" },
+        { text: "You like ice cream", keyword: "ice_cream" },
+        { text: "He likes me", keyword: "me" },
+        { text: "She likes you", keyword: "you" },
+        { text: "I liked it", keyword: "liked_it" },
+        { text: "You liked chocolate", keyword: "chocolate" },
+        { text: "He likes to drink coke", keyword: "coke" },
+        { text: "She likes wine", keyword: "wine" },
+        { text: "We like to speak English", keyword: "english" }
     ],
-    speak: [
-        { text: "I speak English", flag: "us" },
-        { text: "You speak Spanish", flag: "es" },
-        { text: "He speaks French", flag: "fr" },
-        { text: "She speaks German", flag: "de" },
-        { text: "I spoke Portuguese", flag: "br" },
-        { text: "You spoke Italian", flag: "it" }
+    eat: [
+        { text: "We eat meat", keyword: "meat" },
+        { text: "She eats apples", keyword: "apples" },
+        { text: "He eats ham", keyword: "ham" },
+        { text: "I eat bread", keyword: "bread" },
+        { text: "You eat cheese", keyword: "cheese" },
+        { text: "I eat hamburger", keyword: "hamburger" },
+        { text: "She ate sausage", keyword: "sausage" },
+        { text: "He eats chicken", keyword: "chicken" },
+        { text: "You eat fries", keyword: "fries" },
+        { text: "I ate potato", keyword: "potato" }
     ],
 
     // --- SEGUNDA PÁGINA: ESTRUTURAS DE GRAMÁTICA ---
