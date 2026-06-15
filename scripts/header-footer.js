@@ -2,7 +2,7 @@ import { renderLesson1 } from './lesson-renderer.js';
 
 document.addEventListener("DOMContentLoaded", () => {
     // =========================================================================
-    // RENDERIZAÇÃO DO HEADER (MENU)
+    // RENDERIZAÇÃO DO HEADER (ATUALIZADO COM MENU HAMBÚRGUER MOBILE)
     // =========================================================================
     const headerElement = document.getElementById("main-header");
 
@@ -14,7 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img src="images/download.png" alt="Logo do Projeto" class="logo-image">
                     </a>
                 </div>
-                <nav class="header-nav">
+                
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+
+                <nav class="header-nav" id="header-nav">
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="lesson1.html">Lessons</a></li>
@@ -25,6 +32,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 </nav>
             </div>
         `;
+
+        // 🔥 Escuta o clique do botão para abrir/fechar
+        const menuToggle = document.getElementById("menu-toggle");
+        const headerNav = document.getElementById("header-nav");
+
+        if (menuToggle && headerNav) {
+            menuToggle.addEventListener("click", () => {
+                menuToggle.classList.toggle("active");
+                headerNav.classList.toggle("active");
+            });
+        }
     }
 
     // =========================================================================
