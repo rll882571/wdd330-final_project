@@ -612,3 +612,178 @@ body {
 .check-answers-btn:hover {
     background-color: var(--primary-hover);
 }
+
+/* ========================================================================
+   FOLHA 5 - SPEAKING (VERSÃO COMPLETA E CORRIGIDA)
+   ======================================================================== */
+
+.speaking-instruction {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.speaking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* CARD DO CARD DE SPEAKING */
+.speaking-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: 0.2s ease;
+}
+
+.speaking-card:hover {
+    transform: translateY(-2px);
+    border-color: #cbd5e0;
+}
+
+/* LINHA DA PERGUNTA */
+.speaking-question-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+/* BOTÃO DE OUVIR (REESTILIZADO CIRCULAR ESTILO LIVRO) */
+.speaking-question-row .speak-ask-btn {
+    background: none;
+    border: 2px solid var(--text-muted);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.speaking-question-row .speak-ask-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    opacity: 1;
+}
+
+.question-display-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* ÁREA DE AÇÃO (MICROFONE + TRANSCRIÇÃO + CHECK) */
+.speaking-action-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f7fafc;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #edf2f7;
+    flex-wrap: wrap;
+}
+
+/* BOTÃO MICROFONE */
+.mic-btn {
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    min-width: 150px;
+    transition: 0.2s ease;
+}
+
+.mic-btn:hover {
+    background-color: #2b6cb0;
+}
+
+.mic-btn:active {
+    transform: scale(0.97);
+}
+
+/* ESTADO GRAVANDO */
+.mic-btn.recording {
+    background-color: #e53e3e;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+/* TRANSCRIÇÃO DA FALA */
+.speaking-feedback-box {
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+.transcript-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #a0aec0;
+    margin-bottom: 4px;
+}
+
+.transcript-text {
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 600;
+    color: #4a5568;
+    transition: color 0.2s;
+}
+
+/* ALINHAMENTO DO NOVO BOTÃO CHECK + FEEDBACK À DIREITA */
+.speaking-validation-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    min-width: 120px;
+}
+
+/* BOTÃO INDIVIDUAL CHECK */
+.check-speak-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.check-speak-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* ÍCONE/TEXTO DE FEEDBACK */
+.speech-feedback-icon {
+    font-size: 0.85rem;
+    font-weight: bold;
+    white-space: nowrap;
+    margin-top: 2px;
+}

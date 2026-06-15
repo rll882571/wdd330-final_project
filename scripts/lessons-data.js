@@ -103,5 +103,11 @@ export const lesson1Data = {
                 correct: "no, i don't speak portuguese." 
             }
         ]
-    }
+    },
+    speaking: [
+        { question: "Do you drink milk?", correctResponse: "yes i drink milk" },
+        { question: "Do you speak English?", correctResponse: "yes i speak english" },
+        { question: "Does she drink juice?", correctResponse: "yes she drinks juice" },
+        { question: "Did you speak Spanish?", correctResponse: "yes i spoke spanish" }
+    ]
 };

@@ -122,7 +122,6 @@ export function renderLesson1() {
         speakList.appendChild(row);
     });
 
-
     // ==========================================================================
     // FOLHA 2: GRAMMAR (Estruturas de perguntas e negativas)
     // ==========================================================================
@@ -185,7 +184,7 @@ export function renderLesson1() {
     `;
     pagesContainer.appendChild(pageGrammar);
 
-    // Função auxiliar para renderizar as linhas de gramática sem imagens laterais
+    // Função auxiliar para renderizar as linhas de gramática
     const renderGrammarRow = (containerId, dataArray) => {
         const container = document.getElementById(containerId);
         dataArray.forEach(item => {
@@ -209,7 +208,6 @@ export function renderLesson1() {
     renderGrammarRow('didnt-list', lesson1Data.grammar.didntNegative);
     renderGrammarRow('with-list', lesson1Data.grammar.connectivesWith);
     renderGrammarRow('and-list', lesson1Data.grammar.connectivesAnd);
-
 
     // ==========================================================================
     // FOLHA 3: READING (Frases finais de leitura limpas)
@@ -314,7 +312,7 @@ export function renderLesson1() {
 
             if (userAnswer === "") {
                 feedbackSpan.innerHTML = "";
-                input.style.borderColor = "#718096"; // Borda neutra se vazio
+                input.style.borderColor = "#718096"; 
             } else if (userAnswer === correctAnswer || (input.classList.contains('input-open') && userAnswer.startsWith('no'))) {
                 feedbackSpan.innerHTML = "✔️";
                 feedbackSpan.style.color = "#2ec4b6";
@@ -326,4 +324,118 @@ export function renderLesson1() {
             }
         });
     };
-} // <--- Chave final fechando o renderLesson1() corretamente no lugar certo!
+
+    // ==========================================================================
+    // ==========================================================================
+// FOLHA 5: SPEAKING (COM BOTÕES CORRIGIDOS E VERIFICAÇÃO MANUAL)
+// ==========================================================================
+const pageSpeaking = document.createElement('section');
+pageSpeaking.className = 'lesson-container speaking-page';
+pageSpeaking.innerHTML = `
+    <h1 class="lesson-title">SPEAKING PRACTICE</h1>
+    <p class="speaking-instruction">Ouça a pergunta, grave sua voz e clique em verificar para conferir a resposta na forma AFIRMATIVA:</p>
+    
+    <div class="speaking-list">
+        ${lesson1Data.speaking.map((item, index) => `
+            <div class="speaking-card" id="speaking-card-${index}">
+                <div class="speaking-question-row">
+                    <button class="play-btn speak-ask-btn" data-text="${item.question}" title="Ouvir Pergunta">▶</button>
+                    <span class="question-display-text">Pergunta ${index + 1}</span>
+                </div>
+
+                <div class="speaking-action-row">
+                    <button class="mic-btn" data-index="${index}">🎤 Gravar Resposta</button>
+                    <div class="speaking-feedback-box">
+                        <p class="transcript-label">Você disse:</p>
+                        <p class="transcript-text" id="transcript-${index}">...</p>
+                    </div>
+                    <div class="speaking-validation-wrapper">
+                        <button class="check-speak-btn" data-index="${index}">Check</button>
+                        <span class="speech-feedback-icon" id="speech-icon-${index}"></span>
+                    </div>
+                </div>
+            </div>
+        `).join('')}
+    </div>
+`;
+pagesContainer.appendChild(pageSpeaking);
+
+// --- ATUALIZAÇÃO DA LÓGICA DE EVENTOS (SPEECH) ---
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+// Tocar áudio da pergunta
+pageSpeaking.querySelectorAll('.speak-ask-btn').forEach(btn => {
+    btn.onclick = () => falarComElevenLabs(btn.getAttribute('data-text'));
+});
+
+// Controle de reconhecimento por card
+pageSpeaking.querySelectorAll('.mic-btn').forEach(btn => {
+    const index = parseInt(btn.getAttribute('data-index'));
+    const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+    if (recognition) {
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        recognition.onstart = () => {
+            btn.textContent = "🛑 Gravando...";
+            btn.classList.add('recording');
+        };
+
+        recognition.onresult = (event) => {
+            let spokenText = event.results[0][0].transcript.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+            const transcriptParagraph = document.getElementById(`transcript-${index}`);
+            transcriptParagraph.textContent = `"${spokenText}"`;
+            transcriptParagraph.setAttribute('data-spoken', spokenText); // Salva o texto limpo para validação posterior
+        };
+
+        recognition.onerror = (e) => {
+            console.error("Erro no reconhecimento de voz:", e.error);
+            btn.textContent = "🎤 Gravar Resposta";
+            btn.classList.remove('recording');
+        };
+
+        recognition.onend = () => {
+            btn.textContent = "🎤 Gravar Resposta";
+            btn.classList.remove('recording');
+        };
+
+        btn.onclick = () => {
+            recognition.start();
+        };
+    } else {
+        btn.onclick = () => alert("Seu navegador não suporta reconhecimento de voz. Tente usar o Google Chrome.");
+    }
+});
+
+// Lógica dedicada para o novo botão individual "Check" de cada linha
+pageSpeaking.querySelectorAll('.check-speak-btn').forEach(btn => {
+    btn.onclick = () => {
+        const index = btn.getAttribute('data-index');
+        const targetData = lesson1Data.speaking[index];
+        const transcriptParagraph = document.getElementById(`transcript-${index}`);
+        const spokenText = transcriptParagraph.getAttribute('data-spoken') || "";
+        const feedbackIcon = document.getElementById(`speech-icon-${index}`);
+
+        if (!spokenText || spokenText === "...") {
+            feedbackIcon.innerHTML = "⚠️ Grave primeiro!";
+            feedbackIcon.style.color = "#718096";
+            return;
+        }
+
+        const correctResponse = targetData.correctResponse.toLowerCase().trim();
+        const alternateResponseWithoutYes = correctResponse.replace(/^yes\s+/, "").trim();
+
+        if (spokenText === correctResponse || spokenText === alternateResponseWithoutYes) {
+            feedbackIcon.innerHTML = "✔️ Correto!";
+            feedbackIcon.style.color = "#2ec4b6";
+            transcriptParagraph.style.color = "#2ec4b6";
+        } else {
+            feedbackIcon.innerHTML = "❌ Tente de novo";
+            feedbackIcon.style.color = "#e53e3e";
+            transcriptParagraph.style.color = "#e53e3e";
+        }
+    };
+})
+}
