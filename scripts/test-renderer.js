@@ -14,6 +14,19 @@ const testData = {
         { id: 4, text: "He speaks English and Portuguese very well.", correct: "he speaks english and portuguese very well" },
         { id: 5, text: "I didn't drink soda, I drank sparkling water.", correct: "i didn't drink soda i drank sparkling water" }
     ],
+    // NOVA SEÇÃO: O aluno ouve a pergunta e grava as duas respostas (Afirmativa e Negativa)
+    dualSpeaking: [
+        {
+            question: "Do you drink milk?",
+            correctAffirmative: "yes i drink milk",
+            correctNegative: "no i don't drink milk"
+        },
+        {
+            question: "Does he speak English?",
+            correctAffirmative: "yes he speaks english",
+            correctNegative: "no he doesn't speak english"
+        }
+    ],
     multipleChoice: [
         {
             question: "Choose the correct sentence:",
@@ -76,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             <section class="exercise-section">
                 <h2 class="exercise-subtitle">1. Listening: Listen and Write</h2>
-                
                 <div class="exercise-open-questions">
                     ${testData.listening.map((item, index) => `
                         <div class="exercise-block-open">
@@ -94,7 +106,44 @@ document.addEventListener("DOMContentLoaded", () => {
             </section>
 
             <section class="exercise-section">
-                <h2 class="exercise-subtitle">2. Multiple Choice</h2>
+                <h2 class="exercise-subtitle">2. Speaking: Affirmative and Negative</h2>
+                <p class="speaking-instruction" style="text-align: left; margin-bottom: 20px;">Ouça a pergunta e grave as duas formas de resposta solicitadas:</p>
+                
+                <div class="speaking-list" style="max-width: 100%;">
+                    ${testData.dualSpeaking.map((item, index) => `
+                        <div class="speaking-card" id="dual-card-${index}" style="margin-bottom: 20px;">
+                            <div class="speaking-question-row">
+                                <button class="play-btn speak-ask-btn" data-text="${item.question}">▶</button>
+                                <span class="question-display-text">Pergunta ${index + 1}: Pergunta em Áudio</span>
+                            </div>
+
+                            <div class="speaking-action-row" style="margin-bottom: 10px;">
+                                <button class="mic-btn mic-dual-btn" data-card="${index}" data-type="affirmative">🎤 Resposta Afirmativa</button>
+                                <div class="speaking-feedback-box">
+                                    <p class="transcript-label">Você disse (Afirmativa):</p>
+                                    <p class="transcript-text" id="transcript-affirmative-${index}">...</p>
+                                </div>
+                            </div>
+
+                            <div class="speaking-action-row">
+                                <button class="mic-btn mic-dual-btn" data-card="${index}" data-type="negative" style="background-color: #4a5568;">🎤 Resposta Negativa</button>
+                                <div class="speaking-feedback-box">
+                                    <p class="transcript-label">Você disse (Negativa):</p>
+                                    <p class="transcript-text" id="transcript-negative-${index}">...</p>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 15px; text-align: right; display: flex; align-items: center; justify-content: flex-end; gap: 15px;">
+                                <span class="speech-feedback-icon" id="dual-feedback-${index}"></span>
+                                <button class="check-speak-btn check-dual-btn" data-index="${index}">Check Speaking ${index + 1}</button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </section>
+
+            <section class="exercise-section">
+                <h2 class="exercise-subtitle">3. Multiple Choice</h2>
                 <div class="exercise-open-questions">
                     ${testData.multipleChoice.map((item, qIndex) => `
                         <div class="exercise-block-open choice-block">
@@ -114,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </section>
 
             <section class="exercise-section">
-                <h2 class="exercise-subtitle">3. Grammar: Fill in the Blanks</h2>
+                <h2 class="exercise-subtitle">4. Grammar: Fill in the Blanks</h2>
                 <div class="exercise-open-questions">
                     ${testData.grammarFill.map((item) => `
                         <div class="exercise-block-open">
@@ -137,12 +186,100 @@ document.addEventListener("DOMContentLoaded", () => {
         </main>
     `;
 
-    // --- EVENTO DOS BOTÕES DE AUDIO DO LISTENING ---
-    testContainer.querySelectorAll('.listen-test-btn').forEach(btn => {
+    // --- CONFIGURAÇÃO DOS AUDIO PLAYERS ---
+    testContainer.querySelectorAll('.listen-test-btn, .speak-ask-btn').forEach(btn => {
         btn.onclick = () => falarComElevenLabs(btn.getAttribute('data-text'));
     });
 
-    // --- LÓGICA DE VALIDAÇÃO GERAL ---
+    // --- CONFIGURAÇÃO DO SPEECH RECOGNITION (DUAL SPEAKING) ---
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    testContainer.querySelectorAll('.mic-dual-btn').forEach(btn => {
+        const cardIndex = btn.getAttribute('data-card');
+        const type = btn.getAttribute('data-type'); // 'affirmative' ou 'negative'
+        const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+        if (recognition) {
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            recognition.onstart = () => {
+                btn.textContent = "🛑 Recording...";
+                btn.classList.add('recording');
+            };
+
+            recognition.onresult = (event) => {
+                let spokenText = event.results[0][0].transcript.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+                const transcriptParagraph = document.getElementById(`transcript-${type}-${cardIndex}`);
+                
+                // Escreve exatamente o que o aluno falou na linha de baixo
+                transcriptParagraph.textContent = `"${spokenText}"`;
+                transcriptParagraph.setAttribute('data-spoken', spokenText);
+            };
+
+            recognition.onerror = () => {
+                btn.textContent = type === "affirmative" ? "🎤 Resposta Afirmativa" : "🎤 Resposta Negativa";
+                btn.classList.remove('recording');
+            };
+
+            recognition.onend = () => {
+                btn.textContent = type === "affirmative" ? "🎤 Resposta Afirmativa" : "🎤 Resposta Negativa";
+                btn.classList.remove('recording');
+            };
+
+            btn.onclick = () => recognition.start();
+        } else {
+            btn.onclick = () => alert("Seu navegador não suporta reconhecimento de voz.");
+        }
+    });
+
+    // --- VALIDAÇÃO DO BOTÃO "CHECK" DE CADA CARD DO DUAL SPEAKING ---
+    testContainer.querySelectorAll('.check-dual-btn').forEach(btn => {
+        btn.onclick = () => {
+            const index = btn.getAttribute('data-index');
+            const targetData = testData.dualSpeaking[index];
+
+            const affParagraph = document.getElementById(`transcript-affirmative-${index}`);
+            const negParagraph = document.getElementById(`transcript-negative-${index}`);
+
+            const spokenAff = affParagraph.getAttribute('data-spoken') || "";
+            const spokenNeg = negParagraph.getAttribute('data-spoken') || "";
+            const feedbackIcon = document.getElementById(`dual-feedback-${index}`);
+
+            if (!spokenAff || !spokenNeg) {
+                feedbackIcon.innerHTML = "⚠️ Grave ambas as respostas primeiro!";
+                feedbackIcon.style.color = "#718096";
+                return;
+            }
+
+            // Validações removendo pontuação e "yes / no " opcionais do início para manter tolerante
+            const correctAff = targetData.correctAffirmative.toLowerCase().trim();
+            const correctNeg = targetData.correctNegative.toLowerCase().trim();
+            
+            const altAff = correctAff.replace(/^yes\s+/, "").trim();
+            const altNeg = correctNeg.replace(/^no\s+/, "").trim();
+
+            const isAffCorrect = (spokenAff === correctAff || spokenAff === altAff);
+            const isNegCorrect = (spokenNeg === correctNeg || spokenNeg === altNeg);
+
+            if (isAffCorrect && isNegCorrect) {
+                feedbackIcon.innerHTML = "✔️ Ambas Corretas!";
+                feedbackIcon.style.color = "#2ec4b6";
+                affParagraph.style.color = "#2ec4b6";
+                negParagraph.style.color = "#2ec4b6";
+                btn.setAttribute('data-passed', "true"); // Armazena para a nota final do teste
+            } else {
+                feedbackIcon.innerHTML = `❌ Erro em: ${!isAffCorrect ? 'Afirmativa' : ''} ${!isNegCorrect ? 'Negativa' : ''}`;
+                feedbackIcon.style.color = "#e53e3e";
+                if (!isAffCorrect) affParagraph.style.color = "#e53e3e";
+                if (!isNegCorrect) negParagraph.style.color = "#e53e3e";
+                btn.setAttribute('data-passed', "false");
+            }
+        };
+    });
+
+    // --- LÓGICA DE VALIDAÇÃO GERAL (BOTÃO FINAL) ---
     document.getElementById('btn-submit-test').onclick = () => {
         let totalQuestions = 0;
         let correctAnswers = 0;
@@ -167,7 +304,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // 2. Validando Múltipla Escolha (Radio Buttons)
+        // 2. Adicionando os Cards do Dual Speaking à nota final
+        testContainer.querySelectorAll('.check-dual-btn').forEach(btn => {
+            totalQuestions++;
+            if (btn.getAttribute('data-passed') === "true") {
+                correctAnswers++;
+            }
+        });
+
+        // 3. Validando Múltipla Escolha (Radio Buttons)
         testData.multipleChoice.forEach((item, qIndex) => {
             totalQuestions++;
             const radios = testContainer.querySelectorAll(`input[name="question-${qIndex}"]`);
@@ -175,9 +320,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let selectedValue = null;
 
             radios.forEach(radio => {
-                if (radio.checked) {
-                    selectedValue = parseInt(radio.value);
-                }
+                if (radio.checked) selectedValue = parseInt(radio.value);
             });
 
             if (selectedValue === item.correct) {
@@ -190,16 +333,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // 3. Exibindo o Resultado Final
+        // 4. Exibindo o Resultado Final
         const resultDiv = document.getElementById('test-score-result');
         const percent = Math.round((correctAnswers / totalQuestions) * 100);
         
         resultDiv.innerHTML = `Result: ${correctAnswers} / ${totalQuestions} (${percent}%)`;
-        if (percent >= 70) {
-            resultDiv.style.color = "#2ec4b6";
-        } else {
-            resultDiv.style.color = "#e53e3e";
-        }
+        resultDiv.style.color = percent >= 70 ? "#2ec4b6" : "#e53e3e";
         
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     };
