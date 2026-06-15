@@ -30,18 +30,40 @@ document.addEventListener("DOMContentLoaded", () => {
                         <li><a href="about.html">About Us</a></li>
                     </ul>
                 </nav>
+
+                <div id="pixel-counter" style="position: absolute; right: 10px; bottom: -25px; background: rgba(0,0,0,0.7); color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 4px; pointer-events: none; z-index: 2000;"></div>
             </div>
         `;
 
-        // 🔥 Escuta o clique do botão para abrir/fechar
+        // Escuta o clique do botão para abrir/fechar
         const menuToggle = document.getElementById("menu-toggle");
         const headerNav = document.getElementById("header-nav");
+        const pixelCounter = document.getElementById("pixel-counter");
 
         if (menuToggle && headerNav) {
             menuToggle.addEventListener("click", () => {
                 menuToggle.classList.toggle("active");
                 headerNav.classList.toggle("active");
             });
+        }
+
+        // 🔥 APLICAÇÃO RESPONSIVA: Monitora a mudança de tamanho da janela (Evita bugs ao redimensionar)
+        window.addEventListener('resize', () => {
+            // Se a janela voltar a ser maior que o limite mobile (768px), fecha o menu automaticamente
+            if (window.innerWidth > 768) { 
+                if (menuToggle) menuToggle.classList.remove('active');
+                if (headerNav) headerNav.classList.remove('active');
+            }
+            
+            // Atualiza o contador de pixels na tela em tempo real
+            if (pixelCounter) {
+                pixelCounter.textContent = `${window.innerWidth}px × ${window.innerHeight}px`;
+            }
+        });
+        
+        // Inicializa o contador no carregamento inicial da página
+        if (pixelCounter) {
+            pixelCounter.textContent = `${window.innerWidth}px × ${window.innerHeight}px`;
         }
     }
 

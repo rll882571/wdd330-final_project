@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CSS CORRIGIDO - VISUAL APURADO E LIMPO (ESTILO LIVRO)
+   CSS CORRIGIDO - VISUAL APURADO E LIMPO (ESTILO LIVRO & RESPONSIVO)
    ========================================================================== */
 
 :root {
@@ -32,7 +32,7 @@ body {
 }
 
 /* ==========================================================================
-   HEADER
+   HEADER & MENU (DESKTOP PADRÃO)
    ========================================================================== */
 
 #main-header {
@@ -51,6 +51,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* Importante para posicionar o menu mobile */
 }
 
 .logo-image {
@@ -90,6 +91,28 @@ body {
 
 .header-nav a:hover:after {
     width: 100%;
+}
+
+/* BOTÃO HAMBÚRGUER (ESCONDIDO NO COMPUTADOR) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1010;
+    padding: 0;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: all var(--transition-fast);
 }
 
 /* ==========================================================================
@@ -151,6 +174,7 @@ body {
     align-items: center;
     gap: 0.6rem;
 }
+
 .practice-text {
     font-style: italic;
     font-size: 2rem;
@@ -186,10 +210,7 @@ body {
     margin: 0 auto 10px;
 }
 
-/* =========================================================
-   IMAGENS AO LADO DAS FRASES (CORREÇÃO REAL)
-   ========================================================= */
-
+/* IMAGENS AO LADO DAS FRASES */
 .icon-img {
     width: 80px;
     height: 80px;
@@ -319,31 +340,28 @@ body {
 .footer-container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 1.2rem 1rem;   /* 🔥 menor altura */
+    padding: 1.2rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;           /* 🔥 menos espaço */
+    gap: 0.6rem;
     text-align: center;
 }
 
-/* texto superior */
 .footer-container p {
-    font-size: 0.85rem;    /* 🔥 menor */
+    font-size: 0.85rem;
     color: var(--text-muted);
     margin: 0;
 }
 
-/* redes sociais */
 .social-links {
     display: flex;
-    gap: 1rem;             /* 🔥 mais compacto */
+    gap: 1rem;
     align-items: center;
 }
 
-/* ícones menores */
 .social-icon {
-    width: 24px;           /* 🔥 menor */
+    width: 24px;
     height: 24px;
     object-fit: contain;
     display: block;
@@ -354,13 +372,12 @@ body {
     transform: scale(1.1);
 }
 
-/* copyright */
 .footer-container .copyright {
     font-size: 0.75rem;
     color: var(--text-muted);
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     width: 100%;
-    padding-top: 0.6rem;   /* 🔥 menor */
+    padding-top: 0.6rem;
     margin-top: 0.3rem;
 }
 
@@ -368,12 +385,10 @@ body {
    ESTILOS ADICIONAIS PARA FILTRAR AS DUAS FOLHAS
    ========================================================================== */
 
-/* Espaço sutil simulando a troca de páginas do livro */
 .lesson-container + .lesson-container {
     margin-top: 4rem;
 }
 
-/* Grid da Seção de Gramática (Esquerda - Imagens Centro - Direita) */
 .grammar-layout {
     display: grid;
     grid-template-columns: 1fr 180px 1fr;
@@ -407,7 +422,6 @@ body {
     gap: 1rem;
 }
 
-/* Alinhamento de linhas sem imagem lateral (Apenas Botão + Frase) */
 .grammar-row {
     display: grid;
     grid-template-columns: 35px 1fr;
@@ -416,12 +430,11 @@ body {
 }
 
 .grammar-text {
-    font-size: 1.6rem !important; /* Ajustado para caber perfeitamente nas colunas */
+    font-size: 1.6rem !important;
     font-style: italic;
     font-weight: 600;
 }
 
-/* Coluna de Imagens Centralizadas */
 .grammar-center-images {
     display: flex;
     flex-direction: column;
@@ -443,7 +456,6 @@ body {
     max-height: 140px;
 }
 
-/* Seção de Conectivos (WITH / AND) */
 .connectives-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -453,7 +465,6 @@ body {
     padding-top: 2.5rem;
 }
 
-/* Customização para a lista de Leitura (Folha 2) */
 .reading-list {
     display: flex;
     flex-direction: column;
@@ -490,7 +501,6 @@ body {
     padding-bottom: 0.5rem;
 }
 
-/* Grid de duas colunas para o DO/DOES */
 .exercise-grid-inputs {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -509,7 +519,6 @@ body {
     font-style: italic;
 }
 
-/* Inputs Estilizados estilo Caderno/PDF */
 .input-wrapper, .input-wrapper-full {
     position: relative;
     display: inline-flex;
@@ -547,14 +556,12 @@ body {
     margin-top: 0.5rem;
 }
 
-/* Ícone de feedback ✔️ / ❌ */
 .feedback-icon {
     font-size: 1.2rem;
     margin-left: 8px;
     font-weight: bold;
 }
 
-/* Grade para transformar sentenças */
 .exercise-grid-negative {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -567,7 +574,6 @@ body {
     font-style: italic;
 }
 
-/* Bloco de Exemplo */
 .example-box {
     background-color: #f1f5f9;
     padding: 1rem;
@@ -594,7 +600,6 @@ body {
     gap: 2rem;
 }
 
-/* Botão de Check flutuante no fim da página */
 .check-answers-btn {
     background-color: var(--primary-color);
     color: white;
@@ -614,7 +619,7 @@ body {
 }
 
 /* ========================================================================
-   FOLHA 5 - SPEAKING (VERSÃO COMPLETA E CORRIGIDA)
+   FOLHA 5 - SPEAKING
    ======================================================================== */
 
 .speaking-instruction {
@@ -633,7 +638,6 @@ body {
     margin: 0 auto;
 }
 
-/* CARD DO CARD DE SPEAKING */
 .speaking-card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
@@ -648,7 +652,6 @@ body {
     border-color: #cbd5e0;
 }
 
-/* LINHA DA PERGUNTA */
 .speaking-question-row {
     display: flex;
     align-items: center;
@@ -656,7 +659,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* BOTÃO DE OUVIR (REESTILIZADO CIRCULAR ESTILO LIVRO) */
 .speaking-question-row .speak-ask-btn {
     background: none;
     border: 2px solid var(--text-muted);
@@ -686,7 +688,6 @@ body {
     color: #2d3748;
 }
 
-/* ÁREA DE AÇÃO (MICROFONE + TRANSCRIÇÃO + CHECK) */
 .speaking-action-row {
     display: flex;
     align-items: center;
@@ -698,7 +699,6 @@ body {
     flex-wrap: wrap;
 }
 
-/* BOTÃO MICROFONE */
 .mic-btn {
     background-color: #3182ce;
     color: white;
@@ -720,7 +720,6 @@ body {
     transform: scale(0.97);
 }
 
-/* ESTADO GRAVANDO */
 .mic-btn.recording {
     background-color: #e53e3e;
     animation: pulse 1s infinite;
@@ -732,7 +731,6 @@ body {
     100% { transform: scale(1); }
 }
 
-/* TRANSCRIÇÃO DA FALA */
 .speaking-feedback-box {
     flex-grow: 1;
     min-width: 200px;
@@ -754,7 +752,6 @@ body {
     transition: color 0.2s;
 }
 
-/* ALINHAMENTO DO NOVO BOTÃO CHECK + FEEDBACK À DIREITA */
 .speaking-validation-wrapper {
     display: flex;
     flex-direction: column;
@@ -763,7 +760,6 @@ body {
     min-width: 120px;
 }
 
-/* BOTÃO INDIVIDUAL CHECK */
 .check-speak-btn {
     background-color: var(--primary-color);
     color: white;
@@ -780,10 +776,97 @@ body {
     background-color: var(--primary-hover);
 }
 
-/* ÍCONE/TEXTO DE FEEDBACK */
 .speech-feedback-icon {
     font-size: 0.85rem;
     font-weight: bold;
     white-space: nowrap;
     margin-top: 2px;
+}
+
+/* ==========================================================================
+   MEDIA QUERY - REGRAS EXCLUSIVAS PARA TELAS MENORES (MOBILE < 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. Ativa o botão hambúrguer visualmente */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* 2. Transforma o menu horizontal em um painel suspenso absoluto */
+    .header-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-card);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem 0;
+        display: none; /* Escondido por padrão */
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* Classe injetada pelo JS que abre o menu */
+    .header-nav.active {
+        display: block;
+    }
+
+    /* 3. Empilha os links da navegação */
+    .header-nav ul {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+        width: 100%;
+    }
+
+    .header-nav a {
+        font-size: 1.1rem;
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+
+    /* 4. Efeito de Animação do Hambúrguer virando 'X' */
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* 5. Ajustes de responsividade para o container do livro e grids */
+    .lesson-container {
+        width: 95%;
+        padding: 2rem 1.5rem;
+        margin: 1.5rem auto;
+    }
+
+    .lesson-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .practice-text {
+        font-size: 1.4rem;
+    }
+
+    .practice-row {
+        grid-template-columns: 35px 1fr 50px;
+    }
+
+    .grammar-layout, .connectives-layout, .exercise-grid-inputs, .exercise-grid-negative {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .grammar-center-images {
+        order: -1; /* Joga as imagens centrais para o topo no mobile */
+        margin-bottom: 1rem;
+    }
+    
+    .reading-text {
+        font-size: 1.3rem !important;
+    }
 }
