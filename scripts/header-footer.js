@@ -1,7 +1,9 @@
 import { renderLesson1 } from './lesson-renderer.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-    // HEADER
+    // =========================================================================
+    // RENDERIZAÇÃO DO HEADER (MENU)
+    // =========================================================================
     const headerElement = document.getElementById("main-header");
 
     if (headerElement) {
@@ -15,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <nav class="header-nav">
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="lessons.html">Lessons</a></li>
+                        <li><a href="lesson1.html">Lessons</a></li>
                         <li><a href="activities.html">Activities</a></li>
                         <li><a href="progress.html">My Progress</a></li>
                         <li><a href="about.html">About Us</a></li>
@@ -25,7 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
-    // FOOTER
+    // =========================================================================
+    // RENDERIZAÇÃO DO FOOTER
+    // =========================================================================
     const footerElement = document.getElementById("main-footer");
 
     if (footerElement) {
@@ -37,11 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     <a href="https://instagram.com/seu_instagram" target="_blank">
                         <img src="images/instagram.png" alt="Instagram" class="social-icon">
                     </a>
-
                     <a href="https://facebook.com/sua_pagina" target="_blank">
                         <img src="images/facebook.png" alt="Facebook" class="social-icon">
                     </a>
-
                 </div>
 
                 <p class="copyright">
@@ -51,22 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
-    // Renderiza a Lesson 1
-    renderLesson1();
+    // =========================================================================
+    // DISPARA A LIÇÃO APENAS SE ESTIVER NA PÁGINA COM O CONTAINER (lesson1.html)
+    // =========================================================================
+    const pagesContainer = document.getElementById('book-pages-container');
+    if (pagesContainer) {
+        renderLesson1();
+    }
 });
-
-let currentTrackPage = 0;
-
-function moveCarousel(direction) {
-    const track = document.getElementById('carouselTrack');
-
-    currentTrackPage += direction;
-
-    if (currentTrackPage < 0) currentTrackPage = 0;
-    if (currentTrackPage > 1) currentTrackPage = 1;
-
-    track.style.transform = `translateX(-${currentTrackPage * 50}%)`;
-}
-
-// Necessário para o onclick do HTML funcionar
-window.moveCarousel = moveCarousel;

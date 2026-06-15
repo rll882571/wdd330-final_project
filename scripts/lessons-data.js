@@ -1,7 +1,7 @@
 // lessons-data.js
 
 // Lista de dados completa da Lesson 1 (Grammar, Verbs e Reading)
-export const lesson2Data = {
+export const lesson1Data = {
     // --- PARTE DA PRIMEIRA PÁGINA (VERBOS E PRÁTICA ANTERIOR) ---
     drink: [
         { text: "I drink water", keyword: "water" },
