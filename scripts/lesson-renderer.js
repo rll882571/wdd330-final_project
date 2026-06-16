@@ -149,7 +149,7 @@ export function renderLesson1() {
             </div>
 
             <div class="grammar-center-images">
-                <img src="images/question_mark.png" alt="Question Mark" class="center-img-top">
+                <img src="images/question.jpg" alt="Question Mark" class="center-img-top">
                 <img src="images/smoothie_banana.png" alt="Banana Smoothie" class="center-img-bottom">
             </div>
 
@@ -332,7 +332,7 @@ export function renderLesson1() {
     pageSpeaking.className = 'lesson-container speaking-page';
     pageSpeaking.innerHTML = `
         <h1 class="lesson-title">SPEAKING PRACTICE</h1>
-        <p class="speaking-instruction">Ouça a pergunta, grave sua voz e clique em verificar para conferir a resposta na forma AFIRMATIVA:</p>
+        <p class="speaking-instruction">Click the play button, record your voice and click "Check" to verify the answer in affirmative form:</p>
         
         <div class="speaking-list">
             ${lesson1Data.speaking.map((item, index) => `

@@ -244,22 +244,108 @@ body {
     margin-bottom: 3rem;
 }
 
+/* ==========================================================================
+   CARROSSEL DE IMAGENS AUTOMÁTICO COM CALL TO ACTION (HERO)
+   ========================================================================== */
+
 .hero-container {
     width: 100%;
     border-radius: var(--border-radius);
-    overflow: hidden;
+    overflow: hidden; /* Corta o que passar dos limites da tela */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
 }
 
-.hero-image-large {
+/* Envoltório que junta os 4 slides lado a lado e roda a animação */
+.slider-wrapper {
+    display: flex;
+    width: 400%; /* 400% porque são 4 blocos de imagens (100% para cada uma) */
+    height: auto;
+    animation: autoSlider 240s infinite ease-in-out; /* Ciclo total de 4 minutos (240 segundos) */
+}
+
+/* Garante que cada bloco do slide ocupe exatamente o espaço correto */
+.slide-item {
+    width: 25%; /* 25% de 400% é igual a 100% do container */
+    position: relative;
+    height: auto;
+}
+
+.slide-item .hero-image-large {
     width: 100%;
     max-height: 400px;
     object-fit: cover;
     display: block;
 }
 
+/* Camada escura por cima da imagem para dar contraste e destacar o texto */
+.hero-cta-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45); /* Escurece 45% da foto para a fonte branca brilhar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    z-index: 10;
+}
+
+.hero-cta-overlay h2 {
+    font-size: 2.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Estilo do Botão Moderno de Call To Action (Estilo Pílula) */
+.cta-button {
+    background-color: var(--secondary-color); /* Usa o verde azulado chamativo */
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px; /* Deixa o botão arredondado */
+    box-shadow: 0 4px 15px rgba(46, 196, 182, 0.4);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.cta-button:hover {
+    background-color: #24a195; /* Tom sutilmente mais escuro no hover */
+    transform: scale(1.05); /* Leve crescimento ao passar o mouse */
+}
+
+.cta-button:active {
+    transform: scale(0.98); /* Efeito de clique físico */
+}
+
+/* Linha do tempo da animação sincronizada para 1 minuto por imagem */
+@keyframes autoSlider {
+    /* Imagem 1 ativa por 1 minuto (0% a 24%) */
+    0%, 24% { transform: translateX(0); }
+    
+    /* Transição suave para a Imagem 2 */
+    25%, 49% { transform: translateX(-25%); }
+    
+    /* Transição suave para a Imagem 3 */
+    50%, 74% { transform: translateX(-50%); }
+    
+    /* Transição suave para a Imagem 4 */
+    75%, 99% { transform: translateX(-75%); }
+    
+    /* Volta para a Imagem 1 reiniciando o ciclo */
+    100% { transform: translateX(0); }
+}
+
 /* ==========================================================================
-   CARROSSEL
+   CARROSSEL DE LIÇÕES (MANUAL)
    ========================================================================== */
 
 .lessons-section {
@@ -484,7 +570,7 @@ body {
 }
 
 /* ==========================================================================
-   ESTILOS DA FOLHA DE EXERCÍCIOS
+   ESTILOS DA FOLHA DE EXERCÍCIOS E TESTES
    ========================================================================== */
 
 .exercise-section {
@@ -554,6 +640,13 @@ body {
     color: var(--primary-color);
     outline: none;
     margin-top: 0.5rem;
+    transition: transform 0.2s ease, border-color 0.2s ease; /* Transição suave requisitada na tabela */
+}
+
+/* CRITÉRIO DA AUDITORIA: "enlarge an input field on focus and shrink it on blur" */
+.input-negative:focus, .input-open:focus {
+    transform: scale(1.02); /* Amplia levemente o campo horizontalmente ao digitar */
+    border-bottom-color: var(--primary-color);
 }
 
 .feedback-icon {
@@ -609,7 +702,7 @@ body {
     font-weight: 600;
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, transform 0.1s;
     margin-top: 1rem;
     display: inline-block;
 }
@@ -618,8 +711,12 @@ body {
     background-color: var(--primary-hover);
 }
 
+.check-answers-btn:active {
+    transform: scale(0.98);
+}
+
 /* ========================================================================
-   FOLHA 5 - SPEAKING
+   FOLHA 5 & TEST - SPEAKING WORKSPACE
    ======================================================================== */
 
 .speaking-instruction {
@@ -787,12 +884,10 @@ body {
    MEDIA QUERY - REGRAS EXCLUSIVAS PARA TELAS MENORES (MOBILE < 768px)
    ========================================================================== */
 @media (max-width: 768px) {
-    /* 1. Ativa o botão hambúrguer visualmente */
     .menu-toggle {
         display: flex;
     }
 
-    /* 2. Transforma o menu horizontal em um painel suspenso absoluto */
     .header-nav {
         position: absolute;
         top: 100%;
@@ -805,12 +900,10 @@ body {
         border-top: 1px solid rgba(0, 0, 0, 0.05);
     }
 
-    /* Classe injetada pelo JS que abre o menu */
     .header-nav.active {
         display: block;
     }
 
-    /* 3. Empilha os links da navegação */
     .header-nav ul {
         flex-direction: column;
         gap: 1.5rem;
@@ -825,7 +918,6 @@ body {
         display: block;
     }
 
-    /* 4. Efeito de Animação do Hambúrguer virando 'X' */
     .menu-toggle.active .bar:nth-child(1) {
         transform: translateY(7px) rotate(45deg);
     }
@@ -836,7 +928,6 @@ body {
         transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* 5. Ajustes de responsividade para o container do livro e grids */
     .lesson-container {
         width: 95%;
         padding: 2rem 1.5rem;
@@ -868,5 +959,60 @@ body {
     
     .reading-text {
         font-size: 1.3rem !important;
+    }
+}
+/* css/schedule.css */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 3rem;
+    text-align: left;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+/* Customização para alinhar a tag select com o estilo input-open do seu projeto */
+.select-custom {
+    cursor: pointer;
+    background-color: transparent;
+    padding-bottom: 7px;
+}
+
+.select-custom option {
+    background-color: var(--bg-card);
+    color: var(--text-color);
+}
+
+/* Sistema de feedback de erros */
+.error-message {
+    font-size: 0.85rem;
+    color: #e53e3e;
+    font-weight: 600;
+    margin-top: 5px;
+    display: none; /* Escondido por padrão */
+}
+
+/* Quando o campo estiver inválido */
+.input-invalid {
+    border-bottom-color: #e53e3e !important;
+}
+
+/* Responsividade para telas mobile */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }

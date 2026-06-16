@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Your Free Trial Lesson</title>
+    <link rel="stylesheet" href="css/book.css">
+    <link rel="stylesheet" href="css/schedule.css">
+    
+    <script src="scripts/header-footer.js" type="module" defer></script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Sua chave pública configurada
+            emailjs.init("Gsn0rFQ4S8tAthx2L");
+        })();
+    </script>
+
+    <script src="scripts/schedule-validation.js" defer></script>
+</head>
+<body>
+
+    <header id="main-header"></header>
+
+    <div class="lesson-container">
+        <h1 class="lesson-title">Book Your Free Trial Lesson</h1>
+        <p class="speaking-instruction">Please fill out the form below to secure your spot. All fields are required.</p>
+        
+        <form id="trial-lesson-form" novalidate>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="fullName" class="sentence-label">Full Name</label>
+                    <input type="text" id="fullName" class="input-open" placeholder="John Doe">
+                    <span class="error-message" id="name-error">Please enter your full name.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="sentence-label">Email Address</label>
+                    <input type="email" id="email" class="input-open" placeholder="john.doe@example.com">
+                    <span class="error-message" id="email-error">Please enter a valid email address.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="sentence-label">Phone Number</label>
+                    <input type="tel" id="phone" class="input-open" placeholder="(11) 99999-9999">
+                    <span class="error-message" id="phone-error">Please enter your phone number.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="englishLevel" class="sentence-label">Current English Level</label>
+                    <select id="englishLevel" class="input-open select-custom">
+                        <option value="" disabled selected>Select your level</option>
+                        <option value="beginner">Beginner (Basic vocabulary & phrases)</option>
+                        <option value="intermediate">Intermediate (Can hold a simple conversation)</option>
+                        <option value="advanced">Advanced (Fluent but looking to polish skills)</option>
+                    </select>
+                    <span class="error-message" id="level-error">Please select your English level.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="studyTime" class="sentence-label">Best Time to Study</label>
+                    <select id="studyTime" class="input-open select-custom">
+                        <option value="" disabled selected>Select a time slot</option>
+                        <option value="morning">Morning (8:00 AM - 12:00 PM)</option>
+                        <option value="afternoon">Afternoon (12:00 PM - 6:00 PM)</option>
+                        <option value="evening">Evening (6:00 PM - 10:00 PM)</option>
+                    </select>
+                    <span class="error-message" id="time-error">Please select a preferred time slot.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="goal" class="sentence-label">What is your main goal?</label>
+                    <select id="goal" class="input-open select-custom">
+                        <option value="" disabled selected>Select your main motivation</option>
+                        <option value="work">Career & Job Interviews</option>
+                        <option value="travel">Travel & Tourism</option>
+                        <option value="exams">Academic / Proficiency Exams</option>
+                        <option value="hobby">Personal Growth & Hobby</option>
+                    </select>
+                    <span class="error-message" id="goal-error">Please select your main learning goal.</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <button type="submit" class="check-answers-btn" style="background-color: var(--secondary-color); width: 100%; max-width: 300px;">
+                    Confirm & Submit
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <footer id="main-footer"></footer>
+    
+</body>
+</html>

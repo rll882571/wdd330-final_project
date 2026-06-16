@@ -162,7 +162,7 @@ export function renderLesson2() {
             </div>
 
             <div class="grammar-center-images">
-                <img src="images/question_mark.png" alt="Question Mark" class="center-img-top">
+                <img src="images/question.jpg" alt="Question Mark" class="center-img-top">
                 <img src="images/smoothie_banana.png" alt="Banana Smoothie" class="center-img-bottom">
             </div>
 
@@ -275,7 +275,7 @@ export function renderLesson2() {
                     </div>
                 `).join('')}
             </div>
-        </div>
+        </div>Fsmo
 
         <div class="exercise-section">
             <h2 class="exercise-subtitle">Change the sentences from affirmative to negative.</h2>
