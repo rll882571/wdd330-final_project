@@ -66,10 +66,10 @@ export const lesson1Data = {
     // --- TERCEIRA PÁGINA: LEITURA (READING) ---
     reading: [
         { text: "I spoke English with Jennifer and Susan.", image: "" },
-        { text: "You drank soda and Jennifer drank juice.", image: "images/juice.png" },
+        { text: "You drank soda and Jennifer drank juice.", },
         { text: "I drink coconut water.", image: "" },
         { text: "She doesn't speak Italian or French.", image: "" },
-        { text: "I didn't drink beer or wine with Jennifer.", image: "images/wine.png" }
+        { text: "I didn't drink beer or wine with Jennifer.",}
     ],
     exercises: {
         completeDoDoes: [
