@@ -150,7 +150,7 @@ export function renderLesson1() {
 
             <div class="grammar-center-images">
                 <img src="images/question.jpg" alt="Question Mark" class="center-img-top">
-                <img src="images/smoothie_banana.png" alt="Banana Smoothie" class="center-img-bottom">
+                <img src="images/smoothie_banana.jpg" alt="Banana Smoothie" class="center-img-bottom">
             </div>
 
             <div class="grammar-column">
@@ -184,7 +184,6 @@ export function renderLesson1() {
     `;
     pagesContainer.appendChild(pageGrammar);
 
-    // Função auxiliar para renderizar as linhas de gramática
     const renderGrammarRow = (containerId, dataArray) => {
         const container = document.getElementById(containerId);
         dataArray.forEach(item => {
@@ -199,7 +198,6 @@ export function renderLesson1() {
         });
     };
 
-    // Injetando os dados da gramática nos blocos correspondentes
     renderGrammarRow('do-list', lesson1Data.grammar.doQuestions);
     renderGrammarRow('does-list', lesson1Data.grammar.doesQuestions);
     renderGrammarRow('dont-list', lesson1Data.grammar.dontNegative);
@@ -301,9 +299,11 @@ export function renderLesson1() {
     `;
     pagesContainer.appendChild(pageExercise);
 
-    // --- LÓGICA DE VALIDAÇÃO DO BOTÃO CHECK ---
+    // --- MODIFICADO: CONTAGEM DE ACERTOS PARA A AUDITORIA ---
     document.getElementById('btn-check-answers').onclick = () => {
         const allInputs = pageExercise.querySelectorAll('input[data-correct]');
+        let totalQuestions = allInputs.length;
+        let totalCorrect = 0;
         
         allInputs.forEach(input => {
             const userAnswer = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
@@ -317,12 +317,16 @@ export function renderLesson1() {
                 feedbackSpan.innerHTML = "✔️";
                 feedbackSpan.style.color = "#2ec4b6";
                 input.style.borderColor = "#2ec4b6";
+                totalCorrect++;
             } else {
                 feedbackSpan.innerHTML = "❌";
                 feedbackSpan.style.color = "#e53e3e";
                 input.style.borderColor = "#e53e3e";
             }
         });
+
+        // Alerta informativo de desempenho da folha de exercícios
+        alert(`📝 Exercise Sheet checked! You got ${totalCorrect} out of ${totalQuestions} answers right.`);
     };
 
     // ==========================================================================
@@ -345,7 +349,7 @@ export function renderLesson1() {
                     <div class="speaking-action-row">
                         <button class="mic-btn" data-index="${index}">🎤 Gravar Resposta</button>
                         <div class="speaking-feedback-box">
-                            <p class="transcript-label">Você disse:</p>
+                            <p class="transcript-label">you said:</p>
                             <p class="transcript-text" id="transcript-${index}">...</p>
                         </div>
                         <div class="speaking-validation-wrapper">
@@ -359,15 +363,12 @@ export function renderLesson1() {
     `;
     pagesContainer.appendChild(pageSpeaking);
 
-    // --- ATUALIZAÇÃO DA LÓGICA DE EVENTOS (SPEECH) ---
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-    // Tocar áudio da pergunta
     pageSpeaking.querySelectorAll('.speak-ask-btn').forEach(btn => {
         btn.onclick = () => falarComElevenLabs(btn.getAttribute('data-text'));
     });
 
-    // Controle de reconhecimento por card
     pageSpeaking.querySelectorAll('.mic-btn').forEach(btn => {
         const index = parseInt(btn.getAttribute('data-index'));
         const recognition = SpeechRecognition ? new SpeechRecognition() : null;
@@ -378,7 +379,7 @@ export function renderLesson1() {
             recognition.maxAlternatives = 1;
 
             recognition.onstart = () => {
-                btn.textContent = "🛑 Gravando...";
+                btn.textContent = "🛑 Recording...";
                 btn.classList.add('recording');
             };
 
@@ -391,12 +392,12 @@ export function renderLesson1() {
 
             recognition.onerror = (e) => {
                 console.error("Erro no reconhecimento de voz:", e.error);
-                btn.textContent = "🎤 Gravar Resposta";
+                btn.textContent = "🎤 record voice";
                 btn.classList.remove('recording');
             };
 
             recognition.onend = () => {
-                btn.textContent = "🎤 Gravar Resposta";
+                btn.textContent = "🎤 record voice";
                 btn.classList.remove('recording');
             };
 
@@ -408,7 +409,6 @@ export function renderLesson1() {
         }
     });
 
-    // Lógica dedicada para o botão individual "Check" de cada linha
     pageSpeaking.querySelectorAll('.check-speak-btn').forEach(btn => {
         btn.onclick = () => {
             const index = btn.getAttribute('data-index');
@@ -418,7 +418,7 @@ export function renderLesson1() {
             const feedbackIcon = document.getElementById(`speech-icon-${index}`);
 
             if (!spokenText || spokenText === "...") {
-                feedbackIcon.innerHTML = "⚠️ Grave primeiro!";
+                feedbackIcon.innerHTML = "⚠️ Record first!";
                 feedbackIcon.style.color = "#718096";
                 return;
             }
@@ -427,11 +427,11 @@ export function renderLesson1() {
             const alternateResponseWithoutYes = correctResponse.replace(/^yes\s+/, "").trim();
 
             if (spokenText === correctResponse || spokenText === alternateResponseWithoutYes) {
-                feedbackIcon.innerHTML = "✔️ Correto!";
+                feedbackIcon.innerHTML = "✔️ Corret!";
                 feedbackIcon.style.color = "#2ec4b6";
                 transcriptParagraph.style.color = "#2ec4b6";
             } else {
-                feedbackIcon.innerHTML = "❌ Tente de novo";
+                feedbackIcon.innerHTML = "❌ Try Again!";
                 feedbackIcon.style.color = "#e53e3e";
                 transcriptParagraph.style.color = "#e53e3e";
             }
@@ -439,22 +439,20 @@ export function renderLesson1() {
     });
 
     // ==========================================================================
-    // ÁREA FINAL: BOTÃO FINALIZAR LIÇÃO (ENCAMINHA PARA O TESTE)
+    // ÁREA FINAL: BOTÃO DE ENCAMINHAMENTO (MUDANÇA CRÍTICA)
     // ==========================================================================
     const pageNavigation = document.createElement('div');
     pageNavigation.style.textAlign = 'center';
     pageNavigation.style.margin = '4rem auto';
     pageNavigation.innerHTML = `
         <button id="btn-finish-lesson" class="check-answers-btn" style="background-color: var(--secondary-color); padding: 1.2rem 3.5rem; font-size: 1.5rem;">
-            Finalizar Lição & Ir para o Teste 🚀
+            Go to Assessment 🚀
         </button>
     `;
     pagesContainer.appendChild(pageNavigation);
 
-    // Evento de clique unificado para salvar o progresso e mudar de página
+    // 🔥 CORREÇÃO DA AUDITORIA: Redireciona SEM setar o progresso estático como true antes do teste.
     document.getElementById('btn-finish-lesson').onclick = () => {
-        // Como esta é a renderizadora da Lesson 1, salvamos estaticamente a lesson1Completed
-        localStorage.setItem('lesson1Completed', 'true');
-        window.location.href = 'assessment.html';
+        window.location.href = 'assessment.html'; 
     };
 }

@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <div class="speaking-action-row" style="margin-bottom: 10px;">
                                 <button class="mic-btn mic-dual-btn" data-card="${index}" data-type="affirmative">🎤 Resposta Afirmativa</button>
                                 <div class="speaking-feedback-box">
-                                    <p class="transcript-label">Você disse (Afirmativa):</p>
+                                    <p class="transcript-label">you said (Afirmativa):</p>
                                     <p class="transcript-text" id="transcript-affirmative-${index}">...</p>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             <div class="speaking-action-row">
                                 <button class="mic-btn mic-dual-btn" data-card="${index}" data-type="negative" style="background-color: #4a5568;">🎤 Resposta Negativa</button>
                                 <div class="speaking-feedback-box">
-                                    <p class="transcript-label">Você disse (Negativa):</p>
+                                    <p class="transcript-label">you said (Negativa):</p>
                                     <p class="transcript-text" id="transcript-negative-${index}">...</p>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             </div>
                             <p class="speech-feedback-icon feedback-icon-radio" style="margin-top: 8px; text-align: left;"></p>
                         </div>
-                    `).join('')}
+                     `).join('')}
                 </div>
             </section>
 
@@ -213,7 +213,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 let spokenText = event.results[0][0].transcript.toLowerCase().trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
                 const transcriptParagraph = document.getElementById(`transcript-${type}-${cardIndex}`);
                 
-                // Escreve exatamente o que o aluno falou na linha de baixo
                 transcriptParagraph.textContent = `"${spokenText}"`;
                 transcriptParagraph.setAttribute('data-spoken', spokenText);
             };
@@ -248,12 +247,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const feedbackIcon = document.getElementById(`dual-feedback-${index}`);
 
             if (!spokenAff || !spokenNeg) {
-                feedbackIcon.innerHTML = "⚠️ Grave ambas as respostas primeiro!";
+                feedbackIcon.innerHTML = "⚠️ Record both responses first!";
                 feedbackIcon.style.color = "#718096";
                 return;
             }
 
-            // Validações removendo pontuação e "yes / no " opcionais do início para manter tolerante
             const correctAff = targetData.correctAffirmative.toLowerCase().trim();
             const correctNeg = targetData.correctNegative.toLowerCase().trim();
             
@@ -264,11 +262,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const isNegCorrect = (spokenNeg === correctNeg || spokenNeg === altNeg);
 
             if (isAffCorrect && isNegCorrect) {
-                feedbackIcon.innerHTML = "✔️ Ambas Corretas!";
+                feedbackIcon.innerHTML = "✔️ Both Correct!";
                 feedbackIcon.style.color = "#2ec4b6";
                 affParagraph.style.color = "#2ec4b6";
                 negParagraph.style.color = "#2ec4b6";
-                btn.setAttribute('data-passed', "true"); // Armazena para a nota final do teste
+                btn.setAttribute('data-passed', "true"); 
             } else {
                 feedbackIcon.innerHTML = `❌ Erro em: ${!isAffCorrect ? 'Afirmativa' : ''} ${!isNegCorrect ? 'Negativa' : ''}`;
                 feedbackIcon.style.color = "#e53e3e";
@@ -333,12 +331,31 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // 4. Exibindo o Resultado Final
+        // ==========================================================================
+        // 4. EXIBINDO O RESULTADO FINAL & VALIDAÇÃO DOS 100% PARA ABRIR O CADEADO
+        // ==========================================================================
         const resultDiv = document.getElementById('test-score-result');
         const percent = Math.round((correctAnswers / totalQuestions) * 100);
         
         resultDiv.innerHTML = `Result: ${correctAnswers} / ${totalQuestions} (${percent}%)`;
-        resultDiv.style.color = percent >= 70 ? "#2ec4b6" : "#e53e3e";
+        
+        if (correctAnswers === totalQuestions && totalQuestions > 0) {
+            resultDiv.style.color = "#2ec4b6";
+            
+            // Grava o desbloqueio definitivo no navegador da Lesson 2
+            localStorage.setItem('lesson1Completed', 'true');
+            
+            alert("🎉 PERFECT! You scored 100%! Lesson 2 has been successfully unlocked on your Home page. 🚀");
+            
+            // Manda de volta para a Home com tudo aberto após 2 segundos
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+
+        } else {
+            resultDiv.style.color = "#e53e3e";
+            alert(`✏️ Review your mistakes! You scored ${percent}%, but you need 100% to unlock Lesson 2. Try again!`);
+        }
         
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     };
