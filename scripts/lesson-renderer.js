@@ -451,8 +451,10 @@ export function renderLesson1() {
     `;
     pagesContainer.appendChild(pageNavigation);
 
-    // Evento de clique para mudar de página
+    // Evento de clique unificado para salvar o progresso e mudar de página
     document.getElementById('btn-finish-lesson').onclick = () => {
+        // Como esta é a renderizadora da Lesson 1, salvamos estaticamente a lesson1Completed
+        localStorage.setItem('lesson1Completed', 'true');
         window.location.href = 'assessment.html';
     };
 }
