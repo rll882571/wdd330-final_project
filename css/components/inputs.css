@@ -1,0 +1,87 @@
+/* css/components/inputs.css */
+
+/* ==========================================================================
+   INPUT COMPONENT: WORKSPACE INLINE EXERCISE (DO/DOES FIELD WITH NESTING)
+   ========================================================================== */
+.input-wrapper, .input-wrapper-full {
+    position: relative; /* Atua como referência absoluta para encaixar ícones de certo/errado */
+    display: inline-flex; /* Mantém o container do input em linha junto ao fluxo do texto */
+    align-items: center; /* Alinha horizontalmente o input e seus subelementos */
+}
+
+.input-do-does {
+    width: 100px; /* Fixa o tamanho horizontal curto ideal para digitar apenas "do" ou "does" */
+    font-size: 1.4rem; /* Sincroniza o tamanho da letra digitada com o tamanho da frase */
+    padding: 2px 5px; /* Adiciona recuo interno para o texto não encostar nas bordas */
+    border: none; /* Remove todas as bordas padrões do campo */
+    border-bottom: 2px solid var(--text-muted); /* Adiciona uma linha sólida na base imitando caderno de exercícios */
+    background: transparent; /* Remove o fundo branco deixando o input invisível sobre o papel */
+    font-style: italic; /* Mantém o texto digitado pelo aluno em itálico */
+    font-weight: bold; /* Deixa o texto do aluno em negrito firme para fácil leitura */
+    text-align: center; /* Centraliza o texto digitado dentro do campo */
+    color: var(--primary-color); /* Pinta as respostas do aluno com o azul do tema */
+    outline: none; /* Remove aquela borda preta grossa padrão que o navegador cria no clique */
+}
+
+/* ==========================================================================
+   INPUT COMPONENT: ADVANCED SHEET FIELDS (NEGATIVE & OPEN SENTENCES)
+   ========================================================================== */
+.input-wrapper-full {
+    width: 100%; /* Força o container a ocupar toda a largura disponível da linha */
+}
+
+.input-negative, .input-open {
+    width: 100%; /* Faz os campos de frases longas se espalharem por toda a largura horizontal */
+    font-size: 1.4rem; /* Regula o tamanho da fonte interna */
+    padding: 5px; /* Adiciona preenchimento interno para maior conforto ao digitar */
+    border: none; /* Desativa o visual quadrado padrão de caixa do input */
+    border-bottom: 2px solid var(--text-muted); /* Mantém o padrão de linha horizontal para preenchimento */
+    background: transparent; /* Garante o fundo transparente integrado à folha */
+    font-style: italic; /* Formata o texto digitado em itálico */
+    color: var(--primary-color); /* Aplica a cor azul principal nas respostas preenchidas */
+    outline: none; /* Remove a borda padrão de foco do navegador */
+    margin-top: 0.5rem; /* Afasta ligeiramente o campo da frase de comando posicionada acima */
+    transition: transform 0.2s ease, border-color 0.2s ease; /* Garante transições suaves de tamanho e cor solicitadas na auditoria */
+
+    /* CRITÉRIO DA AUDITORIA ANINHADO: "enlarge an input field on focus and shrink it on blur" */
+    &:focus {
+        transform: scale(1.02); /* Amplia levemente o campo em 2% gerando o efeito de foco dinâmico */
+        border-bottom-color: var(--primary-color); /* Destaca a linha inferior mudando a cor para azul no foco */
+    }
+    
+    /* Estado inválido aninhado específico para esses campos */
+    &.input-invalid {
+        border-bottom-color: #e53e3e !important;
+    }
+}
+
+/* ==========================================================================
+   INPUT COMPONENT: TRIAL LESSON SCHEDULING FORM
+   ========================================================================== */
+.select-custom {
+    cursor: pointer; /* Altera o cursor para "mãozinha" ao interagir com a seleção */
+    background-color: transparent; /* Mantém o fundo da caixa de seleção transparente */
+    padding-bottom: 7px; /* Cria um recuo na base para alinhar com o design dos inputs */
+
+    option {
+        background-color: var(--bg-card); /* Aplica fundo branco nas opções internas do menu suspenso */
+        color: var(--text-color); /* Mantém a cor escura legível nas opções de texto */
+    }
+}
+
+/* ==========================================================================
+   VALIDATION WORKSPACE & ERRORS (FEEDBACK SYSTEM)
+   ========================================================================== */
+.feedback-icon {
+    font-size: 1.2rem; /* Regula a dimensão visual dos emojis de correção (✅ ou ❌) */
+    margin-left: 8px; /* Afasta o ícone de feedback para não colar no final do texto */
+    font-weight: bold; /* Aplica peso forte na marcação de validação */
+}
+
+.error-message {
+    font-size: 0.85rem; /* Define uma fonte compacta para os alertas de validação */
+    color: #e53e3e; /* Pinta a mensagem de erro com um tom vermelho de alerta */
+    font-weight: 600; /* Aplica peso semi-bold no aviso de erro */
+    margin-top: 5px; /* Afasta o aviso da base do campo inválido */
+    display: none; /* Oculta o aviso de erro por padrão até ser disparado pelo script */
+}

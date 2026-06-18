@@ -1,0 +1,192 @@
+/* css/components/buttons.css */
+
+/* ==========================================================================
+   BUTTON COMPONENT: CALL TO ACTION (HERO PILL BUTTON)
+   ========================================================================== */
+.cta-button {
+    background-color: var(--secondary-color); /* Pinta o botão com a cor chamativa turquesa do root */
+    color: white; /* Pinta a escrita interna do botão de branco */
+    text-decoration: none; /* Elimina o sublinhado automático de links */
+    padding: 0.8rem 2rem; /* Define o espaçamento interno vertical e horizontal do botão */
+    font-size: 1.1rem; /* Ajusta a dimensão da fonte interna */
+    font-weight: bold; /* Deixa o texto em negrito rígido para chamar atenção */
+    border-radius: 50px; /* Curva os cantos ao máximo gerando o formato pílula */
+    box-shadow: 0 4px 15px rgba(46, 196, 182, 0.4); /* Aplica brilho com sombra neon na cor turquesa */
+    transition: transform 0.2s, background-color 0.2s; /* Cria a transição suave para os efeitos visuais */
+}
+
+.cta-button:hover {
+    background-color: #24a195; /* Escurece a cor turquesa levemente ao passar o mouse */
+    transform: scale(1.05); /* Faz o botão crescer suavemente 5% atraindo o clique */
+}
+
+.cta-button:active {
+    transform: scale(0.98); /* Encolhe milimetricamente o botão imitando o clique real */
+}
+
+/* ==========================================================================
+   BUTTON COMPONENT: AUDIO PLAY BUTTON (CIRCULAR)
+   ========================================================================== */
+.play-btn {
+    background: none; /* Remove qualquer cor de fundo padrão do botão */
+    border: 2px solid var(--text-muted); /* Aplica uma borda fina cinza ao redor do botão */
+    border-radius: 50%; /* Torna o botão perfeitamente circular */
+    width: 30px; /* Fixa a largura horizontal do botão */
+    height: 30px; /* Fixa a altura vertical do botão */
+    cursor: pointer; /* Muda o cursor para "mãozinha" indicando elemento clicável */
+    display: flex; /* Ativa o Flexbox para alinhar o ícone interno (▶) */
+    align-items: center; /* Centraliza o ícone verticalmente dentro do círculo */
+    justify-content: center; /* Centraliza o ícone horizontalmente dentro do círculo */
+    color: var(--text-muted); /* Aplica a cor cinza fosca inicial no ícone (▶) */
+    font-size: 0.8rem; /* Define o tamanho do ícone interno do play */
+    transition: all 0.2s; /* Suaviza a animação de inversão de cores no hover */
+}
+
+.play-btn:hover {
+    background-color: var(--primary-color); /* Pinta o fundo de azul principal ao passar o mouse */
+    color: white; /* Muda o ícone interno para branco no hover */
+    border-color: var(--primary-color); /* Altera a borda para acompanhar o fundo azul */
+}
+
+/* ==========================================================================
+   BUTTON COMPONENT: CAROUSEL FLOATING NAVIGATION
+   ========================================================================== */
+.carousel-btn {
+    position: absolute; /* Tira o botão do fluxo e faz ele flutuar sobre o carrossel */
+    top: 50%; /* Empurra o botão até a metade vertical da seção */
+    transform: translateY(-50%); /* Ajusta o eixo centralizando o botão perfeitamente na vertical */
+    background-color: var(--bg-card); /* Deixa o fundo do botão branco combinando com os cards */
+    color: var(--primary-color); /* Aplica a cor azul principal no caractere da seta (‹ ou ›) */
+    border: 1px solid #e2e8f0; /* Aplica uma borda fina cinza ao redor do botão */
+    width: 44px; /* Fixa a largura do botão redondo */
+    height: 44px; /* Fixa a altura do botão redondo */
+    border-radius: 50%; /* Arredonda as bordas ao máximo criando um círculo perfeito */
+    font-size: 1.8rem; /* Aumenta o tamanho visual da seta de navegação */
+    line-height: 1; /* Zera o espaçamento de linha interno da seta */
+    cursor: pointer; /* Modifica o cursor para indicar elemento clicável */
+    display: flex; /* Ativa o Flexbox para centralizar a seta dentro do círculo */
+    align-items: center; /* Garante o alinhamento vertical da seta ao centro */
+    justify-content: center; /* Garante o alinhamento horizontal da seta ao centro */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Aplica uma sombra elegante fazendo o botão flutuar */
+    transition: all 0.2s ease-in-out; /* Cria a suavidade para as interações de mouse */
+    z-index: 20; /* Força o botão a ficar acima da camada dos cards de lição */
+    padding-bottom: 4px; /* Ajuste milimétrico para alinhar a seta perfeitamente no centro */
+}
+
+.prev-btn {
+    left: -15px; /* Joga a seta esquerda um pouco para fora da borda do grid */
+}
+
+.next-btn {
+    right: -15px; /* Joga a seta direita um pouco para fora da borda do grid */
+}
+
+.carousel-btn:hover {
+    background-color: var(--primary-color); /* Inverte a cor do botão para azul ao passar o mouse */
+    color: white; /* Muda o ícone da seta para branco no hover */
+    border-color: var(--primary-color); /* Sincroniza a borda com o fundo azul do botão */
+    transform: translateY(-50%) scale(1.1); /* Faz o botão crescer 10% mantendo a centralização vertical */
+}
+
+.carousel-btn:active {
+    transform: translateY(-50%) scale(0.95); /* Simula o clique físico encolhendo o botão levemente */
+}
+
+/* ==========================================================================
+   BUTTON COMPONENT: CHECK ANSWERS & WORKSPACE SUBMIT
+   ========================================================================== */
+.check-answers-btn {
+    background-color: var(--primary-color); /* Define a cor azul principal como fundo do botão de correção */
+    color: white; /* Pinta o texto interno do botão de branco absoluto */
+    border: none; /* Desativa a borda de botão padrão do navegador */
+    padding: 0.8rem 2.5rem; /* Aplica o espaçamento interno vertical e horizontal para clique firme */
+    font-size: 1.3rem; /* Configura o tamanho imponente do texto de comando do botão */
+    font-weight: 600; /* Deixa o texto interno do botão em negrito médio */
+    border-radius: var(--border-radius); /* Sincroniza o arredondamento de cantos com o padrão do projeto */
+    cursor: pointer; /* Transforma o ponteiro em "mãozinha" indicando elemento de ação */
+    transition: background-color 0.2s, transform 0.1s; /* Suaviza as animações de interação visual no botão */
+    margin-top: 1rem; /* Cria um respiro externo acima do botão */
+    display: inline-block; /* Altera o bloco permitindo dimensionamento perfeito respeitando o fluxo */
+}
+
+.check-answers-btn:hover {
+    background-color: var(--primary-hover); /* Aplica o tom azul escuro ao passar o mouse indicando foco */
+}
+
+.check-answers-btn:active {
+    transform: scale(0.98); /* Reduz milimetricamente o botão criando o efeito mecânico de clique real */
+}
+
+/* ==========================================================================
+   BUTTON COMPONENT: SPEAKING ROW PLAY BUTTON
+   ========================================================================== */
+.speaking-question-row .speak-ask-btn {
+    background: none; /* Zera a cor de fundo padrão da tag button */
+    border: 2px solid var(--text-muted); /* Aplica uma borda cinza ao redor do círculo */
+    border-radius: 50%; /* Transforma o botão em uma circunferência perfeita */
+    width: 35px; /* Fixa a largura do botão de reprodução da pergunta */
+    height: 35px; /* Fixa a altura do botão de reprodução da pergunta */
+    cursor: pointer; /* Modifica o ponteiro do mouse para indicar clique disponível */
+    display: flex; /* Ativa o Flexbox interno para centralizar o caractere de áudio */
+    align-items: center; /* Alinha horizontalmente o caractere no centro do círculo */
+    justify-content: center; /* Alinha verticalmente o caractere no centro do círculo */
+    color: var(--text-muted); /* Aplica a cor cinza fosca inicial na indicação de áudio */
+    font-size: 0.9rem; /* Regula o tamanho do ícone de som interno */
+    transition: all 0.2s ease; /* Garante a suavidade na inversão de cores */
+    padding: 0; /* Zera os preenchimentos para total precisão circular */
+}
+
+.speaking-question-row .speak-ask-btn:hover {
+    background-color: var(--primary-color); /* Altera o fundo para azul principal ao passar o mouse */
+    color: white; /* Transforma o ícone interno em branco no hover */
+    border-color: var(--primary-color); /* Sincroniza a borda externa com o fundo azul */
+    opacity: 1; /* Garante a opacidade total na exibição ativa */
+}
+
+/* ==========================================================================
+   BUTTON COMPONENT: MICROPHONE INTERACTIVE RECORDER
+   ========================================================================== */
+.mic-btn {
+    background-color: #3182ce; /* Pinta o botão do microfone com um tom azul royal vibrante */
+    color: white; /* Deixa o texto do botão de gravação em branco absoluto */
+    border: none; /* Remove a borda padrão de botão do navegador */
+    padding: 10px 18px; /* Define o espaçamento interno vertical e horizontal do botão */
+    border-radius: 6px; /* Arredonda as quinas do botão do microfone */
+    cursor: pointer; /* Modifica o cursor para o formato clássico de clique */
+    font-weight: bold; /* Deixa o comando do microfone em negrito forte */
+    font-size: 0.9rem; /* Regula a dimensão da fonte do botão */
+    min-width: 150px; /* Fixa uma largura mínima estável para o botão não encolher ao mudar o texto */
+    transition: 0.2s ease; /* Suaviza as variações de cor e estado do botão */
+}
+
+.mic-btn:hover {
+    background-color: #2b6cb0; /* Escurece o tom azul real ao passar o mouse */
+}
+
+.mic-btn:active {
+    transform: scale(0.97); /* Encolhe o microfone sutilmente imitando a pressão de um clique físico */
+}
+
+.mic-btn.recording {
+    background-color: #e53e3e; /* Pinta o botão de vermelho vivo quando a gravação estiver ativa */
+    animation: pulse 1s infinite; /* Ativa o loop infinito da animação pulsante de gravação */
+}
+
+/* ==========================================================================
+   BUTTON COMPONENT: SPEECH VALIDATION ACTION
+   ========================================================================== */
+.check-speak-btn {
+    background-color: var(--primary-color); /* Aplica a cor azul padrão no botão de validação de voz */
+    color: white; /* Pinta o texto do botão de branco absoluto */
+    border: none; /* Desativa a borda padrão do navegador */
+    padding: 6px 16px; /* Define o espaçamento interno vertical e horizontal para o botão */
+    font-size: 0.85rem; /* Define uma escala ligeiramente menor e compacta para o botão */
+    font-weight: 600; /* Aplica peso semi-bold na escrita do botão */
+    border-radius: 6px; /* Arredonda os cantos do botão de checagem */
+    cursor: pointer; /* Define o cursor indicando elemento interativo de ação */
+    transition: background-color 0.2s; /* Suaviza a transição de cor do hover */
+}
+
+.check-speak-btn:hover {
+    background-color: var(--primary-hover); /* Escurece o botão para azul escuro ao passar o mouse */
+}

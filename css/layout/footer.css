@@ -1,0 +1,55 @@
+/* css/layout/footer.css */
+
+/* ==========================================================================
+   SECTION 9: MAIN FOOTER STRUCTURE & SOCIAL LINKS (COM CSS NESTING)
+   ========================================================================== */
+#main-footer {
+    background-color: var(--bg-card); /* Aplica a cor branca de fundo no rodapé */
+    border-top: 1px solid rgba(0, 0, 0, 0.06); /* Cria uma linha divisória cinza bem sutil no topo */
+    margin-top: auto; /* Empurra o rodapé para a base da página de forma automática */
+    width: 100%; /* Força o rodapé a ocupar toda a largura horizontal da tela */
+}
+
+.footer-container {
+    max-width: 900px; /* Limita a largura máxima do conteúdo do rodapé para melhor leitura */
+    margin: 0 auto; /* Centraliza o container do rodapé no meio da tela */
+    padding: 1.2rem 1rem; /* Define o recuo interno vertical e horizontal */
+    display: flex; /* Ativa o Flexbox para alinhar os blocos do rodapé */
+    flex-direction: column; /* Organiza os elementos internos empilhados verticalmente */
+    align-items: center; /* Centraliza todos os elementos na horizontal */
+    gap: 0.6rem; /* Define um espaçamento firme entre os textos e os links sociais */
+    text-align: center; /* Centraliza o alinhamento de todas as linhas de texto */
+
+    p {
+        font-size: 0.85rem; /* Define um tamanho de fonte menor e discreto para os textos */
+        color: var(--text-muted); /* Aplica a cor cinza fosca para não competir com o conteúdo principal */
+        margin: 0; /* Zera as margens padrões das tags de parágrafo */
+    }
+
+    .social-links {
+        display: flex; /* Ativa o Flexbox para alinhar os ícones das redes sociais */
+        gap: 1rem; /* Define o espaçamento horizontal entre cada ícone social */
+        align-items: center; /* Alinha os ícones verticalmente ao centro */
+
+        a:hover .social-icon {
+            transform: scale(1.1); /* Aumenta o tamanho do ícone em 10% no hover criando efeito de zoom */
+        }
+    }
+
+    .social-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+        display: block;
+        transition: transform 0.2s ease;
+    }
+
+    .copyright {
+        font-size: 0.75rem; /* Aplica uma fonte bem pequena para o texto dos direitos autorais */
+        color: var(--text-muted); /* Mantém o tom cinza discreto nas informações finais */
+        border-top: 1px solid rgba(0, 0, 0, 0.05); /* Adiciona uma linha divisória muito fina acima do copyright */
+        width: 100%; /* Faz a linha divisória cruzar toda a largura útil do container */
+        padding-top: 0.6rem; /* Afasta o texto do copyright da linha divisória recém-criada */
+        margin-top: 0.3rem; /* Cria um respiro externo acima da linha do copyright */
+    }
+}

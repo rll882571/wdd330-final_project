@@ -1,0 +1,58 @@
+/* css/components/cards.css */
+
+/* ==========================================================================
+   CAROUSEL LESSON CARD (COM CSS NESTING)
+   ========================================================================== */
+.lesson-card {
+    background: var(--bg-card); /* Aplica o fundo branco do root em cada card */
+    border-radius: var(--border-radius); /* Arredonda os cantos de cada card de lição */
+    padding: 1rem; /* Cria um recuo interno separando a imagem das bordas do card */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); /* Projeta uma sombra suave e elegante sob o card */
+    transition: 0.3s; /* Suaviza o tempo de resposta da animação de hover */
+    cursor: pointer; /* Transforma o ponteiro do mouse em "mãozinha" de clique */
+    text-align: center; /* Centraliza qualquer texto que entrar no card */
+
+    &:hover {
+        transform: translateY(-5px); /* Faz o card flutuar para cima 5px ao passar o mouse */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Intensifica a sombra gerando um efeito de elevação real */
+    }
+
+    img {
+        width: 100%; /* Força a imagem a ocupar toda a largura útil do card */
+        height: 140px; /* Trava a altura vertical da imagem da lição */
+        object-fit: cover; /* Recorta a imagem proporcionalmente preenchendo o espaço sem distorcer */
+        border-radius: 4px; /* Arredonda de forma sutil os cantos da imagem da lição */
+        margin-bottom: 0.8rem; /* Cria um espaçamento abaixo da foto */
+    }
+}
+
+/* ==========================================================================
+   PROGRESSION LOCK SYSTEM (GRACEFUL OVERLAY)
+   ========================================================================== */
+.lesson-card-link.lesson-locked {
+    .lesson-card {
+        position: relative; /* Torna o card a referência espacial para prender o cadeado sobre ele */
+        cursor: not-allowed; /* Altera o cursor para o ícone de bloqueio/proibido */
+
+        img {
+            filter: grayscale(80%) blur(1px); /* Retira 80% da cor e aplica um leve desfoque na imagem da lição */
+            opacity: 0.5; /* Reduz a opacidade da foto pela metade gerando o visual desativado */
+            transition: all 0.3s ease; /* Define o tempo de transição suave para as alterações do card */
+        }
+    }
+}
+
+.lock-overlay {
+    position: absolute; /* Remove o overlay do fluxo e o sobrepõe perfeitamente acima do card */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: inherit;
+    pointer-events: none;
+}

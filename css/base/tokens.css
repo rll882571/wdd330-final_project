@@ -1,0 +1,12 @@
+/* css/base/tokens.css */
+:root {
+    --primary-color: #2b4c7e;
+    --primary-hover: #1a3256;
+    --secondary-color: #2ec4b6;
+    --bg-color: #f8f9fa;
+    --bg-card: #ffffff;
+    --text-color: #2d3748;
+    --text-muted: #718096;
+    --border-radius: 8px;
+    --transition-fast: 0.3s ease;
+}

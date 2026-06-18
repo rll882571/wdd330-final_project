@@ -1,0 +1,86 @@
+/* css/layout/header.css */
+
+/* ==========================================================================
+   SECTION 3: HEADER & MENU (DESKTOP PADRÃO COM CSS NESTING)
+   ========================================================================== */
+
+#main-header {
+    background-color: var(--bg-card); /* 3.1 Define a cor de fundo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* 3.2 Cria a sombra sutil */
+    width: 100%; /* 3.3 Garante a largura total */
+    position: sticky; /* 3.4 Ativa o comportamento de fixação */
+    top: 0; /* 3.5 Alinha o ponto de fixação no topo */
+    z-index: 1000; /* 3.6 Garante a camada superior */
+}
+
+.header-container {
+    width: 100%; /* 3.7 Define a largura base total */
+    max-width: 100%; /* 3.8 Limita a largura máxima para segurança */
+    padding: 0.3rem 3%; /* 3.9 Cria o espaçamento interno interno */
+    display: flex; /* 3.10 Ativa o modelo de layout flexível */
+    justify-content: space-between; /* 3.11 Distribui os elementos nas extremidades */
+    align-items: center; /* 3.12 Alinha os elementos verticalmente ao centro */
+    position: relative; /* 3.13 Define o ponto de referência para subelementos */
+
+    .logo-image {
+        height: 80px; /* 3.14 Define a altura fixa da logomarca */
+        width: auto; /* 3.15 Calcula a largura proporcional automaticamente */
+        display: block; /* 3.16 Remove espaçamentos fantasmas de elementos inline */
+        object-fit: contain; /* 3.17 Garante que a imagem não distorça ou achate */
+    }
+}
+
+.header-nav {
+    ul {
+        display: flex; /* 3.18 Alinha as li (itens da lista) lado a lado */
+        gap: 2.5rem; /* 3.19 Cria o espaçamento interno entre os links */
+        list-style: none; /* 3.20 Remove as bolinhas padrão da lista HTML */
+    }
+
+    a {
+        text-decoration: none; /* 3.21 Remove o sublinhado padrão do link */
+        font-size: 1rem; /* 3.22 Define o tamanho padrão da fonte */
+        font-weight: 500; /* 3.23 Deixa a fonte com peso médio/semi-bold */
+        color: var(--text-muted); /* 3.24 Aplica a cor cinza fosca inicial */
+        transition: color var(--transition-fast); /* 3.25 Suaviza a mudança de cor no hover */
+        padding: 5px 0; /* 3.26 Aumenta a área de clique vertical do link */
+
+        &:hover {
+            color: var(--primary-color); /* 3.27 Muda a cor do texto para azul ao passar o mouse */
+
+            &:after {
+                width: 100%; /* 3.34 Expande a linha por completo ao passar o mouse */
+            }
+        }
+
+        &:after {
+            content: ''; /* 3.28 Cria um elemento falso necessário para a linha decorativa */
+            display: block; /* 3.29 Faz a linha se comportar como um bloco sólido */
+            width: 0; /* 3.30 Inicia a linha totalmente invisível (largura zero) */
+            height: 2px; /* 3.31 Define a espessura da linha decorativa */
+            background: var(--secondary-color); /* 3.32 Aplica a cor verde azulada na linha */
+            transition: width var(--transition-fast); /* 3.33 Faz a animação da linha expandindo */
+        }
+    }
+}
+
+.menu-toggle {
+    display: none; /* 3.35 Esconde o botão por padrão em telas grandes */
+    flex-direction: column; /* 3.36 Alinha as barrinhas internas em coluna (empilhadas) */
+    justify-content: space-between; /* 3.37 Distribui o espaço igualmente entre as barrinhas */
+    width: 26px; /* 3.38 Define a largura total do botão */
+    height: 18px; /* 3.39 Define a altura total do botão */
+    background: transparent; /* 3.40 Remove qualquer cor de fundo padrão do botão */
+    border: none; /* 3.41 Remove as bordas padrão de tags button */
+    cursor: pointer; /* 3.42 Transforma o cursor no ícone de "mãozinha" ao passar o mouse */
+    z-index: 1010; /* 3.43 Garante que o botão fique acima da camada do cabeçalho */
+    padding: 0; /* 3.44 Zera os espaçamentos internos para precisão de tamanho */
+
+    .bar {
+        width: 100%; /* 3.45 Faz a barrinha ocupar toda a largura do botão (26px) */
+        height: 3px; /* 3.46 Define a espessura de cada barrinha */
+        background-color: var(--primary-color); /* 3.47 Aplica a cor azul principal nas linhas */
+        border-radius: 2px; /* 3.48 Arredonda as pontas das barrinhas */
+        transition: all var(--transition-fast); /* 3.49 Permite animar as linhas (criar o "X" futuramente) */
+    }
+}

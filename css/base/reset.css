@@ -1,0 +1,22 @@
+/* css/base/reset.css */
+
+/* ==========================================================================
+   SECTION 2: GLOBAL RESET & DEFAULT TYPOGRAPHY
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    width: 100%; /* Aproveita e muda o 99% para 100% como conversamos! */
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Evita que o site crie rolagem para os lados */
+}

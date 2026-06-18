@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     testContainer.innerHTML = `
         <main class="lesson-container">
             <h1 class="lesson-title">LESSON 1 - FINAL TEST</h1>
-            <p class="speaking-instruction">Responda a todas as seções com atenção e clique em "Finalizar Teste" no final.</p>
+            <p class="speaking-instruction">Answer all sections carefully and click "Finish Test" at the end.</p>
 
             <section class="exercise-section">
                 <h2 class="exercise-subtitle">1. Listening: Listen and Write</h2>
