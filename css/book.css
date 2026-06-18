@@ -1,5 +1,3 @@
-
-
 /* ==========================================================================
    SECTION 1: GLOBAL VARIABLES & DESIGN TOKENS (COLOR PALETTE & CORE STYLES)
    ========================================================================== */
@@ -28,8 +26,8 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    width: 99%;
-    margin: 0 auto;
+    width: 100%;
+    overflow-x: hidden; /* Evita quebras de layout horizontais */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -38,1073 +36,1009 @@ body {
 /* ==========================================================================
     SECTION 3: HEADER & MENU (DESKTOP PADRÃO)
    ========================================================================== */
-
 #main-header {
-    background-color: var(--bg-card); /* 3.1 Define a cor de fundo */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* 3.2 Cria a sombra sutil */
-    width: 100%; /* 3.3 Garante a largura total */
-    position: sticky; /* 3.4 Ativa o comportamento de fixação */
-    top: 0; /* 3.5 Alinha o ponto de fixação no topo */
-    z-index: 1000; /* 3.6 Garante a camada superior */
+    background-color: var(--bg-card);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-
 .header-container {
-    width: 100%; /* 3.7 Define a largura base total */
-    max-width: 100%; /* 3.8 Limita a largura máxima para segurança */
-    padding: 0.3rem 3%; /* 3.9 Cria o espaçamento interno interno */
-    display: flex; /* 3.10 Ativa o modelo de layout flexível */
-    justify-content: space-between; /* 3.11 Distribui os elementos nas extremidades */
-    align-items: center; /* 3.12 Alinha os elementos verticalmente ao centro */
-    position: relative; /* 3.13 Define o ponto de referência para subelementos */
+    width: 100%;
+    max-width: 1200px; /* Garante alinhamento centralizado em telas grandes */
+    margin: 0 auto;
+    padding: 0.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
 .logo-image {
-    height: 80px; /* 3.14 Define a altura fixa da logomarca */
-    width: auto; /* 3.15 Calcula a largura proporcional automaticamente */
-    display: block; /* 3.16 Remove espaçamentos fantasmas de elementos inline */
-    object-fit: contain; /* 3.17 Garante que a imagem não distorça ou achate */
+    height: 60px; /* Reduzido levemente para um cabeçalho mais elegante */
+    width: auto;
+    display: block;
+    object-fit: contain;
 }
 
 .header-nav ul {
-    display: flex; /* 3.18 Alinha as li (itens da lista) lado a lado */
-    gap: 2.5rem; /* 3.19 Cria o espaçamento interno entre os links */
-    list-style: none; /* 3.20 Remove as bolinhas padrão da lista HTML */
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
 }
 
 .header-nav a {
-    text-decoration: none; /* 3.21 Remove o sublinhado padrão do link */
-    font-size: 1rem; /* 3.22 Define o tamanho padrão da fonte */
-    font-weight: 500; /* 3.23 Deixa a fonte com peso médio/semi-bold */
-    color: var(--text-muted); /* 3.24 Aplica a cor cinza fosca inicial */
-    transition: color var(--transition-fast); /* 3.25 Suaviza a mudança de cor no hover */
-    padding: 5px 0; /* 3.26 Aumenta a área de clique vertical do link */
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
+    padding: 5px 0;
 }
 
 .header-nav a:hover {
-    color: var(--primary-color); /* 3.27 Muda a cor do texto para azul ao passar o mouse */
+    color: var(--primary-color);
 }
 
 .header-nav a:after {
-    content: ''; /* 3.28 Cria um elemento falso necessário para a linha decorativa */
-    display: block; /* 3.29 Faz a linha se comportar como um bloco sólido */
-    width: 0; /* 3.30 Inicia a linha totalmente invisível (largura zero) */
-    height: 2px; /* 3.31 Define a espessura da linha decorativa */
-    background: var(--secondary-color); /* 3.32 Aplica a cor verde azulada na linha */
-    transition: width var(--transition-fast); /* 3.33 Faz a animação da linha expandindo */
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--secondary-color);
+    transition: width var(--transition-fast);
 }
 
 .header-nav a:hover:after {
-    width: 100%; /* 3.34 Expande a linha por completo ao passar o mouse */
+    width: 100%;
 }
 
-
 .menu-toggle {
-    display: none; /* 3.35 Esconde o botão por padrão em telas grandes */
-    flex-direction: column; /* 3.36 Alinha as barrinhas internas em coluna (empilhadas) */
-    justify-content: space-between; /* 3.37 Distribui o espaço igualmente entre as barrinhas */
-    width: 26px; /* 3.38 Define a largura total do botão */
-    height: 18px; /* 3.39 Define a altura total do botão */
-    background: transparent; /* 3.40 Remove qualquer cor de fundo padrão do botão */
-    border: none; /* 3.41 Remove as bordas padrão de tags button */
-    cursor: pointer; /* 3.42 Transforma o cursor no ícone de "mãozinha" ao passar o mouse */
-    z-index: 1010; /* 3.43 Garante que o botão fique acima da camada do cabeçalho */
-    padding: 0; /* 3.44 Zera os espaçamentos internos para precisão de tamanho */
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1010;
+    padding: 0;
 }
 
 .menu-toggle .bar {
-    width: 100%; /* 3.45 Faz a barrinha ocupar toda a largura do botão (26px) */
-    height: 3px; /* 3.46 Define a espessura de cada barrinha */
-    background-color: var(--primary-color); /* 3.47 Aplica a cor azul principal nas linhas */
-    border-radius: 2px; /* 3.48 Arredonda as pontas das barrinhas */
-    transition: all var(--transition-fast); /* 3.49 Permite animar as linhas (criar o "X" futuramente) */
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: all var(--transition-fast);
 }
 
 /* ==========================================================================
    SECTION 4: LESSON PAGE STRUCTURE & LAYOUT CONTAINERS
    ========================================================================== */
-
 .lesson-container {
-    width: 65%; /* 4.1 Define a largura da página do livro em telas grandes */
-    margin: 3rem auto; /* 4.2 Centraliza a página horizontalmente e cria margem externa */
-    background-color: var(--bg-card); /* 4.3 Aplica a cor branca de fundo na folha */
-    padding: 3rem 4rem; /* 4.4 Cria o recuo interno (margens internas da página) */
-    border-radius: var(--border-radius); /* 4.5 Arredonda os cantos da folha do livro */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 4.6 Projeta uma sombra suave sob a folha */
-    text-align: center; /* 4.7 Centraliza os textos e títulos por padrão */
+    width: 90%;
+    max-width: 900px; /* Protege a leitura em telas ultra-wide */
+    margin: 3rem auto;
+    background-color: var(--bg-card);
+    padding: 3rem 4rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    text-align: center;
 }
 
 .lesson-title {
-    font-size: 2.5rem; /* 4.8 Define um tamanho grande e imponente para o título */
-    margin-bottom: 3rem; /* 4.9 Afasta o título do conteúdo que vem abaixo */
-    color: var(--text-color); /* 4.10 Aplica a cor escura padrão no texto */
-    letter-spacing: 2px; /* 4.11 Aumenta o espaçamento entre as letras do título */
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+    letter-spacing: 2px;
 }
 
 .lesson-grid {
-    display: flex; /* 4.12 Ativa o Flexbox para alinhar as colunas de verbos */
-    justify-content: space-around; /* 4.13 Distribui as colunas com espaços harmônicos entre elas */
-    gap: 4rem; /* 4.14 Define a distância firme de separação entre as colunas */
-    flex-wrap: wrap; /* 4.15 Permite que as colunas quebrem para baixo em telas menores */
+    display: flex;
+    justify-content: space-around;
+    gap: 3rem;
+    flex-wrap: wrap;
 }
 
 .verb-column {
-    flex: 1; /* 4.16 Faz a coluna crescer e ocupar o espaço disponível igualmente */
-    min-width: 300px; /* 4.17 Define a largura mínima para a coluna não esmagar */
-    max-width: 500px; /* 4.18 Limita a largura máxima para manter a leitura confortável */
+    flex: 1;
+    min-width: 280px;
+    max-width: 500px;
 }
 
 .verb-header {
-    margin-bottom: 2rem; /* 4.19 Afasta o cabeçalho do verbo da lista de frases abaixo */
+    margin-bottom: 2rem;
 }
 
 .verb-header h2 {
-    font-size: 1.5rem; /* 4.20 Define o tamanho do título do verbo (Ex: To drink) */
-    color: var(--primary-color); /* 4.21 Aplica a cor azul principal no nome do verbo */
+    font-size: 1.5rem;
+    color: var(--primary-color);
 }
 
 /* ==========================================================================
    SECTION 5: PRACTICE SENTENCES, AUDIO BUTTONS & MEDIA ELEMENTS
    ========================================================================== */
-
 .practice-list {
-    display: flex; /* 5.1 Ativa o Flexbox para organizar a lista de frases */
-    flex-direction: column; /* 5.2 Alinha as linhas de prática verticalmente em coluna */
-    gap: 2.5rem; /* 5.3 Define o espaçamento vertical entre uma frase e outra */
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 }
 
 .practice-row {
-    display: grid; /* 5.4 Ativa o CSS Grid para controle absoluto da linha */
-    grid-template-columns: 40px max-content 60px; /* 5.5 Divide a linha em três colunas fixas e proporcionais */
-    align-items: center; /* 5.6 Centraliza verticalmente o botão, o texto e a imagem */
-    gap: 0.6rem; /* 5.7 Define o espaçamento horizontal entre as colunas da linha */
+    display: grid;
+    grid-template-columns: 40px 1fr auto; /* O texto ocupa o espaço dinâmico central */
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
 }
 
 .practice-text {
-    font-style: italic; /* 5.8 Aplica o estilo itálico no texto das frases */
-    font-size: 2rem; /* 5.9 Define um tamanho grande e nítido para leitura das frases */
-    font-weight: 600; /* 5.10 Deixa a fonte em negrito (semi-bold) para destaque */
+    font-style: italic;
+    font-size: 1.8rem; /* Ajustado para melhor balanço em desktops */
+    font-weight: 600;
 }
 
 /* BOTÃO PLAY */
 .play-btn {
-    background: none; /* 5.11 Remove qualquer cor de fundo padrão do botão */
-    border: 2px solid var(--text-muted); /* 5.12 Aplica uma borda fina cinza ao redor do botão */
-    border-radius: 50%; /* 5.13 Torna o botão perfeitamente circular */
-    width: 30px; /* 5.14 Fixa a largura horizontal do botão */
-    height: 30px; /* 5.15 Fixa a altura vertical do botão */
-    cursor: pointer; /* 5.16 Muda o cursor para "mãozinha" indicando elemento clicável */
-    display: flex; /* 5.17 Ativa o Flexbox para alinhar o ícone interno (▶) */
-    align-items: center; /* 5.18 Centraliza o ícone verticalmente dentro do círculo */
-    justify-content: center; /* 5.19 Centraliza o ícone horizontalmente dentro do círculo */
-    color: var(--text-muted); /* 5.20 Aplica a cor cinza fosca inicial no ícone (▶) */
-    font-size: 0.8rem; /* 5.21 Define o tamanho do ícone interno do play */
-    transition: all 0.2s; /* 5.22 Suaviza a animação de inversão de cores no hover */
+    background: none;
+    border: 2px solid var(--text-muted);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    transition: all 0.2s;
 }
 
 .play-btn:hover {
-    background-color: var(--primary-color); /* 5.23 Pinta o fundo de azul principal ao passar o mouse */
-    color: white; /* 5.24 Muda o ícone interno para branco no hover */
-    border-color: var(--primary-color); /* 5.25 Altera a borda para acompanhar o fundo azul */
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
 }
 
 /* IMAGEM PRINCIPAL */
 .main-img {
-    width: 170px; /* 5.26 Fixa a largura do container da imagem de cabeçalho do verbo */
-    height: 170px; /* 5.27 Fixa a altura do container da imagem de cabeçalho do verbo */
-    margin: 0 auto 10px; /* 5.28 Centraliza o container e cria um espaçamento na base */
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 10px;
 }
 
 /* IMAGENS AO LADO DAS FRASES */
 .icon-img {
-    width: 80px; /* 5.29 Define a largura do quadrado que segura os ícones ilustrativos */
-    height: 80px; /* 5.30 Define a altura do quadrado que segura os ícones ilustrativos */
-    display: flex; /* 5.31 Ativa o Flexbox para posicionar a tag img interna */
-    align-items: center; /* 5.32 Centraliza a imagem verticalmente no container */
-    justify-content: center; /* 5.33 Centraliza a imagem horizontalmente no container */
-    flex-shrink: 0; /* 5.34 Impede que o container esmague se a tela encolher */
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .icon-img img {
-    width: 100%; /* 5.35 Força a imagem a ocupar toda a largura do container de 80px */
-    height: 100%; /* 5.36 Força a imagem a ocupar toda a altura do container de 80px */
-    object-fit: contain; /* 5.37 Redimensiona a foto proporcionalmente sem cortar ou distorcer */
-    display: block; /* 5.38 Elimina espaçamentos indesejados abaixo da imagem */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 /* ==========================================================================
    SECTION 6: HOME PAGE BASE STRUCTURE & CORE WRAPPERS
    ========================================================================== */
-
 .home-main {
-    flex: 1; /* 6.1 Faz o container principal esticar para preencher o espaço vertical restante */
-    width: 100%; /* 6.2 Garante que a estrutura ocupe toda a largura horizontal base */
-    max-width: 1200px; /* 6.3 Limita a largura máxima do site para manter o design elegante */
-    margin: 0 auto; /* 6.4 Centraliza todo o corpo da página inicial no meio do navegador */
-    padding: 2rem 1rem; /* 6.5 Cria o recuo interno para afastar o conteúdo das bordas da tela */
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
 }
 
 .hero-section {
-    width: 100%; /* 6.6 Força a seção de destaque a ocupar 100% da largura do seu elemento pai */
-    margin-bottom: 3rem; /* 6.7 Cria um espaçamento firme na base para empurrar o carrossel de lições */
+    width: 100%;
+    margin-bottom: 3rem;
 }
 
 /* ==========================================================================
    SECTION 7: AUTOMATIC HERO BANNER (SLIDER & CALL TO ACTION)
    ========================================================================== */
-
 .hero-container {
-    width: 100%; /* 7.1 Faz o painel principal ocupar toda a largura horizontal */
-    border-radius: var(--border-radius); /* 7.2 Arredonda os cantos externos do banner */
-    overflow: hidden; /* 7.3 Esconde as fotos dos slides que estão fora da área visível */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* 7.4 Aplica sombreamento suave nas bordas externas */
-    position: relative; /* 7.5 Serve como âncora para a camada escura de texto por cima */
+    width: 100%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
 }
 
-/* Envoltório que junta os 4 slides lado a lado e roda a animação */
 .slider-wrapper {
-    display: flex; /* 7.6 Coloca as 4 imagens alinhadas horizontalmente lado a lado */
-    width: 400%; /* 7.7 Reserva o espaço equivalente a 4 telas inteiras (100% para cada foto) */
-    height: auto; /* 7.8 Regula a altura vertical de forma maleável */
-    animation: autoSlider 240s infinite ease-in-out; /* 7.9 Aciona o ciclo de movimentação automática de 4 minutos */
+    display: flex;
+    width: 400%;
+    height: auto;
+    animation: autoSlider 240s infinite ease-in-out;
 }
 
-/* Garante que cada bloco do slide ocupe exatamente o espaço correto */
 .slide-item {
-    width: 25%; /* 7.10 Faz cada foto ocupar exatamente 1/4 (uma parte de 25%) do wrapper de 400% */
-    position: relative; /* 7.11 Permite posicionar textos e botões de forma interna na imagem */
-    height: auto; /* 7.12 Mantém a altura proporcional ao elemento */
+    width: 25%;
+    position: relative;
+    height: auto;
 }
 
 .slide-item .hero-image-large {
-    width: 100%; /* 7.13 Estica a imagem para preencher toda a largura do slide item */
-    max-height: 400px; /* 7.14 Trava a altura máxima do banner para não ocupar a tela toda */
-    object-fit: cover; /* 7.15 Recorta a foto proporcionalmente para não achatar ou esticar */
-    display: block; /* 7.16 Exclui lacunas vazias ou margens fantasmas na base da foto */
+    width: 100%;
+    height: 400px; /* Altura fixa controlada por objeto */
+    object-fit: cover;
+    display: block;
 }
 
-/* Camada escura por cima da imagem para dar contraste e destacar o texto */
 .hero-cta-overlay {
-    position: absolute; /* 7.17 Retira a camada do fluxo e sobrepõe ela exatamente sobre a foto */
-    top: 0; /* 7.18 Alinha o início da película no teto do banner */
-    left: 0; /* 7.19 Preserva a película colada no canto esquerdo */
-    width: 100%; /* 7.20 Estica a película escura por toda a largura do banner */
-    height: 100%; /* 7.21 Estica a película por toda a altura vertical do banner */
-    background: rgba(0, 0, 0, 0.45); /* 7.22 Aplica o filtro de escurecimento com 45% de opacidade preta */
-    display: flex; /* 7.23 Ativa o Flexbox para alinhar os textos e botão internos */
-    flex-direction: column; /* 7.24 Organiza o h2 e o botão empilhados em formato vertical */
-    justify-content: center; /* 7.25 Centraliza o bloco inteiro de texto na vertical do banner */
-    align-items: center; /* 7.26 Centraliza todo o texto e o botão horizontalmente */
-    gap: 1.5rem; /* 7.27 Afasta o título em h2 do botão de agendamento */
-    color: white; /* 7.28 Pinta todos os textos internos de branco absoluto */
-    padding: 2rem; /* 7.29 Garante um recuo de segurança para o texto não bater nas bordas */
-    text-align: center; /* 7.30 Centraliza todas as linhas de texto internamente */
-    z-index: 10; /* 7.31 Garante que os textos e botões fiquem acima do arquivo da foto */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    z-index: 10;
 }
 
 .hero-cta-overlay h2 {
-    font-size: 2.2rem; /* 7.32 Aplica o tamanho grande para a mensagem principal */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 7.33 Define a família tipográfica */
-    font-weight: 700; /* 7.34 Ajusta o peso da fonte para negrito robusto */
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6); /* 7.35 Projeta um contorno escuro nas letras aumentando a leitura */
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
-/* Estilo do Botão Moderno de Call To Action (Estilo Pílula) */
 .cta-button {
-    background-color: var(--secondary-color); /* 7.36 Pinta o botão com a cor chamativa turquesa do root */
-    color: white; /* 7.37 Pinta a escrita interna do botão de branco */
-    text-decoration: none; /* 7.38 Elimina o sublinhado automático de links */
-    padding: 0.8rem 2rem; /* 7.39 Define o espaçamento interno vertical e horizontal do botão */
-    font-size: 1.1rem; /* 7.40 Ajusta a dimensão da fonte interna */
-    font-weight: bold; /* 7.41 Deixa o texto em negrito rígido para chamar atenção */
-    border-radius: 50px; /* 7.42 Curva os cantos ao máximo gerando o formato pílula */
-    box-shadow: 0 4px 15px rgba(46, 196, 182, 0.4); /* 7.43 Aplica brilho com sombra neon na cor turquesa */
-    transition: transform 0.2s, background-color 0.2s; /* 7.44 Cria a transição suave para os efeitos visuais */
+    background-color: var(--secondary-color);
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(46, 196, 182, 0.4);
+    transition: transform 0.2s, background-color 0.2s;
 }
 
 .cta-button:hover {
-    background-color: #24a195; /* 7.45 Escurece a cor turquesa levemente ao passar o mouse */
-    transform: scale(1.05); /* 7.46 Faz o botão crescer suavemente 5% atraindo o clique */
+    background-color: #24a195;
+    transform: scale(1.05);
 }
 
 .cta-button:active {
-    transform: scale(0.98); /* 7.47 Encolhe milimetricamente o botão imitando o clique real */
+    transform: scale(0.98);
 }
 
-/* Linha do tempo da animação sincronizada para 1 minuto por imagem */
 @keyframes autoSlider {
-    0%, 24% { transform: translateX(0); } /* 7.48 Segura o primeiro slide estável na tela */
-    25%, 49% { transform: translateX(-25%); } /* 7.49 Arrasta o wrapper para a esquerda revelando o slide 2 */
-    50%, 74% { transform: translateX(-50%); } /* 7.50 Desloca ainda mais o eixo para mostrar o slide 3 */
-    75%, 99% { transform: translateX(-75%); } /* 7.51 Posiciona na última foto (slide 4) */
-    100% { transform: translateX(0); } /* 7.52 Realiza a rolagem limpa de volta para a imagem 1 */
+    0%, 24% { transform: translateX(0); }
+    25%, 49% { transform: translateX(-25%); }
+    50%, 74% { transform: translateX(-50%); }
+    75%, 99% { transform: translateX(-75%); }
+    100% { transform: translateX(0); }
 }
 
 /* ==========================================================================
    SECTION 8: MANUAL LESSON CAROUSEL WITH FLOATING NAV BUTTONS
    ========================================================================== */
-
 .lessons-section {
-    width: 100%; /* 8.1 Faz a seção inteira das lições ocupar toda a largura horizontal */
-    text-align: center; /* 8.2 Centraliza os títulos da seção por padrão */
+    width: 100%;
+    text-align: center;
 }
 
 .section-title {
-    font-size: 2rem; /* 8.3 Define o tamanho do título da seção de lições */
-    color: var(--primary-color); /* 8.4 Pinta o título com o azul principal do root */
-    margin-bottom: 2rem; /* 8.5 Cria um recuo na base afastando o título do carrossel */
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
 }
 
 .carousel-wrapper {
-    display: flex; /* 8.6 Ativa o Flexbox para alinhar os componentes do carrossel */
-    align-items: center; /* 8.7 Centraliza verticalmente botões e páginas */
-    position: relative; /* 8.8 Serve como âncora absoluta para prender as setas flutuantes */
-    width: 100%; /* 8.9 Estica o wrapper por toda a largura disponível */
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
 }
 
 .carousel-track-container {
-    width: 100%; /* 8.10 Ocupa toda a largura do wrapper */
-    overflow: hidden; /* 8.11 Esconde a segunda página do carrossel que fica fora do monitor */
-    padding: 10px 0; /* 8.12 Cria espaço vertical para a sombra do card flutuante não ser cortada */
+    width: 100%;
+    overflow: hidden;
+    padding: 10px 0;
 }
 
 .carousel-track {
-    display: flex; /* 8.13 Coloca as duas páginas (Page 1 e Page 2) lado a lado na horizontal */
-    transition: transform 0.5s ease-in-out; /* 8.14 Cria a animação suave de deslize ao mudar de página */
-    width: 200%; /* 8.15 Define o tamanho equivalente a duas páginas inteiras (100% cada) */
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 200%;
 }
 
 .carousel-page {
-    width: 50%; /* 8.16 Faz cada página ocupar exatamente metade (50%) do espaço de 200% */
-    flex-shrink: 0; /* 8.17 Impede que o navegador esmague a página para caber na tela */
+    width: 50%;
+    flex-shrink: 0;
 }
 
 .lessons-grid {
-    display: grid; /* 8.18 Ativa o CSS Grid para montar a grade de cards */
-    grid-template-columns: repeat(4, 1fr); /* 8.19 Distribui os cards em 4 colunas de tamanhos iguais */
-    grid-template-rows: repeat(2, 1fr); /* 8.20 Organiza os cards em 2 linhas simétricas */
-    gap: 1.5rem; /* 8.21 Define o espaçamento entre as linhas e colunas de cards */
-    padding: 0.5rem 2rem; /* 8.22 Adiciona um recuo lateral interno guardando espaço para as setas */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas em computadores */
+    gap: 1.5rem;
+    padding: 0.5rem 1.5rem;
 }
 
 .lesson-card {
-    background: var(--bg-card); /* 8.23 Aplica o fundo branco do root em cada card */
-    border-radius: var(--border-radius); /* 8.24 Arredonda os cantos de cada card de lição */
-    padding: 1rem; /* 8.25 Cria um recuo interno separando a imagem das bordas do card */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); /* 8.26 Projeta uma sombra suave e elegante sob o card */
-    transition: 0.3s; /* 8.27 Suaviza o tempo de resposta da animação de hover */
-    cursor: pointer; /* 8.28 Transforma o ponteiro do mouse em "mãozinha" de clique */
-    text-align: center; /* 8.29 Centraliza qualquer texto que entrar no card */
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: 0.3s;
+    cursor: pointer;
+    text-align: center;
 }
 
 .lesson-card:hover {
-    transform: translateY(-5px); /* 8.30 Faz o card flutuar para cima 5px ao passar o mouse */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* 8.31 Intensifica a sombra gerando um efeito de elevação real */
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .lesson-card img {
-    width: 100%; /* 8.32 Força a imagem a ocupar toda a largura útil do card */
-    height: 140px; /* 8.33 Trava a altura vertical da imagem da lição */
-    object-fit: cover; /* 8.34 Recorta a imagem proporcionalmente preenchendo o espaço sem distorcer */
-    border-radius: 4px; /* 8.35 Arredonda de forma sutil os cantos da imagem da lição */
-    margin-bottom: 0.8rem; /* 8.36 Cria um espaçamento abaixo da foto */
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
 }
 
-/* ESTILIZAÇÃO COMPLETA DAS SETAS LATERAIS DO CARROSSEL */
 .carousel-btn {
-    position: absolute; /* 8.37 Tira o botão do fluxo e faz ele flutuar sobre o carrossel */
-    top: 50%; /* 8.38 Empurra o botão até a metade vertical da seção */
-    transform: translateY(-50%); /* 8.39 Ajusta o eixo centralizando o botão perfeitamente na vertical */
-    background-color: var(--bg-card); /* 8.40 Deixa o fundo do botão branco combinando com os cards */
-    color: var(--primary-color); /* 8.41 Aplica a cor azul principal no caractere da seta (‹ ou ›) */
-    border: 1px solid #e2e8f0; /* 8.42 Aplica uma borda fina cinza ao redor do botão */
-    width: 44px; /* 8.43 Fixa a largura do botão redondo */
-    height: 44px; /* 8.44 Fixa a altura do botão redondo */
-    border-radius: 50%; /* 8.45 Arredonda as bordas ao máximo criando um círculo perfeito */
-    font-size: 1.8rem; /* 8.46 Aumenta o tamanho visual da seta de navegação */
-    line-height: 1; /* 8.47 Zera o espaçamento de linha interno da seta */
-    cursor: pointer; /* 8.48 Modifica o cursor para indicar elemento clicável */
-    display: flex; /* 8.49 Ativa o Flexbox para centralizar a seta dentro do círculo */
-    align-items: center; /* 8.50 Garante o alinhamento vertical da seta ao centro */
-    justify-content: center; /* 8.51 Garante o alinhamento horizontal da seta ao centro */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* 8.52 Aplica uma sombra elegante fazendo o botão flutuar */
-    transition: all 0.2s ease-in-out; /* 8.53 Cria a suavidade para as interações de mouse */
-    z-index: 20; /* 8.54 Força o botão a ficar acima da camada dos cards de lição */
-    padding-bottom: 4px; /* 8.55 Ajuste milimétrico para alinhar a seta perfeitamente no centro */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--bg-card);
+    color: var(--primary-color);
+    border: 1px solid #e2e8f0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease-in-out;
+    z-index: 20;
 }
 
-.prev-btn {
-    left: -15px; /* 8.56 Joga a seta esquerda um pouco para fora da borda do grid */
-}
-
-.next-btn {
-    right: -15px; /* 8.57 Joga a seta direita um pouco para fora da borda do grid */
-}
+.prev-btn { left: -10px; }
+.next-btn { right: -10px; }
 
 .carousel-btn:hover {
-    background-color: var(--primary-color); /* 8.58 Inverte a cor do botão para azul ao passar o mouse */
-    color: white; /* 8.59 Muda o ícone da seta para branco no hover */
-    border-color: var(--primary-color); /* 8.60 Sincroniza a borda com o fundo azul do botão */
-    transform: translateY(-50%) scale(1.1); /* 8.61 Faz o botão crescer 10% mantendo a centralização vertical */
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-50%) scale(1.1);
 }
 
-.carousel-btn:active {
-    transform: translateY(-50%) scale(0.95); /* 8.62 Simula o clique físico encolhendo o botão levemente */
-}
 /* ==========================================================================
    SECTION 9: MAIN FOOTER STRUCTURE & SOCIAL LINKS
    ========================================================================== */
-
 #main-footer {
-    background-color: var(--bg-card); /* 9.1 Aplica a cor branca de fundo no rodapé */
-    border-top: 1px solid rgba(0, 0, 0, 0.06); /* 9.2 Cria uma linha divisória cinza bem sutil no topo */
-    margin-top: auto; /* 9.3 Empurra o rodapé para a base da página de forma automática */
-    width: 100%; /* 9.4 Força o rodapé a ocupar toda a largura horizontal da tela */
+    background-color: var(--bg-card);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    margin-top: auto;
+    width: 100%;
 }
 
 .footer-container {
-    max-width: 900px; /* 9.5 Limita a largura máxima do conteúdo do rodapé para melhor leitura */
-    margin: 0 auto; /* 9.6 Centraliza o container do rodapé no meio da tela */
-    padding: 1.2rem 1rem; /* 9.7 Define o recuo interno vertical e horizontal */
-    display: flex; /* 9.8 Ativa o Flexbox para alinhar os blocos do rodapé */
-    flex-direction: column; /* 9.9 Organiza os elementos internos empilhados verticalmente */
-    align-items: center; /* 9.10 Centraliza todos os elementos na horizontal */
-    gap: 0.6rem; /* 9.11 Define um espaçamento firme entre os textos e os links sociais */
-    text-align: center; /* 9.12 Centraliza o alinhamento de todas as linhas de texto */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between; /* Lado a lado em computadores */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-info {
+    text-align: left;
 }
 
 .footer-container p {
-    font-size: 0.85rem; /* 9.13 Define um tamanho de fonte menor e discreto para os textos */
-    color: var(--text-muted); /* 9.14 Aplica a cor cinza fosca para não competir com o conteúdo principal */
-    margin: 0; /* 9.15 Zera as margens padrões das tags de parágrafo */
+    font-size: 0.85rem;
+    color: var(--text-muted);
 }
 
 .social-links {
-    display: flex; /* 9.16 Ativa o Flexbox para alinhar os ícones das redes sociais */
-    gap: 1rem; /* 9.17 Define o espaçamento horizontal entre cada ícone social */
-    align-items: center; /* 9.18 Alinha os ícones verticalmente ao centro */
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
 
 .social-icon {
-    width: 24px; /* 9.14 Fixa a largura dos ícones das redes sociais */
-    height: 24px; /* 9.15 Fixa a altura dos ícones das redes sociais */
-    object-fit: contain; /* 9.16 Garante que os logotipos não fiquem distorcidos ou achatados */
-    display: block; /* 9.17 Remove espaçamentos fantasmas de elementos inline */
-    transition: transform 0.2s ease; /* 9.18 Suaviza a animação de zoom ao passar o mouse */
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
 }
 
 .social-links a:hover .social-icon {
-    transform: scale(1.1); /* 9.19 Aumenta o tamanho do ícone em 10% no hover criando efeito de zoom */
+    transform: scale(1.1);
 }
 
-.footer-container .copyright {
-    font-size: 0.75rem; /* 9.20 Aplica uma fonte bem pequena para o texto dos direitos autorais */
-    color: var(--text-muted); /* 9.21 Mantém o tom cinza discreto nas informações finais */
-    border-top: 1px solid rgba(0, 0, 0, 0.05); /* 9.22 Adiciona uma linha divisória muito fina acima do copyright */
-    width: 100%; /* 9.23 Faz a linha divisória cruzar toda a largura útil do container */
-    padding-top: 0.6rem; /* 9.24 Afasta o texto do copyright da linha divisória recém-criada */
-    margin-top: 0.3rem; /* 9.25 Cria um respiro externo acima da linha do copyright */
-}
 /* ==========================================================================
    SECTION 10: ADVANCED GRAMMAR LAYOUT & LEAFLET FILTERS
    ========================================================================== */
-
-.lesson-container + .lesson-container {
-    margin-top: 4rem; /* 10.1 Cria espaçamento entre containers de lições consecutivos */
-}
-
 .grammar-layout {
-    display: grid; /* 10.2 Ativa o CSS Grid para a estrutura de gramática */
-    grid-template-columns: 1fr 180px 1fr; /* 10.3 Divide o layout em três colunas (duas flexíveis e uma fixa no centro) */
-    gap: 2rem; /* 10.4 Define o espaçamento entre as colunas da grade */
-    text-align: left; /* 10.5 Alinha os textos explicativos à esquerda */
-    margin-bottom: 3rem; /* 10.6 Cria uma margem de respiro na base do bloco */
+    display: grid;
+    grid-template-columns: 1fr 180px 1fr;
+    gap: 2rem;
+    text-align: left;
+    margin-bottom: 3rem;
 }
 
 .grammar-column {
-    display: flex; /* 10.7 Organiza o conteúdo da coluna de gramática com Flexbox */
-    flex-direction: column; /* 10.8 Alinha os blocos internos verticalmente */
-    gap: 2.5rem; /* 10.9 Define a distância entre os blocos de conteúdo */
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 }
 
 .grammar-block {
-    display: flex; /* 10.10 Ativa o layout flexível para o bloco individual */
-    flex-direction: column; /* 10.11 Alinha os elementos do bloco em formato de coluna */
-    gap: 0.8rem; /* 10.12 Cria o espaçamento entre o título do bloco e a lista */
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
 .block-title {
-    font-size: 1.6rem; /* 10.13 Define a dimensão dos títulos de tópicos gramaticais */
-    color: var(--primary-color); /* 10.14 Pinta o título com o azul principal */
-    font-weight: 700; /* 10.15 Aplica negrito forte para destaque */
-    margin-bottom: 0.3rem; /* 10.16 Afasta sutilmente o título da listagem abaixo */
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
 }
 
 .grammar-list {
-    display: flex; /* 10.17 Usa Flexbox para estruturar as linhas de exemplos */
-    flex-direction: column; /* 10.18 Dispõe as linhas verticalmente */
-    gap: 1rem; /* 10.19 Define a distância interna entre os exemplos */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .grammar-row {
-    display: grid; /* 10.20 Ativa o CSS Grid para alinhar os componentes da linha */
-    grid-template-columns: 35px 1fr; /* 10.21 Cria uma coluna para o marcador/ícone e outra para o texto */
-    align-items: center; /* 10.22 Centraliza verticalmente o conteúdo da linha */
-    gap: 0.8rem; /* 10.23 Define o espaçamento horizontal entre o ícone e a frase */
+    display: grid;
+    grid-template-columns: 35px 1fr;
+    align-items: center;
+    gap: 0.8rem;
 }
 
 .grammar-text {
-    font-size: 1.6rem !important; /* 10.24 Força o tamanho ampliado para leitura confortável de exemplos */
-    font-style: italic; /* 10.25 Aplica estilo itálico nas sentenças de exemplo */
-    font-weight: 600; /* 10.26 Deixa o texto em negrito médio */
+    font-size: 1.5rem !important;
+    font-style: italic;
+    font-weight: 600;
 }
 
 .grammar-center-images {
-    display: flex; /* 10.27 Ativa o Flexbox para gerenciar as ilustrações centrais */
-    flex-direction: column; /* 10.28 Organiza as imagens empilhadas verticalmente */
-    justify-content: space-around; /* 10.29 Distribui as imagens de forma equilibrada no eixo vertical */
-    align-items: center; /* 10.30 Centraliza as imagens horizontalmente na coluna do meio */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .grammar-center-images img {
-    max-width: 100%; /* 10.31 Impede que as imagens ultrapassem a largura da coluna do meio */
-    height: auto; /* 10.32 Preserva a proporção de altura original */
-    object-fit: contain; /* 10.33 Garante o redimensionamento perfeito sem distorções */
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
-.center-img-top {
-    max-height: 160px; /* 10.34 Restringe a altura máxima da imagem ilustrativa superior */
-}
-
-.center-img-bottom {
-    max-height: 140px; /* 10.35 Restringe a altura máxima da imagem ilustrativa inferior */
-}
+.center-img-top { max-height: 160px; }
+.center-img-bottom { max-height: 140px; }
 
 .connectives-layout {
-    display: grid; /* 10.36 Ativa a grade CSS para a seção de conectivos */
-    grid-template-columns: 1fr 1fr; /* 10.37 Divide o espaço em duas colunas idênticas lado a lado */
-    gap: 4rem; /* 10.38 Define uma separação larga entre as duas colunas */
-    text-align: left; /* 10.39 Alinha os textos explicativos à esquerda */
-    border-top: 2px dashed #e2e8f0; /* 10.40 Desenha uma linha tracejada estilizada para separar seções */
-    padding-top: 2.5rem; /* 10.41 Cria espaço interno acima do conteúdo para não colar na linha */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    text-align: left;
+    border-top: 2px dashed #e2e8f0;
+    padding-top: 2.5rem;
 }
 
 .reading-list {
-    display: flex; /* 10.42 Ativa o Flexbox para a seção de leitura (Reading) */
-    flex-direction: column; /* 10.43 Dispõe os blocos de texto verticalmente */
-    gap: 2.5rem; /* 10.44 Define o espaçamento entre os blocos de leitura */
-    max-width: 900px; /* 10.45 Limita o tamanho horizontal para não cansar a vista do aluno */
-    margin: 0 auto; /* 10.46 Centraliza o bloco de leitura na página */
-    text-align: left; /* 10.47 Garante o alinhamento de leitura natural à esquerda */
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .reading-row {
-    grid-template-columns: 40px 1fr 80px !important; /* 10.48 Sobrescreve a linha para acomodar botão de áudio, texto longo e ícone */
+    grid-template-columns: 40px 1fr auto !important;
 }
 
 .reading-text {
-    font-size: 1.9rem !important; /* 10.49 Força o tamanho de fonte ideal para leitura fluida */
-    text-align: left; /* 10.50 Alinha as sentenças textuais à esquerda */
+    font-size: 1.6rem !important;
+    text-align: left;
 }
-
 
 /* ==========================================================================
    SECTION 11: EXERCISE SHEET & VALIDATION WORKSPACE
    ========================================================================== */
-
 .exercise-section {
-    text-align: left; /* 11.1 Garante o alinhamento das instruções de exercícios à esquerda */
-    margin-bottom: 3.5rem; /* 11.2 Separa uma seção de exercício da próxima com um espaço amplo */
+    text-align: left;
+    margin-bottom: 3.5rem;
 }
 
 .exercise-subtitle {
-    font-size: 1.6rem; /* 11.3 Define a dimensão dos subtítulos dos exercícios */
-    color: var(--text-color); /* 11.4 Aplica a cor padrão escura na escrita */
-    margin-bottom: 1.5rem; /* 11.5 Cria um recuo na base do subtítulo */
-    font-weight: 700; /* 11.6 Deixa o subtítulo em negrito robusto */
-    border-bottom: 1px dashed #cbd5e1; /* 11.7 Adiciona uma linha pontilhada sutil na base do subtítulo */
-    padding-bottom: 0.5rem; /* 11.8 Cria um respiro interno entre o texto e a linha pontilhada */
+    font-size: 1.6rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    border-bottom: 1px dashed #cbd5e1;
+    padding-bottom: 0.5rem;
 }
 
 .exercise-grid-inputs {
-    display: grid; /* 11.9 Ativa o CSS Grid para organizar os campos de preenchimento */
-    grid-template-columns: 1fr 1fr; /* 11.10 Divide as questões em duas colunas paralelas */
-    gap: 1.5rem 3rem; /* 11.11 Define espaçamento menor entre as linhas e maior entre as colunas */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 3rem;
 }
 
 .exercise-item-row {
-    display: flex; /* 11.12 Usa Flexbox para manter a frase e seu respectivo campo alinhados na mesma linha */
-    align-items: center; /* 11.13 Centraliza verticalmente o texto e a caixa de input */
-    gap: 0.5rem; /* 11.14 Cria um espaçamento mínimo para o input não colar no texto */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* Evita estouro de texto com input */
 }
 
 .exercise-text-inline {
-    font-size: 1.4rem; /* 11.15 Define a escala da fonte para o texto das questões */
-    font-weight: 600; /* 11.16 Aplica o peso semi-bold na frase */
-    font-style: italic; /* 11.17 Aplica itálico estilizado simulando livro de atividades */
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-style: italic;
 }
 
 .input-wrapper, .input-wrapper-full {
-    position: relative; /* 11.18 Atua como referência absoluta para encaixar ícones de certo/errado */
-    display: inline-flex; /* 11.19 Mantém o container do input em linha junto ao fluxo do texto */
-    align-items: center; /* 11.20 Alinha horizontalmente o input e seus subelementos */
+    position: relative;
+    display: inline-flex;
+    align-items: center;
 }
 
 .input-do-does {
-    width: 100px; /* 11.21 Fixa o tamanho horizontal curto ideal para digitar apenas "do" ou "does" */
-    font-size: 1.4rem; /* 11.22 Sincroniza o tamanho da letra digitada com o tamanho da frase */
-    padding: 2px 5px; /* 11.23 Adiciona recuo interno para o texto não encostar nas bordas */
-    border: none; /* 11.24 Remove todas as bordas padrões do campo */
-    border-bottom: 2px solid var(--text-muted); /* 11.25 Adiciona uma linha sólida na base imitando caderno de exercícios */
-    background: transparent; /* 11.26 Remove o fundo branco deixando o input invisível sobre o papel */
-    font-style: italic; /* 11.27 Mantém o texto digitado pelo aluno em itálico */
-    font-weight: bold; /* 11.28 Deixa o texto do aluno em negrito firme para fácil leitura */
-    text-align: center; /* 11.29 Centraliza o texto digitado dentro do campo */
-    color: var(--primary-color); /* 11.30 Pinta as respostas do aluno com o azul do tema */
-    outline: none; /* 11.31 Remove aquela borda preta grossa padrão que o navegador cria no clique */
+    width: 100px;
+    font-size: 1.3rem;
+    padding: 2px 5px;
+    border: none;
+    border-bottom: 2px solid var(--text-muted);
+    background: transparent;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    color: var(--primary-color);
+    outline: none;
 }
 
 .input-wrapper-full {
-    width: 100%; /* 11.32 Força o container a ocupar toda a largura disponível da linha */
+    width: 100%;
 }
 
 .input-negative, .input-open {
-    width: 100%; /* 11.33 Faz os campos de frases longas se espalharem por toda a largura horizontal */
-    font-size: 1.4rem; /* 11.34 Regula o tamanho da fonte interna */
-    padding: 5px; /* 11.35 Adiciona preenchimento interno para maior conforto ao digitar */
-    border: none; /* 11.36 Desativa o visual quadrado padrão de caixa do input */
-    border-bottom: 2px solid var(--text-muted); /* 11.37 Mantém o padrão de linha horizontal para preenchimento */
-    background: transparent; /* 11.38 Garante o fundo transparente integrado à folha */
-    font-style: italic; /* 11.39 Formata o texto digitado em itálico */
-    color: var(--primary-color); /* 11.40 Aplica a cor azul principal nas respostas preenchidas */
-    outline: none; /* 11.41 Remove a borda padrão de foco do navegador */
-    margin-top: 0.5rem; /* 11.42 Afasta ligeiramente o campo da frase de comando posicionada acima */
-    transition: transform 0.2s ease, border-color 0.2s ease; /* 11.43 Garante transições suaves de tamanho e cor solicitadas na auditoria */
+    width: 100%;
+    font-size: 1.3rem;
+    padding: 5px;
+    border: none;
+    border-bottom: 2px solid var(--text-muted);
+    background: transparent;
+    font-style: italic;
+    color: var(--primary-color);
+    outline: none;
+    margin-top: 0.5rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-/* CRITÉRIO DA AUDITORIA: "enlarge an input field on focus and shrink it on blur" */
 .input-negative:focus, .input-open:focus {
-    transform: scale(1.02); /* 11.44 Amplia levemente o campo em 2% gerando o efeito de foco dinâmico */
-    border-bottom-color: var(--primary-color); /* 11.45 Destaca a linha inferior mudando a cor para azul no foco */
+    transform: scale(1.01);
+    border-bottom-color: var(--primary-color);
 }
 
 .feedback-icon {
-    font-size: 1.2rem; /* 11.46 Regula a dimensão visual dos emojis de correção (✅ ou ❌) */
-    margin-left: 8px; /* 11.47 Afasta o ícone de feedback para não colar no final do texto */
-    font-weight: bold; /* 11.48 Aplica peso forte na marcação de validação */
+    font-size: 1.2rem;
+    margin-left: 8px;
+    font-weight: bold;
 }
 
 .exercise-grid-negative {
-    display: grid; /* 11.49 Ativa a grade CSS para os exercícios de forma negativa */
-    grid-template-columns: 1fr 1fr; /* 11.50 Organiza os blocos em duas colunas paralelas */
-    gap: 2.5rem 4rem; /* 11.51 Configura espaçamentos equilibrados entre as linhas e as colunas */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem 4rem;
 }
 
 .sentence-label, .question-label {
-    font-size: 1.4rem; /* 11.52 Ajusta o tamanho das instruções de cabeçalho das perguntas */
-    font-weight: 600; /* 11.53 Modifica o peso tipográfico para semi-bold */
-    font-style: italic; /* 11.54 Aplica estilo itálico elegante */
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-style: italic;
 }
 
 .example-box {
-    background-color: #f1f5f9; /* 11.55 Pinta o fundo da caixa de exemplo com um cinza claro neutro */
-    padding: 1rem; /* 11.56 Cria um recuo interno confortável para o texto do exemplo */
-    border-radius: 6px; /* 11.57 Suaviza e arredonda os cantos da caixa de exemplo */
-    margin-bottom: 2rem; /* 11.58 Afasta a caixa de exemplo do exercício real que vem abaixo */
-    border-left: 4px solid var(--primary-color); /* 11.59 Destaca a caixa criando uma barra lateral sólida em azul */
+    background-color: #f1f5f9;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--primary-color);
 }
 
-.example-q {
-    font-size: 1.4rem; /* 11.60 Regula a escala da fonte para a pergunta do exemplo */
-    font-style: italic; /* 11.61 Estiliza a tipografia em itálico */
-    font-weight: 700; /* 11.62 Deixa a pergunta em negrito forte */
+.example-q, .example-a {
+    font-size: 1.3rem;
+    font-style: italic;
 }
-
-.example-a {
-    font-size: 1.4rem; /* 11.63 Regula a escala da fonte para a resposta modelo do exemplo */
-    font-style: italic; /* 11.64 Configura o texto em formato itálico */
-    color: var(--text-muted); /* 11.65 Suaviza a escrita aplicando o tom cinza fosco */
-}
+.example-q { font-weight: 700; }
+.example-a { color: var(--text-muted); }
 
 .exercise-open-questions {
-    display: flex; /* 11.66 Ativa o Flexbox para empilhar as perguntas dissertativas abertas */
-    flex-direction: column; /* 11.67 Organiza os blocos sequencialmente em formato vertical */
-    gap: 2rem; /* 11.68 Define uma distância simétrica entre as perguntas abertas */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .check-answers-btn {
-    background-color: var(--primary-color); /* 11.69 Define a cor azul principal como fundo do botão de correção */
-    color: white; /* 11.70 Pinta o texto interno do botão de branco absoluto */
-    border: none; /* 11.71 Desativa a borda de botão padrão do navegador */
-    padding: 0.8rem 2.5rem; /* 11.72 Aplica o espaçamento interno vertical e horizontal para clique firme */
-    font-size: 1.3rem; /* 11.73 Configura o tamanho imponente do texto de comando do botão */
-    font-weight: 600; /* 11.74 Deixa o texto interno do botão em negrito médio */
-    border-radius: var(--border-radius); /* 11.75 Sincroniza o arredondamento de cantos com o padrão do projeto */
-    cursor: pointer; /* 11.76 Transforma o ponteiro em "mãozinha" indicando elemento de ação */
-    transition: background-color 0.2s, transform 0.1s; /* 11.77 Suaviza as animações de interação visual no botão */
-    margin-top: 1rem; /* 11.78 Cria um respiro externo acima do botão */
-    display: inline-block; /* 11.79 Altera o bloco permitindo dimensionamento perfeito respeitando o fluxo */
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-top: 1rem;
+    display: inline-block;
 }
 
-.check-answers-btn:hover {
-    background-color: var(--primary-hover); /* 11.80 Aplica o tom azul escuro ao passar o mouse indicando foco */
-}
+.check-answers-btn:hover { background-color: var(--primary-hover); }
+.check-answers-btn:active { transform: scale(0.98); }
 
-.check-answers-btn:active {
-    transform: scale(0.98); /* 11.81 Reduz milimetricamente o botão criando o efeito mecânico de clique real */
-}
 /* ========================================================================
    SECTION 12: SPEAKING WORKSPACE & SPEECH RECOGNITION INTERFACE
    ======================================================================== */
-
 .speaking-instruction {
-    text-align: center; /* 12.1 Centraliza o texto com as instruções de conversação */
-    font-size: 1.1rem; /* 12.2 Define um tamanho equilibrado para a leitura da diretriz */
-    color: #4a5568; /* 12.3 Aplica uma tonalidade cinza grafite intermediária */
-    margin-bottom: 20px; /* 12.4 Define o espaçamento inferior isolando a instrução dos cards */
-    font-weight: 600; /* 12.5 Configura o peso da fonte em negrito médio */
+    text-align: center;
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
 .speaking-list {
-    display: flex; /* 12.6 Ativa o Flexbox para gerenciar o empilhamento dos blocos */
-    flex-direction: column; /* 12.7 Organiza as caixas de conversação verticalmente */
-    gap: 14px; /* 12.8 Define a distância de separação padrão entre os cards de treino */
-    max-width: 650px; /* 12.9 Restringe a largura máxima da lista para focar a leitura */
-    margin: 0 auto; /* 12.10 Centraliza o bloco de conversação inteiro no meio da tela */
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
 .speaking-card {
-    background: #ffffff; /* 12.11 Define o fundo branco limpo para o bloco de treino */
-    border: 1px solid #e2e8f0; /* 12.12 Aplica um contorno cinza claro muito suave */
-    border-radius: 10px; /* 12.13 Arredonda os cantos do card de conversação */
-    padding: 16px; /* 12.14 Define o recuo interno protetor para os elementos */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04); /* 12.15 Projeta uma sombra bem sutil sob a caixa */
-    transition: 0.2s ease; /* 12.16 Define o tempo de transição suave para as interações de mouse */
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: 0.2s ease;
 }
 
 .speaking-card:hover {
-    transform: translateY(-2px); /* 12.17 Faz o card flutuar levemente 2px para cima no hover */
-    border-color: #cbd5e0; /* 12.18 Escurece o contorno do bloco indicando o foco do aluno */
+    transform: translateY(-2px);
+    border-color: #cbd5e0;
 }
 
 .speaking-question-row {
-    display: flex; /* 12.19 Ativa o Flexbox para estruturar a linha de comando de voz */
-    align-items: center; /* 12.20 Centraliza verticalmente o botão de áudio e a pergunta escrita */
-    gap: 12px; /* 12.21 Cria um espaçamento horizontal entre o botão e o texto */
-    margin-bottom: 10px; /* 12.22 Afasta a linha da pergunta do painel de gravação abaixo */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
 }
 
 .speaking-question-row .speak-ask-btn {
-    background: none; /* 12.23 Zera a cor de fundo padrão da tag button */
-    border: 2px solid var(--text-muted); /* 12.24 Aplica uma borda cinza ao redor do círculo */
-    border-radius: 50%; /* 12.25 Transforma o botão em uma circunferência perfeita */
-    width: 35px; /* 12.26 Fixa a largura do botão de reprodução da pergunta */
-    height: 35px; /* 12.27 Fixa a altura do botão de reprodução da pergunta */
-    cursor: pointer; /* 12.28 Modifica o ponteiro do mouse para indicar clique disponível */
-    display: flex; /* 12.29 Ativa o Flexbox interno para centralizar o caractere de áudio */
-    align-items: center; /* 12.30 Alinha horizontalmente o caractere no centro do círculo */
-    justify-content: center; /* 12.31 Alinha verticalmente o caractere no centro do círculo */
-    color: var(--text-muted); /* 12.32 Aplica a cor cinza fosca inicial na indicação de áudio */
-    font-size: 0.9rem; /* 12.33 Regula o tamanho do ícone de som interno */
-    transition: all 0.2s ease; /* 12.34 Garante a suavidade na inversão de cores */
-    padding: 0; /* 12.35 Zera os preenchimentos para total precisão circular */
+    background: none;
+    border: 2px solid var(--text-muted);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    padding: 0;
 }
 
 .speaking-question-row .speak-ask-btn:hover {
-    background-color: var(--primary-color); /* 12.36 Altera o fundo para azul principal ao passar o mouse */
-    color: white; /* 12.37 Transforma o ícone interno em branco no hover */
-    border-color: var(--primary-color); /* 12.38 Sincroniza a borda externa com o fundo azul */
-    opacity: 1; /* 12.39 Garante a opacidade total na exibição ativa */
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
 }
 
 .question-display-text {
-    font-size: 1rem; /* 12.40 Define a escala da fonte para a pergunta padrão que o aluno deve ler */
-    font-weight: 600; /* 12.41 Aplica peso semi-bold no texto em inglês */
-    color: #2d3748; /* 12.42 Define a tonalidade escura de alta legibilidade no texto */
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2d3748;
 }
 
 .speaking-action-row {
-    display: flex; /* 12.43 Ativa o Flexbox para gerenciar o painel interativo de áudio */
-    align-items: center; /* 12.44 Centraliza na vertical o microfone, o feedback e a validação */
-    gap: 15px; /* 12.45 Define o espaçamento horizontal entre as seções interativas */
-    background: #f7fafc; /* 12.46 Pinta o fundo da área de gravação com um cinza azulado suave */
-    padding: 12px; /* 12.47 Cria o recuo interno de respiro no painel de ações */
-    border-radius: 8px; /* 12.48 Arredonda os cantos internos da barra de ações */
-    border: 1px solid #edf2f7; /* 12.49 Cria uma borda fina delimitadora muito clara */
-    flex-wrap: wrap; /* 12.50 Permite que os componentes quebrem de linha de forma responsiva no mobile */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #f7fafc;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #edf2f7;
+    flex-wrap: wrap;
 }
 
 .mic-btn {
-    background-color: #3182ce; /* 12.51 Pinta o botão do microfone com um tom azul royal vibrante */
-    color: white; /* 12.52 Deixa o texto do botão de gravação em branco absoluto */
-    border: none; /* 12.53 Remove a borda padrão de botão do navegador */
-    padding: 10px 18px; /* 12.54 Define o espaçamento interno vertical e horizontal do botão */
-    border-radius: 6px; /* 12.55 Arredonda as quinas do botão do microfone */
-    cursor: pointer; /* 12.56 Modifica o cursor para o formato clássico de clique */
-    font-weight: bold; /* 12.57 Deixa o comando do microfone em negrito forte */
-    font-size: 0.9rem; /* 12.58 Regula a dimensão da fonte do botão */
-    min-width: 150px; /* 12.59 Fixa uma largura mínima estável para o botão não encolher ao mudar o texto */
-    transition: 0.2s ease; /* 12.60 Suaviza as variações de cor e estado do botão */
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    min-width: 150px;
+    transition: 0.2s ease;
 }
 
-.mic-btn:hover {
-    background-color: #2b6cb0; /* 12.61 Escurece o tom azul real ao passar o mouse */
-}
-
-.mic-btn:active {
-    transform: scale(0.97); /* 12.62 Encolhe o microfone sutilmente imitando a pressão de um clique físico */
-}
-
+.mic-btn:hover { background-color: #2b6cb0; }
+.mic-btn:active { transform: scale(0.97); }
 .mic-btn.recording {
-    background-color: #e53e3e; /* 12.63 Pinta o botão de vermelho vivo quando a gravação estiver ativa */
-    animation: pulse 1s infinite; /* 12.64 Ativa o loop infinito da animação pulsante de gravação */
+    background-color: #e53e3e;
+    animation: pulse 1s infinite;
 }
 
-/* Animação que cria o efeito pulsante visual de gravação de voz ativa */
 @keyframes pulse {
-    0% { transform: scale(1); } /* 12.65 Inicia o botão no tamanho original */
-    50% { transform: scale(1.03); } /* 12.66 Expande o microfone em 3% simulando captação de energia */
-    100% { transform: scale(1); } /* 12.67 Retorna ao tamanho padrão fechando o ciclo de 1 segundo */
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
 }
 
 .speaking-feedback-box {
-    flex-grow: 1; /* 12.68 Faz o bloco da transcrição expandir preenchendo todo o espaço médio útil */
-    min-width: 200px; /* 12.69 Define a largura mínima para o bloco de texto não esmagar no mobile */
+    flex-grow: 1;
+    min-width: 200px;
 }
 
 .transcript-label {
-    font-size: 0.75rem; /* 12.70 Define a escala muito pequena para a etiqueta identificadora */
-    text-transform: uppercase; /* 12.71 Força todas as letras da etiqueta ficarem em maiúsculo */
-    letter-spacing: 0.05em; /* 12.72 Insere um espaçamento refinado entre as letras da etiqueta */
-    color: #a0aec0; /* 12.73 Aplica um tom cinza claro discreto na etiqueta */
-    margin-bottom: 4px; /* 12.74 Afasta a etiqueta do texto da transcrição real logo abaixo */
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #a0aec0;
+    margin-bottom: 4px;
 }
 
 .transcript-text {
-    font-size: 1rem; /* 12.75 Regula o tamanho do texto capturado pelo microfone */
-    font-style: italic; /* 12.76 Formata a transcrição em itálico */
-    font-weight: 600; /* 12.77 Configura o peso semi-bold para facilitar a leitura da voz textualizada */
-    color: #4a5568; /* 12.78 Aplica a cor cinza escuro nas palavras transcritas */
-    transition: color 0.2s; /* 12.79 Suaviza variações de cor caso aplique alguma alteração via script */
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 600;
+    color: #4a5568;
 }
 
 .speaking-validation-wrapper {
-    display: flex; /* 12.80 Ativa o Flexbox para a área final de checagem e feedback */
-    flex-direction: column; /* 12.81 Organiza o botão de verificar e o ícone empilhados na vertical */
-    align-items: flex-end; /* 12.82 Alinha os componentes totalmente colados no canto direito da barra */
-    min-width: 120px; /* 12.83 Garante a área horizontal mínima reservada para a validação */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 120px;
 }
 
 .check-speak-btn {
-    background-color: var(--primary-color); /* 12.84 Aplica a cor azul padrão no botão de validação de voz */
-    color: white; /* 12.85 Pinta o texto do botão de branco absoluto */
-    border: none; /* 12.86 Desativa a borda padrão do navegador */
-    padding: 6px 16px; /* 12.87 Define o espaçamento interno vertical e horizontal para o botão */
-    font-size: 0.85rem; /* 12.88 Define uma escala ligeiramente menor e compacta para o botão */
-    font-weight: 600; /* 12.89 Aplica peso semi-bold na escrita do botão */
-    border-radius: 6px; /* 12.90 Arredonda os cantos do botão de checagem */
-    cursor: pointer; /* 12.91 Define o cursor indicando elemento interativo de ação */
-    transition: background-color 0.2s; /* 12.92 Suaviza a transição de cor do hover */
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-.check-speak-btn:hover {
-    background-color: var(--primary-hover); /* 12.93 Escurece o botão para azul escuro ao passar o mouse */
-}
-
+.check-speak-btn:hover { background-color: var(--primary-hover); }
 .speech-feedback-icon {
-    font-size: 0.85rem; /* 12.94 Regula o tamanho do texto/ícone de feedback da fala (Ex: "Perfect!") */
-    font-weight: bold; /* 12.95 Deixa o feedback da fala em negrito forte */
-    white-space: nowrap; /* 12.96 Impede que o texto de feedback quebre em duas linhas */
-    margin-top: 2px; /* 12.97 Afasta o feedback da base do botão de checagem */
+    font-size: 0.85rem;
+    font-weight: bold;
+    white-space: nowrap;
+    margin-top: 2px;
 }
 
 /* ==========================================================================
-   SECTION 13: RESPONSIVE MEDIA QUERIES (MOBILE SCREENS < 768px)
+   SECTION 13: RESPONSIVE MEDIA QUERIES (MOBILE & TABLETS)
    ========================================================================== */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: flex; /* 13.1 Torna o botão hambúrguer visível em telas menores */
-    }
 
-    .header-nav {
-        position: absolute; /* 13.2 Desprende o menu mobile do fluxo para flutuar */
-        top: 100%; /* 13.3 Posiciona o menu mobile exatamente abaixo do cabeçalho */
-        left: 0; /* 13.4 Alinha o menu mobile na extremidade esquerda da tela */
-        width: 100%; /* 13.5 Força o menu a ocupar toda a largura horizontal */
-        background-color: var(--bg-card); /* 13.6 Aplica o fundo branco no menu suspenso */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 13.7 Cria uma sombra projetada abaixo do menu suspenso */
-        padding: 1.5rem 0; /* 13.8 Adiciona espaçamento interno vertical no painel do menu */
-        display: none; /* 13.9 Oculta o menu mobile por padrão até ser ativado */
-        border-top: 1px solid rgba(0, 0, 0, 0.05); /* 13.10 Desenha uma linha divisória sutil no topo do menu */
-    }
-
-    .header-nav.active {
-        display: block; /* 13.11 Revela o menu mobile na tela quando a classe ativa é injetada */
-    }
-
-    .header-nav ul {
-        flex-direction: column; /* 13.12 Empilha os links de navegação na vertical */
-        gap: 1.5rem; /* 13.13 Reduz o espaçamento entre os links para se ajustar ao mobile */
-        align-items: center; /* 13.14 Centraliza horizontalmente todos os links da lista */
-        width: 100%; /* 13.15 Garante que a lista ocupe a largura total do container */
-    }
-
-    .header-nav a {
-        font-size: 1.1rem; /* 13.16 Aumenta ligeiramente a fonte para facilitar o toque no celular */
-        width: 100%; /* 13.17 Faz a área do link ocupar toda a largura horizontal útil */
-        text-align: center; /* 13.18 Centraliza o texto do link na tela do celular */
-        display: block; /* 13.19 Transforma o link em bloco para ampliar a área clicável */
-    }
-
-    /* Animações das linhas do botão hambúrguer para formar o ícone de fechar "X" */
-    .menu-toggle.active .bar:nth-child(1) {
-        transform: translateY(7px) rotate(45deg); /* 13.20 Move e inclina a primeira linha em 45 graus */
-    }
-    .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0; /* 13.21 Torna a linha do meio totalmente invisível */
-    }
-    .menu-toggle.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg); /* 13.22 Move e inclina a terceira linha em -45 graus */
-    }
-
-    .lesson-container {
-        width: 95%; /* 13.23 Alarga a folha do livro para quase 100% aproveitando telas pequenas */
-        padding: 2rem 1.5rem; /* 13.24 Reduz os recuos internos para poupar espaço físico */
-        margin: 1.5rem auto; /* 13.25 Diminui as margens externas superior e inferior */
-    }
-
-    .lesson-title {
-        font-size: 1.8rem; /* 13.26 Reduz o tamanho do título principal para não quebrar linhas bruscamente */
-        margin-bottom: 2rem; /* 13.27 Diminui o espaçamento abaixo do título */
-    }
-
-    .practice-text {
-        font-size: 1.4rem; /* 13.28 Reduz a fonte das sentenças em inglês para caber na tela do celular */
-    }
-
-    .practice-row {
-        grid-template-columns: 35px 1fr 50px; /* 13.29 Reajusta as colunas da grade para dimensões mais compactas */
-    }
-
-    /* Transforma os layouts de múltiplas colunas em uma única coluna vertical */
-    .grammar-layout, .connectives-layout, .exercise-grid-inputs, .exercise-grid-negative {
-        grid-template-columns: 1fr; /* 13.30 Força o empilhamento vertical de todos os grids */
-        gap: 2rem; /* 13.31 Padroniza o espaçamento de isolamento entre os blocos empilhados */
-    }
-
-    .grammar-center-images {
-        order: -1; /* 13.32 Desloca as ilustrações centrais para o topo da visualização no mobile */
-        margin-bottom: 1rem; /* 13.33 Cria um recuo na base das imagens */
-    }
-    
-    .reading-text {
-        font-size: 1.3rem !important; /* 13.34 Força a redução do texto de leitura para telas pequenas */
-    }
-        /* AJUSTE DOS CARDS DA INDEX NO MOBILE */
+@media (max-width: 992px) {
     .lessons-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-        gap: 1.2rem;
-        padding: 0.5rem;
-    }
-
-    .lesson-card {
-        width: 100%;
-        padding: 0.8rem;
-    }
-
-    .lesson-card img {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        border-radius: 8px;
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas para Tablets */
     }
 }
 
+@media (max-width: 768px) {
+    .header-container {
+        padding: 0.5rem 1rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .header-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-card);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem 0;
+        display: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .header-nav.active {
+        display: block;
+    }
+
+    .header-nav ul {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+        width: 100%;
+    }
+
+    .header-nav a {
+        font-size: 1.1rem;
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .lesson-container {
+        width: 95%;
+        padding: 2rem 1rem;
+        margin: 1.5rem auto;
+    }
+
+    .lesson-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .practice-text {
+        font-size: 1.3rem;
+    }
+
+    .practice-row {
+        grid-template-columns: 35px 1fr auto;
+        gap: 0.5rem;
+    }
+    
+    .icon-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .lessons-grid {
+        grid-template-columns: 1fr; /* 1 única coluna para celulares */
+        padding: 0.5rem 1rem;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1.4rem;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .grammar-layout, .connectives-layout, .exercise-grid-inputs, .exercise-grid-negative {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .grammar-center-images {
+        order: -1;
+        margin-bottom: 1rem;
+    }
+    
+    .reading-text {
+        font-size: 1.2rem !important;
+    }
+}
 
 /* ==========================================================================
    SECTION 14: TRIAL LESSON SCHEDULING FORM STYLES
    ========================================================================== */
-
 .form-grid {
-    display: grid; /* 14.1 Ativa a estrutura de grade para os campos do formulário */
-    grid-template-columns: 1fr 1fr; /* 14.2 Divide os campos em duas colunas simétricas em telas grandes */
-    gap: 2rem 3rem; /* 14.3 Define espaçamento menor entre as linhas e maior entre as colunas */
-    text-align: left; /* 14.4 Alinha os rótulos e campos à esquerda */
-    margin-top: 2.5rem; /* 14.5 Afasta o início do formulário do conteúdo superior */
-    margin-bottom: 2.5rem; /* 14.6 Cria um isolamento de espaço na base do formulário */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 3rem;
+    text-align: left;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
 }
 
 .form-group {
-    display: flex; /* 14.7 Usa Flexbox para gerenciar o conjunto do campo de entrada */
-    flex-direction: column; /* 14.8 Empilha o rótulo acima do respectivo campo de digitação */
-    position: relative; /* 14.9 Atua como referência para alertas de validação absolutos */
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .form-group label {
-    margin-bottom: 0.5rem; /* 14.10 Afasta o texto do rótulo do campo de digitação abaixo */
-    color: var(--text-color); /* 14.11 Aplica a cor escura padrão no texto do rótulo */
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
 }
 
 .select-custom {
-    cursor: pointer; /* 14.12 Altera o cursor para "mãozinha" ao interagir com a seleção */
-    background-color: transparent; /* 14.13 Mantém o fundo da caixa de seleção transparente */
-    padding-bottom: 7px; /* 14.14 Cria um recuo na base para alinhar com o design dos inputs */
+    cursor: pointer;
+    background-color: transparent;
+    padding-bottom: 7px;
 }
 
 .select-custom option {
-    background-color: var(--bg-card); /* 14.15 Aplica fundo branco nas opções internas do menu suspenso */
-    color: var(--text-color); /* 14.16 Mantém a cor escura legível nas opções de texto */
+    background-color: var(--bg-card);
+    color: var(--text-color);
 }
 
 .error-message {
-    font-size: 0.85rem; /* 14.17 Define uma fonte compacta para os alertas de validação */
-    color: #e53e3e; /* 14.18 Pinta a mensagem de erro com um tom vermelho de alerta */
-    font-weight: 600; /* 14.19 Aplica peso semi-bold no aviso de erro */
-    margin-top: 5px; /* 14.20 Afasta o aviso da base do campo inválido */
-    display: none; /* 14.21 Oculta o aviso de erro por padrão até ser disparado pelo script */
+    font-size: 0.85rem;
+    color: #e53e3e;
+    font-weight: 600;
+    margin-top: 5px;
+    display: none;
 }
 
 .input-invalid {
-    border-bottom-color: #e53e3e !important; /* 14.22 Altera forçadamente a cor da linha inferior para vermelho */
+    border-bottom-color: #e53e3e !important;
 }
 
-/* Responsividade específica para os campos do formulário de agendamento */
 @media (max-width: 768px) {
     .form-grid {
-        grid-template-columns: 1fr; /* 14.23 Transforma os campos do formulário em uma coluna única no mobile */
-        gap: 1.5rem; /* 14.24 Reduz a distância entre os campos empilhados */
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }
-
 
 /* ==========================================================================
    SECTION 15: PROGRESSION LOCK SYSTEM (GRACEFUL OVERLAY)
    ========================================================================== */
-
 .lesson-card-link.lesson-locked .lesson-card {
-    position: relative; /* 15.1 Torna o card a referência espacial para prender o cadeado sobre ele */
-    cursor: not-allowed; /* 15.2 Altera o cursor para o ícone de bloqueio/proibido */
+    position: relative;
+    cursor: not-allowed;
 }
 
 .lesson-card-link.lesson-locked .lesson-card img {
-    filter: grayscale(80%) blur(1px); /* 15.3 Retira 80% da cor e aplica um leve desfoque na imagem da lição */
-    opacity: 0.5; /* 15.4 Reduz a opacidade da foto pela metade gerando o visual desativado */
-    transition: all 0.3s ease; /* 15.5 Define o tempo de transição suave para as alterações do card */
+    filter: grayscale(80%) blur(1px);
+    opacity: 0.5;
+    transition: all 0.3s ease;
 }
 
 .lock-overlay {
-    position: absolute; /* 15.6 Remove o overlay do fluxo e o sobrepõe perfeitamente acima do card */
-    top: 0; /* 15.7 Fixa o início da película no teto do card */
-    left: 0; /* 15.8 Alinha a película horizontalmente no canto esquerdo */
-    width: 100%; /* 15.9 Estica a película por toda a largura horizontal útil do card */
-    height: 100%; /* 15.10 Estica a película por toda a altura vertical do card */
-    display: flex; /* 15.11 Ativa o Flexbox para gerenciar o alinhamento do emoji */
-    align-items: center; /* 15.12 Centraliza o emoji do cadeado cirurgicamente na vertical */
-    justify-content: center; /* 15.13 Centraliza o emoji do cadeado cirurgicamente na horizontal */
-    font-size: 2.5rem; /* 15.14 Configura uma escala grande e visível para o emoji do cadeado */
-    background: rgba(0, 0, 0, 0.15); /* 15.15 Aplica um filtro de escurecimento suave de 15% sobre o card */
-    border-radius: inherit; /* 15.16 Força o overlay a respeitar o arredondamento de cantos original do card */
-    pointer-events: none; /* 15.17 Faz cliques atravessarem o emoji permitindo a interceptação controlada via JS */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: inherit;
+    pointer-events: none;
 }
-
