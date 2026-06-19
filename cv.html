@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume - Rodrigo Ferreira de Lima</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <button class="btn-pdf" onclick="gerarPDF()">Save as PDF</button>
+
+    <div class="page-container">
+        <div class="header-name">Rodrigo Ferreira de Lima</div>
+        
+        <div class="contact-bar">
+            Fortaleza, Ceará &nbsp;|&nbsp; +55 85 98407-1372 &nbsp;|&nbsp; rfl882571@gmail.com
+        </div>
+
+        <div class="section-title">Professional Summary</div>
+        <div class="summary-text">
+            Detail-oriented Computer Science student specializing in Web Development, combined with a Bachelor's degree in Business Administration. Proficient in software fundamentals, script development, and data manipulation. Experienced in analyzing complex datasets, managing web platforms, and automated report structures. Native Portuguese speaker with advanced English fluency (C1), possessing strong cross-functional communication skills. Eager to leverage analytical skills and programming knowledge to develop clean code and support data unification as a Software Engineer Intern at Reltio.
+        </div>
+
+        <div class="section-title">Technical Skills</div>
+        <div class="skills-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px;">
+    <div>
+        <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
+            <li style="margin-bottom: 8px;"><strong>Programming:</strong> Java, JavaScript (ES6+), Python, HTML5, CSS3</li>
+            <li><strong>Tools & Frameworks:</strong> Git, GitHub, VS Code, Web APIs</li>
+        </ul>
+    </div>
+    <div>
+        <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
+            <li style="margin-bottom: 8px;"><strong>Languages:</strong> English (Advanced/C1), Portuguese (Native)</li>
+        </ul>
+    </div>
+</div>
+
+        <div class="section-title">Professional Experience</div>
+
+        <div class="experience-item">
+            <table class="experience-header">
+                <tr>
+                    <td class="job-title">Administrative Trainee – Executive Secretariat (FDID)</td>
+                    <td class="job-date">May 2023 – Present</td>
+                </tr>
+            </table>
+            <div class="company-name">State Public Prosecutor’s Office (Ministério Público do Ceará - MPCE) – Fortaleza, Ceará</div>
+            <ul>
+                <li>Analyze complex project data, generate automated performance reports, and support data auditing processes.</li>
+                <li>Manage and maintain the official FDID website, ensuring platform stability, data integration, and clear navigation.</li>
+                <li>Developed internal tracking systems for financial accountability, data normalization, and administrative control.</li>
+                <li>Identify and resolve data discrepancies across multiple sources, ensuring database integrity and precision.</li>
+            </ul>
+        </div>
+
+        <div class="section-title">Education</div>
+
+        <div class="education-item">
+            <table class="experience-header">
+                <tr>
+                    <td class="job-title">B.S. in Computer Science (Focus on Web Development)</td>
+                    <td class="job-date">Dec 2028 (Expected)</td>
+                </tr>
+            </table>
+            <div class="company-name" style="font-weight: normal;">Brigham Young University – Idaho (Online)</div>
+        </div>
+
+        <div class="education-item">
+            <table class="experience-header">
+                <tr>
+                    <td class="job-title">B.A. in Business Administration</td>
+                    <td class="job-date">Dec 2021</td>
+                </tr>
+            </table>
+            <div class="company-name" style="font-weight: normal;">Universidade Estácio de Sá – Fortaleza/CE</div>
+        </div>
+    </div>
+
+    <script>
+        function gerarPDF() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+@page {
+    size: A4;
+    margin: 20mm 15mm;
+    background-color: #f2ebd9; /* Define o fundo creme do papel diretamente na impressão */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #111111;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    font-size: 10.5pt;
+    background-color: #f2ebd9;
+}
+
+/* Container que cria a experiência visual de folha A4 no Monitor */
+.page-container {
+    background: #f2ebd9;
+    margin: 0 auto;
+}
+
+.header-name {
+    text-align: right;
+    font-size: 20pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #000000;
+    margin-bottom: 12px;
+}
+
+.contact-bar {
+    background-color: #3b73a9;
+    color: #ffffff;
+    text-align: center;
+    padding: 6px 10px;
+    font-size: 8.5pt;
+    font-weight: normal;
+    margin-bottom: 20px;
+    word-spacing: 1px;
+}
+
+.section-title {
+    font-size: 13pt;
+    font-weight: bold;
+    color: #1a446c;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid #111111;
+    margin-top: 22px;
+    margin-bottom: 10px;
+    padding-bottom: 2px;
+    page-break-after: avoid;
+}
+
+.summary-text {
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.skills-table {
+    width: 100%;
+    margin-bottom: 15px;
+    border-collapse: collapse;
+}
+
+.skills-table td {
+    width: 50%;
+    vertical-align: top;
+    padding: 2px 0;
+}
+
+ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+li {
+    margin-bottom: 4px;
+    text-align: justify;
+}
+
+.experience-item {
+    margin-bottom: 16px;
+    page-break-inside: avoid;
+}
+
+.experience-header {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 4px;
+}
+
+.experience-header td {
+    padding: 0;
+    vertical-align: bottom;
+}
+
+.job-title {
+    font-weight: bold;
+    font-size: 11pt;
+    text-align: left;
+}
+
+.job-date {
+    font-weight: normal;
+    font-size: 11pt;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+.company-name {
+    font-weight: bold;
+    font-size: 11pt;
+    margin-bottom: 6px;
+    color: #222222;
+}
+
+.education-item {
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+}
+
+/* Configurações dedicadas exclusivamente à exibição em tela de Computador */
+@media screen {
+    body {
+        background-color: #dadada; /* Fundo cinza escuro simulando uma mesa de trabalho */
+        padding: 40px 0;
+    }
+    .page-container {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 20mm 15mm;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra suave simulando papel físico */
+    }
+}
+/* ... [Mantenha todo o CSS anterior aqui] ... */
+
+/* Estilo do Botão Flutuante (Apenas na Tela) */
+.btn-pdf {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    background-color: #1a446c;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 11pt;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: background 0.2s ease;
+    z-index: 999;
+}
+
+.btn-pdf:hover {
+    background-color: #22598c;
+}
+
+/* Regra Crítica: Esconde o botão e ajusta margens no PDF/Impressão */
+@media print {
+    .btn-pdf {
+        display: none !important;
+    }
+    body {
+        background-color: #f2ebd9 !important;
+        padding: 0 !important;
+    }
+    .page-container {
+        box-shadow: none !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+}
+/* ==========================================================================
+   Configurações Exclusivas para a Cover Letter (Carta de Apresentação)
+   ========================================================================== */
+
+.letter-date {
+    margin-bottom: 25px;
+    font-size: 11pt;
+}
+
+.recipient-info {
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.letter-body p {
+    text-align: justify;
+    margin-bottom: 15px;
+    text-indent: 20px; /* Cria o recuo elegante de início de parágrafo */
+}
+
+.signature {
+    margin-top: 40px;
+    line-height: 1.4;
+}
